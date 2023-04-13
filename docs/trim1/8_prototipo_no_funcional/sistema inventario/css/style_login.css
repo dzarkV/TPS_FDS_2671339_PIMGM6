@@ -2,6 +2,8 @@ body {
     background: #c1bdba;
     font-family: 'Titillium Web', sans-serif;
 }
+
+/* estilo para el div del formulario */
 .form {
   background: rgba(19, 35, 47, 0.9);
   padding: 40px;
@@ -9,18 +11,31 @@ body {
   margin: 40px auto;
   border-radius: 4px;
   box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+  
 }
 
-label {
-  transform: translateY(6px); 
-  left: 13px;
-  color: rgba(255, 255, 255, 0.5);
-  transition: all 0.25s ease;
-  pointer-events: none;
-  font-size: 22px;
+/* estilo para el div formulario */
+.box input{
+  display: block;
+  margin: 20px auto;
+  text-align: center;
+  border: 2px solid #3498db;
+  padding: 14px 10px;
+  width: 350px;
+  outline: none;
+  color: white;
+  border-radius: 24px;
+  transition: 0.25s;
 }
 
-input, textarea {
+/* transformacion en los campos del formulario */
+.box input:focus{
+  width: 400px;
+  border-color: #2ecc71;
+}
+
+/* estilo de los campos del formulario */
+input {
   font-size: 22px;
   display: block;
   width: 100%;
@@ -34,37 +49,45 @@ input, textarea {
   transition: border-color .25s ease, box-shadow .25s ease;
 }
 
-label .req {
-  margin: 2px;
-  color: #1ab188;
-}
-
-
+/* estilo para el botón */
 .button {
   border: 0;
   outline: none;
-  border-radius: 0;
+  border-radius: 2px;
   padding: 15px;
   font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: .1em;
   background: #3f95ea;
   color: #ffffff;
   transition: all 0.5s ease;
 }
 
+/* caracteristicas para el bloque de los botones */
 .button-block {
   color: #ffffff;
+  text-align: center;
 }
 
+/* solo para el botón de recuperar contraseña */
+.pass-recovery{
+  margin-left: 5%;
+  text-decoration: underline solid white;
+}
+
+/* tamaño del encabezado */
+.header-login {
+  font-size: xx-large;
+}
+
+/* estilo para header 1 */
 h1 {
-  text-align: center;
-  color: #ffffff;
-  font-weight: 300;
+  color: #080000;
+  font-weight: 900;
   margin: 0 0 40px;
 }
 
-.field-wrap {
-  position: relative;
-  margin-bottom: 40px;
+/* estilo para header 2 */
+h2 {
+  color: #f1e6e6;
+  font-weight: 600;
+  margin: 0 0 40px;
 }
