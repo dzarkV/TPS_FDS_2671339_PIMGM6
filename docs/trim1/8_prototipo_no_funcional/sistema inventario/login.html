@@ -1,56 +1,47 @@
 
 <!DOCTYPE html>
-<html class="no-js">
+<html >
 	<head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Elate &mdash; 100% Free Fully Responsive HTML5 Template</title>
+	<title>Sistema de inventario MGM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Template by FREEHTML5.CO" />
-	<meta name="keywords" content="free html5, free template, free bootstrap, html5, css3, mobile first, responsive" />
-	<meta name="author" content="FREEHTML5.CO" />
 
-	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+	<!-- Iconos con favicons -->
 	<link rel="shortcut icon" href="favicon.ico">
 
-	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
-	
 	<link rel="stylesheet" id="theme-switch" href="css/style_login.css">
 
 	</head>
 	<body>
-
+		<!-- Seccion del header de la pagina de login -->
+		<section>
+			<div class="header-login">
+				<h1>Sistema MGM</h1>
+			</div>
+		</section>
 	<section>
+		<!-- Formulario de login sencillo-->
 		<div class="form">
-			
 			<div class="tab-content">
-			  <div id="signup">   
-				<h1>Iniciar Sesion</h1>
-				
-				<form action="/" method="post">
+			  <div id="signup"> 
+
+				<h2>Iniciar Sesion</h2>
 	  
-				<div class="field-wrap">
-				  <label>Usuario<span class="req">*</span></label>
-				  <input type="text"/>
-				</div>
-				
-				<div class="field-wrap">
-				  <label>
-					Contraseña<span class="req">*</span>
-				  </label>
-				  <input type="password"/>
-				</div>
-				
-				<button type="submit" class="button button-block" ><a style="color:#fff; text-decoration:none" href="index.html">Iniciar Sesion</a></button>
-				<button type="submit" class="button button-block"><a style="color:#fff; text-decoration:none" href="index.html">Recordar constraseña</a></button>
-				
-				</form>
-	  
+				<form class="box" method="post">
+					<input type="text" placeholder="Usuario" required>
+					<input type="password" placeholder="Contraseña" required>
+					<div class="button-block">
+						<button type="submit" class="button button-block"><a style="color:#fff; text-decoration:none" href="index.html">Ingresar</a></button>
+
+							<span class="pass-recovery">Recuperar contraseña</span>
+					</div>
+				</form> 
 			  </div>
 			  
-			</div><!-- tab-content -->
+			</div>
 			
-	  </div> <!-- /form -->
+	  </div>
 	</section>
 
 	</body>
