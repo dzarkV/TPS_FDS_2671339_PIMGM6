@@ -24,3 +24,4 @@ function navegar() {
             console.log('el valor es :' + select.value);
         }
 }
+
