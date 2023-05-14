@@ -1,3 +1,4 @@
+
 function navegar() {
     var select = document.querySelector("#funcionUsuario");
     
@@ -24,4 +25,3 @@ function navegar() {
             console.log('el valor es :' + select.value);
         }
 }
-
