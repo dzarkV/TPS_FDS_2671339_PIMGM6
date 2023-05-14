@@ -1,3 +1,4 @@
+
 function navegar() {
     var select = document.querySelector("#funcionUsuario");
     

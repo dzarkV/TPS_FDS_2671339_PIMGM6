@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 	<head>
@@ -9,9 +8,6 @@
 
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
 
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="css/icomoon.css">
-	<!-- Simple Line Icons -->
 	<link rel="stylesheet" href="css/simple-line-icons.css">
 	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="css/bootstrap.css">
@@ -20,22 +16,19 @@
 
 	</head>
 	<body>
-	<header role="banner" id="fh5co-header">
 
-		<script type="text/javascript" lang="JavaScript">
+	<!-- Cabezote de la pagina Estados de usuario -->
+	<header id="estilo-header">
 
-		</script>
-
-			<div class="container">
-				<!-- <div class="row"> -->
-			    <nav class="navbar navbar-default">
-		        <div class="navbar-header">
-		        	<!-- Mobile Toggle Menu Button -->
-					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-		         <a class="navbar-brand" href="index.html">Sistema MGM</a> 
-		        </div>
-		        <div id="navbar" class="navbar-collapse collapse">
-		          <ul class="nav navbar-nav navbar-right">
+		<div class="container">
+			<nav class="navbar navbar-default">
+				<div class="navbar-header">
+					<a href="#" class="js-estilo-nav-toggle estilo-nav-toggle" ><i></i></a>
+					<a class="navbar-brand" href="index.html">MGM</a> 
+				</div>
+				<!-- Menu de seleccion -->
+				<div id="navbar" class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
 					<li style="margin: 0px 16px">
 						<select class="form-select form-select-lg mb-3" id="funcionUsuario" onchange="navegar()">
 							<option selected> Ajustes usuario</option>
@@ -45,64 +38,63 @@
 							<option value="4">estado de usuario</option>
 							<option value="5">eliminar usuario</option>
 							<option value="6">crear usuario</option>
-					    </select>
+						</select>
 					</li>
-		            <li style="color:#fff"><span>Alexander</span><br> <span>Administrador</span></li>
-		          </ul>
-		        </div>
-			    </nav>
-			  <!-- </div> -->
-		  </div>
+					<li style="color:#fff"><span>Alexander</span><br> <span>Administrador</span></li>
+				</ul>
+				</div>
+			</nav>
+			</div>
 	</header>
 
-	<section id="fh5co-home" data-section="home" style="background-image: url(images/fondo_papeleria.jpg);" data-stellar-background-ratio="0.5">
+	<section id="estilo-home" style="background-image: url(images/fondo_papeleria.jpg);" data-stellar-background-ratio="0.5">
 		<div class="gradient"></div>
 
 	</section>
 
-	<section id="fh5co-intro">
+	<section id="estilo-intro">
 		<div class="container">
 			<div class="row row-bottom-padded-lg">
-				<div class="fh5co-block to-animate" style="background-image: url(images/productos.jpg);">
+				<div class="estilo-block to-animate" style="background-image: url(images/productos.jpg);">
 					<div class="overlay-darker"></div>
 					<div class="overlay"></div>
-					<div class="fh5co-text">
-						<i class="fh5co-intro-icon icon-bulb"></i>
+					<div class="estilo-text">
+						<i class="estilo-intro-icon icon-bulb"></i>
 						<h2>Productos</h2>
-						<p><a href="#" class="btn btn-primary">Ingresar</a></p>
+						<p><a href="./Productos.html" class="btn btn-primary">Ingresar</a></p>
 					</div>
 				</div>
-				<div class="fh5co-block to-animate" style="background-image: url(images/proveedores.jpeg);">
+				<div class="estilo-block to-animate" style="background-image: url(images/proveedores.jpeg);">
 					<div class="overlay-darker"></div>
 					<div class="overlay"></div>
-					<div class="fh5co-text">
-						<i class="fh5co-intro-icon icon-wrench"></i>
+					<div class="estilo-text">
+						<i class="estilo-intro-icon icon-wrench"></i>
 						<h2>Proveedores</h2>
-						<p><a href="#" class="btn btn-primary">Ingresar</a></p>
+						<p><a href="./proveedores.html" class="btn btn-primary">Ingresar</a></p>
 					</div>
 				</div>
-				<div class="fh5co-block to-animate" style="background-image: url(images/ventas.png);">
+				<div class="estilo-block to-animate" style="background-image: url(images/ventas.png);">
 					<div class="overlay-darker"></div>
 					<div class="overlay"></div>
-					<div class="fh5co-text">
-						<i class="fh5co-intro-icon icon-rocket"></i>
+					<div class="estilo-text">
+						<i class="estilo-intro-icon icon-rocket"></i>
 						<h2>Ventas</h2>
 						<p><a href="#" class="btn btn-primary">Ingresar</a></p>
 					</div>
 				</div>
-				<div class="fh5co-block to-animate" style="background-image: url(images/reportes.jpg);">
+				<div class="estilo-block to-animate" style="background-image: url(images/reportes.jpg);">
 					<div class="overlay-darker"></div>
 					<div class="overlay"></div>
-					<div class="fh5co-text">
-						<i class="fh5co-intro-icon icon-book"></i>
+					<div class="estilo-text">
+						<i class="estilo-intro-icon icon-book"></i>
 						<h2>Reportes</h2>
-						<p><a href="#" class="btn btn-primary">Ingresar</a></p>
+						<p><a href="./reportes.html" class="btn btn-primary">Ingresar</a></p>
 					</div>
-				</div><div class="fh5co-block to-animate" style="background-image: url(images/inventarios.jpg);">
+				</div><div class="estilo-block to-animate" style="background-image: url(images/inventarios.jpg);">
 					<div class="overlay-darker"></div>
 					<div class="overlay"></div>
-					<div class="fh5co-text">
-						<i class="fh5co-intro-icon icon-archive"></i>
+					<div class="estilo-text">
+						<i class="estilo-intro-icon icon-archive"></i>
 						<h2>Inventarios</h2>
 						<p><a href="#" class="btn btn-primary">Ingresar</a></p>
 					</div>
@@ -111,7 +103,7 @@
 		</div>
 	</section>
 	
-	<footer id="footer" role="contentinfo">
+	<footer id="footer">
 		<div class="container">
 			<div class="">
 				<div class="col-md-12 text-center">
@@ -124,4 +116,3 @@
 	<script src="./js/script.js"></script>
 	</body>
 </html>
-
