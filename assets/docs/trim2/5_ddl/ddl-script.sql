@@ -24,7 +24,9 @@ ALTER TABLE productos add column referencia varchar(50);
 -- ver comentarios en las columnas de la tabla categorías
 show full columns from entradas;
 
+-- ||||||||||||||||||||||||||||||||||||||||||||||
 -- Comentarios a las diferentes columnas
+-- ||||||||||||||||||||||||||||||||||||||||||||||
 -- comentarios en tabla categorias
 ALTER TABLE categorias 
 MODIFY COLUMN id_categoria tinyint unsigned auto_increment not null 
