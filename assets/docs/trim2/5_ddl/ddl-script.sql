@@ -21,6 +21,9 @@ ALTER TABLE productos add column marca varchar(50);
 -- agregar la columna referencia a la tabla productos 
 ALTER TABLE productos add column referencia varchar(50);
 
+-- agregar la columna username a la tabla credenciales 
+ALTER TABLE credenciales add column username varchar(20);
+
 -- ver comentarios en las columnas de la tabla categorías
 show full columns from entradas;
 
