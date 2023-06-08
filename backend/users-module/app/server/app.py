@@ -2,8 +2,8 @@ from typing import Annotated
 
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-# from models.usuario import Usuario
-from models.usuario import User
+from models.usuario import Usuario
+from routes.usuario import usuario as UsuarioRouter
 # from models.rol import Rol
 
 
@@ -11,7 +11,9 @@ app = FastAPI(title='Users module',
     description='API REST de servicio de usuarios del sistema MGM', 
     version='0.0.1')
 
-@app.get('/')
+app.include_router(UsuarioRouter, tags=["Usuario"])
+
+@app.get('/', tags=['Root'])
 def root_page():
     return {'message': 'Qué hace'}
 
@@ -59,7 +61,7 @@ async def get_current_user(token: Annotated[str, Depends(oauth_scheme)]):
     return user
 
 async def get_current_active_user(
-    current_user: Annotated[User, Depends(get_current_user)]
+    current_user: Annotated[Usuario, Depends(get_current_user)]
 ):
     if current_user["disabled"]:
         raise HTTPException(status_code=400, detail="usuario inactivo")
@@ -81,6 +83,6 @@ async def login(form_data: Annotated[OAuth2PasswordRequestForm, Depends()]):
 
 @app.get("/users/me")
 async def read_users_me(
-    current_user: Annotated[User, Depends(get_current_active_user)]
+    current_user: Annotated[Usuario, Depends(get_current_active_user)]
 ):
     return current_user

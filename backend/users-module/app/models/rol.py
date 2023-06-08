@@ -1,7 +1,7 @@
 from pydantic import BaseModel
-# from typing import Optional
+from typing import Optional
 
 
 class Rol(BaseModel):
     id_rol: int
-    nombre_rol: str
+    nombre_rol: Optional[str] = None
