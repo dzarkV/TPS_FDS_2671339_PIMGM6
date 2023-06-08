@@ -8,11 +8,12 @@ def user_helper(user) -> dict:
         "nombre_usuario": user["nombre_usuario"],
         "apellido_usuario": user["apellido_usuario"],
         "fecha_registro": user["fecha_registro"],
-        "rol_usuario": user["rol_usuario"]
+        "rol_usuario": user["rol_usuario"],
+        "credenciales": user["credenciales"]
     }
 
 # Retrieve all users present in the database
-def retrieve_users():
+def retrieve_all_users():
     users = []
     for user in user_collection.find():
         users.append(user_helper(user))
@@ -23,7 +24,6 @@ def retrieve_users():
 def add_user(user_data: dict) -> dict:
     user = user_collection.insert_one(user_data)
     new_user = user_collection.find_one({"_id": user.inserted_id})
-    print(new_user.__str__())
     return user_helper(new_user)
 
 

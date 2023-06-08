@@ -2,6 +2,7 @@ from pydantic import BaseModel, Field, constr
 from typing import Union, Optional
 from datetime import date
 from models.rol import Rol
+from models.credencial import Credencial
 import uuid
 
 # class User(BaseModel):
@@ -11,24 +12,29 @@ import uuid
 #     password: str | None = None
 #     disabled: bool | None = None
 class Usuario(BaseModel):
-    id_usuario: str= Field(default_factory=uuid.uuid4, alias="_id") 
-    nombre_usuario: constr(strict=True, min_length=3, max_length=20) = Field(..., example='Dinense')
-    apellido_usuario: constr(strict=True, min_length=3, max_length=20) = Field(..., example='Pardo')
-    fecha_registro: date = date.today()
-    rol_usuario: Optional[Rol | int] = None 
+    id_usuario: Optional[str] = Field(default_factory=uuid.uuid1, alias="_id") 
+    nombre_usuario: constr(
+        strict=True, min_length=3, max_length=20) = Field(..., example='Dinense')
+    apellido_usuario: constr(
+        strict=True, min_length=3, max_length=20) = Field(..., example='Pardo')
+    fecha_registro: Optional[date] = date.today()
+    rol_usuario: Rol
+    credenciales: Credencial
 
     class Config:
         allow_population_by_field_name = True
         arbitrary_types_allowed = True
         schema_extra = {
             "example": {
-                "_id": "066de609-b04a-4b30-b46c-32537c7f1f6e",
-                "nombre_usuario": "Dinense",
+                "nombre_usuario": "Segundo",
                 "apellido_usuario": "Pardo",
-                "fecha_registro": "2021-09-01",
                 "rol_usuario": {
-                    "id_rol": 1,
+                    "id_rol": 101,
                     "nombre_rol": "Administrador"
+                },
+                "credenciales": {
+                    "usuario": "segundopa",
+                    "contrasena": "secret123"
                 }
             }
         }
@@ -44,12 +50,15 @@ class UpdateUsuario(BaseModel):
         arbitrary_types_allowed = True
         schema_extra = {
             "example": {
-                "nombre_usuario": "Dinense",
-                "apellido_usuario": "Pardo",
-                "fecha_registro": "2021-09-01",
+                "nombre_usuario": "Tercero",
+                "apellido_usuario": "Fontecha",
                 "rol_usuario": {
-                    "id_rol": 2,
+                    "id_rol": 102,
                     "nombre_rol": "Vendedor"
+                },
+                "credenciales": {
+                    "usuario": "segundopa",
+                    "contrasena": "secret2"
                 }
             }
         }
