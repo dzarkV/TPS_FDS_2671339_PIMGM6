@@ -29,7 +29,7 @@ def add_user(user_data: dict) -> dict:
 
 # Retrieve a user with a matching ID
 def retrieve_user(id: str) -> dict:
-    user = user_collection.find_one({"_id": ObjectId(id)})
+    user = user_collection.find_one({"_id": id})
     if user:
         return user_helper(user)
 
