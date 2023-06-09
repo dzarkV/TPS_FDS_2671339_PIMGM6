@@ -1,9 +1,9 @@
 from pydantic import BaseModel, Field, constr
-from typing import Union, Optional
+from typing import Optional, Union
 from datetime import date
 from models.rol import Rol
 from models.credencial import Credencial
-import uuid
+# from bson import ObjectId
 
 # class User(BaseModel):
 #     username: str
@@ -12,12 +12,12 @@ import uuid
 #     password: str | None = None
 #     disabled: bool | None = None
 class Usuario(BaseModel):
-    id_usuario: Optional[str] = Field(default_factory=uuid.uuid1, alias="_id") 
+    # id_usuario: Optional[str] = Field(default_factory=ObjectId, alias="_id") 
     nombre_usuario: constr(
         strict=True, min_length=3, max_length=20) = Field(..., example='Dinense')
     apellido_usuario: constr(
         strict=True, min_length=3, max_length=20) = Field(..., example='Pardo')
-    fecha_registro: Optional[date] = date.today()
+    fecha_registro: Union[date|str] = date.today()
     rol_usuario: Rol
     credenciales: Credencial
 
@@ -43,7 +43,8 @@ class UpdateUsuario(BaseModel):
     nombre_usuario: Optional[str]
     apellido_usuario: Optional[str]
     fecha_registro: Optional[date]
-    rol_usuario: Optional[Union[Rol | int]]
+    rol_usuario: Optional[Rol]
+    credenciales: Optional[Credencial]
 
     class Config:
         allow_population_by_field_name = True
@@ -57,8 +58,8 @@ class UpdateUsuario(BaseModel):
                     "nombre_rol": "Vendedor"
                 },
                 "credenciales": {
-                    "usuario": "segundopa",
-                    "contrasena": "secret2"
+                    "usuario": "terceropa",
+                    "contrasena": "secret122"
                 }
             }
         }

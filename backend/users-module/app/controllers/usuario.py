@@ -22,24 +22,30 @@ def retrieve_all_users():
 
 # Add a new user into to the database
 def add_user(user_data: dict) -> dict:
-    user = user_collection.insert_one(user_data)
-    new_user = user_collection.find_one({"_id": user.inserted_id})
+    user_id_inserted = user_collection.insert_one(user_data).inserted_id
+    new_user = user_collection.find_one({"_id": user_id_inserted})
     return user_helper(new_user)
 
 
 # Retrieve a user with a matching ID
-def retrieve_user(id: str) -> dict:
-    user = user_collection.find_one({"_id": id})
+def retrieve_user_by_id(id: str) -> dict:
+    user = user_collection.find_one({"_id": ObjectId(id)})
     if user:
         return user_helper(user)
 
+def retrieve_user_by_name(name: str) -> dict:
+    user = user_collection.find_one({"nombre_usuario": name}) 
+    if user:
+        return user_helper(user)
 
 # Update a user with a matching ID
 def update_user(id: str, data: dict):
+    print(data)
     # Return false if an empty request body is sent.
     if len(data) < 1:
         return False
     user = user_collection.find_one({"_id": ObjectId(id)})
+    print("........................................................... ", user.__str__())
     if user:
         updated_student = user_collection.update_one(
             {"_id": ObjectId(id)}, {"$set": data}

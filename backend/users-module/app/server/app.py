@@ -11,7 +11,7 @@ app = FastAPI(title='Users module',
     description='API REST de servicio de usuarios del sistema MGM', 
     version='0.0.1')
 
-app.include_router(UsuarioRouter, tags=["Usuario"])
+app.include_router(UsuarioRouter, tags=["Usuarios"])
 
 @app.get('/', tags=['Root'])
 def root_page():
