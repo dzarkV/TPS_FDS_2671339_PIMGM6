@@ -55,8 +55,8 @@ def get_usuario(
 
 @usuario.put("/usuario/update/{id}")
 def update_usuario_data(id: str, data: UpdateUsuario = Body(...)):
-    req = {k: v for k, v in data.dict().items() if v is not None}
-    updated_usuario = update_user(id, req)
+    user_dict = {k: v for k, v in data.dict().items() if v is not None}
+    updated_usuario = update_user(id, user_dict)
     if updated_usuario:
         return ResponseModel(
             "Usuario con ID: {} actualizado exitosamente.".format(id),

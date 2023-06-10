@@ -40,17 +40,29 @@ def retrieve_user_by_name(name: str) -> dict:
 
 # Update a user with a matching ID
 def update_user(id: str, data: dict):
-    print(data)
     # Return false if an empty request body is sent.
     if len(data) < 1:
         return False
     user = user_collection.find_one({"_id": ObjectId(id)})
-    print("........................................................... ", user.__str__())
     if user:
-        updated_student = user_collection.update_one(
+        # print("1: ", data.values())
+        # # if isinstance(data.values(), dict):
+        # #     data = {k: v for k, v in data.values() if v is not None}
+        # print("2: ", isinstance(data.values(), dict))
+        # for i in data.values():
+        #     if isinstance(i, dict):
+        #         key_embebbed = i.keys()
+        #         dict_embebed = {k: v for k, v in i.items() if v is not None}
+        #         print("3: ", key_embebbed, dict_embebed)
+        #         updated_user = user_collection.update_one(
+        #             {"_id": ObjectId(id)}, {"$set": { key_embebbed:dict_embebed}}
+        #         )
+        #         return True
+
+        updated_user = user_collection.update_one(
             {"_id": ObjectId(id)}, {"$set": data}
         )
-        if updated_student:
+        if updated_user:
             return True
         return False
 

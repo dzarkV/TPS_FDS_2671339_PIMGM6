@@ -1,8 +1,8 @@
 from pydantic import BaseModel, Field, constr
 from typing import Optional, Union
 from datetime import date
-from models.rol import Rol
-from models.credencial import Credencial
+from models.rol import Rol, UpdateRol
+from models.credencial import Credencial, UpdateCredencial
 # from bson import ObjectId
 
 # class User(BaseModel):
@@ -43,8 +43,8 @@ class UpdateUsuario(BaseModel):
     nombre_usuario: Optional[str]
     apellido_usuario: Optional[str]
     fecha_registro: Optional[date]
-    rol_usuario: Optional[Rol]
-    credenciales: Optional[Credencial]
+    rol_usuario: Optional[UpdateRol | Rol]
+    credenciales: Optional[UpdateCredencial | Credencial]
 
     class Config:
         allow_population_by_field_name = True
