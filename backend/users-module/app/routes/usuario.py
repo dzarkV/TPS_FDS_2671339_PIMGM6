@@ -55,7 +55,7 @@ def get_usuario(
 
 @usuario.put("/usuario/update/{id}")
 def update_usuario_data(id: str, data: UpdateUsuario = Body(...)):
-    user_dict = {k: v for k, v in data.dict().items() if v is not None}
+    user_dict = delete_none_in_dict(data.dict())
     updated_usuario = update_user(id, user_dict)
     if updated_usuario:
         return ResponseModel(
@@ -65,3 +65,17 @@ def update_usuario_data(id: str, data: UpdateUsuario = Body(...)):
     return ErrorResponseModel(
         "Error al actualizar el usuario.", 404, "No se encontró el usuario."
     )
+
+def delete_none_in_dict(_dict):
+    """Delete None values recursively from all of the 
+    dictionaries, tuples, lists, sets"""
+    if isinstance(_dict, dict):
+        for key, value in list(_dict.items()):
+            if isinstance(value, (list, dict, tuple, set)):
+                _dict[key] = delete_none_in_dict(value)
+            elif value is None or key is None:
+                del _dict[key]
+    elif isinstance(_dict, (list, set, tuple)):
+        _dict = type(_dict)(
+            delete_none_in_dict(item) for item in _dict if item is not None)
+    return _dict
