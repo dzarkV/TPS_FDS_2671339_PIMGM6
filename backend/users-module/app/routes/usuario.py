@@ -21,14 +21,15 @@ from models.usuario import (
 
 usuario = APIRouter()
 
+# Add a new user in endpoint /usuario
 @usuario.post(
     "/usuario", response_description="Usuario agregado a la base de datos")
 def add_usuario_data(usuario: Usuario = Body(...)):
-    # print("------------------------------------", usuario.id_usuario.__str__())
     usuario = jsonable_encoder(usuario)
     new_usuario = add_user(usuario)
     return ResponseModel(new_usuario, "Usuario agregado exitosamente.")
 
+# Get all users in endpoint /usuarios
 @usuario.get(
     "/usuarios", response_description="Usuarios obtenidos de la base de datos")
 def get_all_usuarios():
@@ -38,6 +39,7 @@ def get_all_usuarios():
     return ErrorResponseModel(
         "No se encontraron usuarios.", 404, "No se encontraron usuarios.")
 
+#Get a user by id or name in endpoint /usuario/{find_by}
 @usuario.get(
     "/usuario/{find_by}", response_description="Usuario obtenido de la base de datos")
 def get_usuario(
@@ -53,6 +55,7 @@ def get_usuario(
     return ErrorResponseModel(
         "No se encontró el usuario.", 404, "No se encontró el usuario.")
 
+# Update a user by id in endpoint /usuario/update/{id}
 @usuario.put("/usuario/update/{id}")
 def update_usuario_data(id: str, data: UpdateUsuario = Body(...)):
     user_dict = delete_none_in_dict(data.dict())
@@ -79,3 +82,17 @@ def delete_none_in_dict(_dict):
         _dict = type(_dict)(
             delete_none_in_dict(item) for item in _dict if item is not None)
     return _dict
+
+# Delete a user by id in endpoint /usuario/delete/{id}
+@usuario.delete(
+    "/usuario/delete/{id}", response_description="Usuario eliminado de la base de datos")
+def delete_usuario_data(id: str):
+    deleted_usuario = delete_user(id)
+    if deleted_usuario:
+        return ResponseModel(
+            "Usuario con ID: {} eliminado exitosamente.".format(id),
+            "Usuario eliminado exitosamente.",
+        )
+    return ErrorResponseModel(
+        "Error al eliminar el usuario.", 404, "No se encontró el usuario."
+    )
