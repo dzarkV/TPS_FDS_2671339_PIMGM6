@@ -3,16 +3,9 @@ from typing import Optional, Union
 from datetime import date
 from models.rol import Rol, UpdateRol
 from models.credencial import Credencial, UpdateCredencial
-# from bson import ObjectId
 
-# class User(BaseModel):
-#     username: str
-#     full_name: str
-#     email: str | None = None
-#     password: str | None = None
-#     disabled: bool | None = None
 class Usuario(BaseModel):
-    # id_usuario: Optional[str] = Field(default_factory=ObjectId, alias="_id") 
+
     nombre_usuario: constr(
         strict=True, min_length=3, max_length=20) = Field(..., example='Dinense')
     apellido_usuario: constr(
@@ -34,7 +27,8 @@ class Usuario(BaseModel):
                 },
                 "credenciales": {
                     "usuario": "segundopa",
-                    "contrasena": "secret123"
+                    "contrasena": "secret123",
+                    "estado": True
                 }
             }
         }
@@ -59,7 +53,8 @@ class UpdateUsuario(BaseModel):
                 },
                 "credenciales": {
                     "usuario": "terceropa",
-                    "contrasena": "secret122"
+                    "contrasena": "secret122",
+                    "estado": True
                 }
             }
         }
