@@ -9,6 +9,7 @@ from controllers.usuario import (
     delete_user,
     retrieve_user_by_id,
     retrieve_user_by_name,
+    retrieve_user_by_username,
     retrieve_all_users,
     update_user,
 )
@@ -54,6 +55,8 @@ def get_usuario(
         usuario = retrieve_user_by_id(value)
     elif find_by == Usuario_Finded_by.name:
         usuario = retrieve_user_by_name(value)
+    elif find_by == Usuario_Finded_by.username:
+        usuario = retrieve_user_by_username(value)
 
     if usuario:
         return ResponseModel(usuario, "Usuario obtenido exitosamente.")

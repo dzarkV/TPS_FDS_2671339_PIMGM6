@@ -38,6 +38,11 @@ def retrieve_user_by_name(name: str) -> dict:
     if user:
         return user_helper(user)
 
+def retrieve_user_by_username(username: str) -> dict:
+    user = user_collection.find_one({"credenciales.usuario": username})
+    if user:
+        return user_helper(user)
+
 # Update a user with a matching ID
 def update_user(id: str, data: dict):
     # Return false if an empty request body is sent.
