@@ -1,15 +1,13 @@
 from fastapi import APIRouter, Depends, HTTPException
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from fastapi.security import OAuth2PasswordRequestForm
 from models.usuario import Usuario
-from controllers.login import authenticate_user, create_token
+from controllers.login import authenticate_user, create_token, decode_token
 from datetime import timedelta
 
 login = APIRouter()
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl='/api/token')
-
 @login.post("/api/token")
-def login_with_token(form_data: OAuth2PasswordRequestForm = Depends()):
+def login_with_token(form_data: OAuth2PasswordRequestForm = Depends()) -> dict:
     user = authenticate_user(form_data.username, form_data.password)
     if not user:
         raise HTTPException(status_code=401, 
@@ -27,9 +25,7 @@ def login_with_token(form_data: OAuth2PasswordRequestForm = Depends()):
 
     return {"access_token": access_token_jwt, "token_type": "bearer"}
 
-@login.get("/api/me")
-def read_users_me(
-    current_user: str | Usuario = Depends(oauth2_scheme)
-):
-    print(current_user, type(current_user))
+@login.get("/api/login")
+def login_me(
+    current_user: dict | Usuario = Depends(decode_token)) -> dict | Usuario:
     return current_user
