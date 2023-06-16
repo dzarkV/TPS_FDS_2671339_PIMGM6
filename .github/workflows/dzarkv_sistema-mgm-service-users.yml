@@ -23,11 +23,13 @@ jobs:
           python-version: '3.10'
 
       - name: Create and start virtual environment
+        working-directory: ./backend/users-module 
         run: |
           python -m venv venv
           source venv/bin/activate
       
       - name: Install dependencies
+        working-directory: ./backend/users-module
         run: pip install -r requirements.txt
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
@@ -35,10 +37,11 @@ jobs:
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
         with:
-          name: python-app
+          name: users-api
           path: |
-            . 
+            ./backend/users-module 
             !venv/
+          if-no-files-found: error
 
   deploy:
     runs-on: ubuntu-latest
@@ -51,7 +54,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: python-app
+          name: users-api
           path: .
           
       - name: 'Deploy to Azure Web App'
