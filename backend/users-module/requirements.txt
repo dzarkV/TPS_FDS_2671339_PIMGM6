@@ -4,4 +4,4 @@ fastapi
 uvicorn[standard]
 python-multipart
 werkzeug
-
+python-jose[cryptography]
