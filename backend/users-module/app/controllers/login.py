@@ -35,6 +35,7 @@ def decode_token(token: str = Depends(oauth2_scheme)) -> dict:
     user = retrieve_user_by_username(username)
     if user is None:
         raise credential_exception
+    del user["credenciales"]["contrasena"]
     return user
 
 def authenticate_user(username: str, password: str) -> bool | dict:
