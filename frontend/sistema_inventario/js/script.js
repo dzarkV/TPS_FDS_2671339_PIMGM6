@@ -25,3 +25,18 @@ function navegar() {
             console.log('el valor es :' + select.value);
         }
 }
+
+const entry_endpoint = "https://sistema-mgm-service-users.azurewebsites.net/"
+const span_message = document.getElementById("login_message")
+
+fetch(entry_endpoint + "/api/login", {
+    method: 'GET',
+    headers: {
+    'Content-Type': 'application/json'
+    }
+})
+.then((response) => response.json())
+.then((response) => span_message.innerText = response.detail)
+.catch(function(error) {console.log(error)
+});
+

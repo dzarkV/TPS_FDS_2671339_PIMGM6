@@ -24,12 +24,13 @@
 		<div class="form">
 			<div class="tab-content">
 			  <div id="signup"> 
-
 				<h2>Iniciar Sesion</h2>
-	  
 				<form class="box" method="post">
-					<input type="text" placeholder="Usuario" required>
-					<input type="password" placeholder="Contraseña" required>
+					<input id="username" type="text" placeholder="Usuario" required>
+					<input id="password" placeholder="Contraseña" required>
+					<div id="message_response">
+						<span id="login_message"></span>
+					</div>
 					<div class="button-block">
 						<button type="submit" class="button button-block"><a style="color:#fff; text-decoration:none" href="index.html">Ingresar</a></button>
 
@@ -42,6 +43,6 @@
 			
 	  </div>
 	</section>
-
+	<script src="./js/script.js"></script>
 	</body>
 </html>

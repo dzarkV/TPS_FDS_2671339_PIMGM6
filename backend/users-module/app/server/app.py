@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from routes.usuario import usuario as UsuarioRouter 
 from routes.login import login as LoginRouter
-
+from config.db import client
 
 app = FastAPI(title='Users module', 
     description='API REST de servicio de usuarios del sistema MGM', 
@@ -14,3 +14,6 @@ app.include_router(LoginRouter, tags=["Login"])
 def root_page():
     return {'message': 'Qué hace'}
 
+@app.on_event("shutdown")
+def shutdown():
+    client.close()
