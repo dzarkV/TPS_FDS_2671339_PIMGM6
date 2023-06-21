@@ -29,6 +29,8 @@ def add_user(user_data: dict) -> dict:
 
 # Retrieve a user with a matching ID
 def retrieve_user_by_id(id: str) -> dict:
+    if not ObjectId.is_valid(id):
+        return False
     user = user_collection.find_one({"_id": ObjectId(id)})
     if user:
         return user_helper(user)

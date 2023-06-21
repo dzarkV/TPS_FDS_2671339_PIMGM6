@@ -26,7 +26,7 @@ def decode_token(token: str = Depends(oauth2_scheme)) -> dict:
         token_decode = jwt.decode(token=token, 
                                     key=getenv("SECRET_KEY"), 
                                     algorithms=[getenv("ALGORITHM")])
-        username = token_decode.get("sub")
+        username = token_decode.get("name")
         if username is None:
             raise credential_exception
     except JWTError:
@@ -35,6 +35,9 @@ def decode_token(token: str = Depends(oauth2_scheme)) -> dict:
     user = retrieve_user_by_username(username)
     if user is None:
         raise credential_exception
+    del user["id_usuario"]
+    del user["rol_usuario"]["id_rol"]
+    del user["credenciales"]["_id"]
     del user["credenciales"]["contrasena"]
     return user
 
