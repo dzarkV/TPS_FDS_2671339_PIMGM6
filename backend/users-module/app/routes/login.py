@@ -20,7 +20,8 @@ def login_with_token(form_data: OAuth2PasswordRequestForm = Depends()) -> dict:
                             headers={"WWW-Authenticate": "Bearer"})
     # Token
     access_token_expires = timedelta(days=7)
-    access_token_jwt = create_token({"sub": user["credenciales"]["usuario"]},
+    access_token_jwt = create_token({"sub": user["id_usuario"],
+                                    "name": user["credenciales"]["usuario"]},
                                      access_token_expires)
 
     return {"access_token": access_token_jwt, "token_type": "bearer"}

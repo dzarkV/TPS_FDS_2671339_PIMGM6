@@ -1,12 +1,3 @@
--- ALGUNAS NOTAS DE TIPOS DE DATOS
--- tinyint -128 a 127					unsigned (sin signo negativo):  0 hasta 255
--- smallint -32.768 a 32.767			unsigned: 						0 hasta 65.535
--- mediumint -8.388.608 a 8.388.607 	unsigned: 						0 hasta 16.777.215
--- int -2.147.483.648 a 2.147.483.647 	unsigned:						0 hasta 4.294.967.295
-
-
-
-
 
 DROP SCHEMA IF EXISTS BBDD_INVENTARIO;
 -- -----------------------------------------------------
