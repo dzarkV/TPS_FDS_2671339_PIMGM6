@@ -29,14 +29,44 @@ function navegar() {
 const entry_endpoint = "https://sistema-mgm-service-users.azurewebsites.net/"
 const span_message = document.getElementById("login_message")
 
-fetch(entry_endpoint + "/api/login", {
+fetch(entry_endpoint, {
     method: 'GET',
     headers: {
     'Content-Type': 'application/json'
     }
 })
 .then((response) => response.json())
-.then((response) => span_message.innerText = response.detail)
+.then((response) => span_message.innerText = response.message)
 .catch(function(error) {console.log(error)
 });
 
+// obtener referencia al formulario
+const form = document.querySelector('#login-form');
+
+// agregar un gestor de eventos para enviar el formulario
+form.addEventListener('submit', async (event) => {
+    // detener el comportamiento predeterminado del formulario (que es recargar la página)
+    event.preventDefault();
+  
+    // obtener los datos del formulario como un objeto FormData
+    const formData = new FormData(form);
+  
+    // enviar los datos al servidor usando fetch()
+    const response = await fetch(entry_endpoint + "/api/login", {
+      method: 'POST',
+      body: formData
+    });
+  
+    // procesar la respuesta del servidor
+    const data = await response.json();
+    console.log(data);
+
+    if (data.status === "success") {
+      // si el inicio de sesión fue exitoso, redirigir al usuario a la página de inicio
+      window.location.href = "index.html";
+    } else {
+      // si el inicio de sesión falló, mostrar un mensaje de error
+      span_message.innerText = data.detail;
+    }
+    
+  });
