@@ -26,9 +26,10 @@ function navegar() {
         }
 }
 
-const entry_endpoint = "https://sistema-mgm-service-users.azurewebsites.net/"
+const entry_endpoint = "https://sistema-mgm-service-users.azurewebsites.net"
 const span_message = document.getElementById("login_message")
 
+// mensaje de prueba
 fetch(entry_endpoint, {
     method: 'GET',
     headers: {
@@ -50,7 +51,7 @@ form.addEventListener('submit', async (event) => {
   
     // obtener los datos del formulario como un objeto FormData
     const formData = new FormData(form);
-  
+
     // enviar los datos al servidor usando fetch()
     const response = await fetch(entry_endpoint + "/api/login", {
       method: 'POST',
@@ -59,9 +60,8 @@ form.addEventListener('submit', async (event) => {
   
     // procesar la respuesta del servidor
     const data = await response.json();
-    console.log(data);
 
-    if (data.status === "success") {
+    if (data.access_token) {
       // si el inicio de sesión fue exitoso, redirigir al usuario a la página de inicio
       window.location.href = "index.html";
     } else {
