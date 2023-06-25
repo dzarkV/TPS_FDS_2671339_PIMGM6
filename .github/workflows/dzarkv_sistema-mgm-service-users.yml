@@ -7,7 +7,7 @@ name: Build and deploy Python app to Azure Web App - sistema-mgm-service-users
 on:
   push:
     branches:
-      - main
+      - dzarkV
   workflow_dispatch:
 
 jobs:
