@@ -24,13 +24,11 @@ El sistema de archivos es
 │       │   ├── 4_bbdd
 │       │   ├── 5_ddl
 │       │   ├── 6_dml
-│       │   ├── 7_automatizacion
-│       │   └── 8_sistema_informacion_web
 │       ├── trim3
 │       │   ├── 1_planeacion_pruebas
 │       │   └── 2_ejecucion_pruebas
 │       ├── trim4
-│       ├── trim5
+│       └── trim5
 ├── backend
 │   └── users-module
 └── frontend
@@ -39,4 +37,4 @@ El sistema de archivos es
 
 La arquitectura inicial del proyecto distribuye al backend y al frontend de la siguiente manera:
 
-![arquitectura_proyecto](./inventary-arq.jpg)
+![arquitectura_proyecto](./assets/docs/trim1/9_arquitectura_software/inventary-arq.jpg)
