@@ -1,12 +1,12 @@
 
 body {
-    background: #c1bdba;
+    background: #90C8DB;
     font-family: 'Titillium Web', sans-serif;
 }
 
 /* estilo para el div del formulario */
 .form {
-  background: rgba(19, 35, 47, 0.9);
+  background: #5F818C;
   padding: 40px;
   max-width: 600px;
   margin: 40px auto;
@@ -20,7 +20,7 @@ body {
   display: block;
   margin: 20px auto;
   text-align: center;
-  border: 2px solid #3498db;
+  border: 2px solid #81AFBE;
   padding: 14px 10px;
   width: 350px;
   outline: none;
@@ -32,7 +32,7 @@ body {
 /* transformacion en los campos del formulario */
 .box input:focus{
   width: 400px;
-  border-color: #2ecc71;
+  border-color: #81AFBE;
 }
 
 /* estilo de los campos del formulario */
@@ -57,7 +57,7 @@ input {
   border-radius: 2px;
   padding: 15px;
   font-size: 1rem;
-  background: #3f95ea;
+  background: #81AFBE;
   color: #ffffff;
   transition: all 0.5s ease;
 }
@@ -81,7 +81,7 @@ input {
 
 /* estilo para header 1 */
 h1 {
-  color: #080000;
+  color: #f1e6e6;
   font-weight: 900;
   margin: 0 0 40px;
 }
@@ -98,4 +98,8 @@ h2 {
   color: #f1e6e6;
 }
 
-
+/* estilo para recuperar contraseña */
+#message_response {
+  color: #f1e6e6;
+} 
+::placeholder { color: white; }
