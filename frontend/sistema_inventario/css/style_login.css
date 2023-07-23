@@ -1,17 +1,17 @@
 
 body {
-    background: #90C8DB;
+    background: #c1bdba;
     font-family: 'Titillium Web', sans-serif;
 }
 
 /* estilo para el div del formulario */
 .form {
-  background:#5F818C;
+  background: rgba(19, 35, 47, 0.9);
   padding: 40px;
   max-width: 600px;
   margin: 40px auto;
   border-radius: 4px;
-  box-shadow: 0 4px 10px 4px rgba(255 255 255, 0.3);
+  box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
   
 }
 
@@ -20,11 +20,11 @@ body {
   display: block;
   margin: 20px auto;
   text-align: center;
-  border: 2px solid #81AFBE;
+  border: 2px solid #3498db;
   padding: 14px 10px;
   width: 350px;
   outline: none;
-  color:#f1e6e6;
+  color: white;
   border-radius: 24px;
   transition: 0.25s;
 }
@@ -32,7 +32,7 @@ body {
 /* transformacion en los campos del formulario */
 .box input:focus{
   width: 400px;
-  border-color: #81AFBE;
+  border-color: #2ecc71;
 }
 
 /* estilo de los campos del formulario */
@@ -57,7 +57,7 @@ input {
   border-radius: 2px;
   padding: 15px;
   font-size: 1rem;
-  background: #81AFBE;
+  background: #3f95ea;
   color: #ffffff;
   transition: all 0.5s ease;
 }
@@ -81,7 +81,7 @@ input {
 
 /* estilo para header 1 */
 h1 {
-  color: #f1e6e6;
+  color: #080000;
   font-weight: 900;
   margin: 0 0 40px;
 }
@@ -92,5 +92,9 @@ h2 {
   font-weight: 600;
   margin: 0 0 40px;
 }
+/* estilo para login mesa */
+#login_message {
+  color: #f1e6e6;
+}
 
-::placeholder { color: white; }
+ 

@@ -1,0 +1,7 @@
+pymongo[srv]
+python-dotenv
+fastapi
+uvicorn[standard]
+python-multipart
+werkzeug
+python-jose[cryptography]

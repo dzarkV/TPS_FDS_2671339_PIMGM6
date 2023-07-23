@@ -422,9 +422,6 @@ h1, h2, h3, h4, h5, h6 {
   border: none !important;
   border: 2px solid transparent !important;
 }
-.btn.btn-primary.btn-lg-cancel {
-  background: #cf280b;
-}
 .btn.btn-primary:hover, .btn.btn-primary:active, .btn.btn-primary:focus {
   box-shadow: none;
   background: #52d3aa;
@@ -494,4 +491,3 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
   color: #41b2b1;
 }
-

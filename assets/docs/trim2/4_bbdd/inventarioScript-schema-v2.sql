@@ -1,8 +1,8 @@
 -- ALGUNAS NOTAS DE TIPOS DE DATOS
--- tinyint -128 a 127					unsigned (sin signo negativo):  0 hasta 255
--- smallint -32.768 a 32.767			unsigned: 						0 hasta 65.535
--- mediumint -8.388.608 a 8.388.607 	unsigned: 						0 hasta 16.777.215
--- int -2.147.483.648 a 2.147.483.647 	unsigned:						0 hasta 4.294.967.295
+-- tinyint -128 a 127			unsigned (sin signo negativo):  0 hasta 255
+-- smallint -32.768 a 32.767		unsigned: 			0 hasta 65.535
+-- mediumint -8.388.608 a 8.388.607 	unsigned: 			0 hasta 16.777.215
+-- int -2.147.483.648 a 2.147.483.647 	unsigned:			0 hasta 4.294.967.295
 
 
 
@@ -19,24 +19,24 @@ USE BBDD_INVENTARIO;
 -- TABLA ROLES
 -- -----------------------------------------------------
 create table ROLES ( 
-	idRol tinyint unsigned auto_increment not null,
+	id_rol tinyint unsigned auto_increment not null,
 	nombre_rol VARCHAR(20) NOT NULL,
-    PRIMARY KEY (idRol)
+    PRIMARY KEY (id_rol)
 ) ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- TABLA USUARIOS
 -- -----------------------------------------------------
 create table USUARIOS (
-	idUsuario smallint unsigned auto_increment not null,
-	idRol tinyint unsigned not null,
-    nombreUsuario varchar(20) not null,
-    apellidoUsuario varchar(20) not null,
-    fechaRegistro date,
-	PRIMARY KEY (idUsuario),
+	id_usuario smallint unsigned auto_increment not null,
+	id_rol tinyint unsigned not null,
+    nombre_usuario varchar(20) not null,
+    apellido_usuario varchar(20) not null,
+    fecha_registro date,
+	PRIMARY KEY (id_usuario),
     CONSTRAINT fk_usuarios_roles
-	    FOREIGN KEY (idRol)
-	    REFERENCES ROLES (idRol)
+	    FOREIGN KEY (id_rol)
+	    REFERENCES ROLES (id_rol)
 	    ON DELETE CASCADE
 	    ON UPDATE CASCADE
 ) ENGINE = InnoDB;
@@ -45,15 +45,15 @@ create table USUARIOS (
 -- TABLA CREDENCIALES
 -- -----------------------------------------------------
 create table CREDENCIALES (
-	idCredenciales smallint unsigned auto_increment not null,
-	idUsuario smallint unsigned not null,
-	fechaIngreso  date,
-	contraseNa varchar (20) not null,
+	id_credencial smallint unsigned auto_increment not null,
+	id_usuario smallint unsigned not null,
+	fecha_ingreso  date,
+	contrasena varchar (20) not null,
 	estado boolean,
-	PRIMARY KEY (idCredenciales),
+	PRIMARY KEY (id_credencial),
 	CONSTRAINT fk_credenciales_usuarios
-	    FOREIGN KEY (idUsuario)
-	    REFERENCES USUARIOS (idUsuario)
+	    FOREIGN KEY (id_usuario)
+	    REFERENCES USUARIOS (id_usuario)
 	    ON DELETE cascade
 	    ON UPDATE CASCADE
 ) ENGINE = InnoDB;
@@ -62,16 +62,16 @@ create table CREDENCIALES (
 -- TABLA ENTRADAS
 -- -----------------------------------------------------
 create table ENTRADAS (
-	idEntrada int unsigned auto_increment not null,
-	idUsuario smallint unsigned not null,
-	fechaEntrada date not null,
-	cantidadItemsEntrada int not null,
-	costoTotalEntrada int not null,
-	costoUnitario double,
-	primary key (idEntrada),
+	id_entrada int unsigned auto_increment not null,
+	id_usuario smallint unsigned not null,
+	fecha_entrada date not null,
+	cantidad_items_entrada int not null,
+	costo_total_entrada int not null,
+	costo_unitario double,
+	primary key (id_entrada),
 	constraint fk_entradas_usuarios
-	    foreign key  (idUsuario)
-	    references USUARIOS (idUsuario)
+	    foreign key  (id_usuario)
+	    references USUARIOS (id_usuario)
 	    on update cascade 		-- NO hay delete cascade cuando se borre un usuario, porque las entradas deben mantenerse
 ) engine = InnoDB;
 
@@ -79,48 +79,48 @@ create table ENTRADAS (
 -- TABLA CATEGORIAS
 -- -----------------------------------------------------
 CREATE table CATEGORIAS (
-	idCategoria tinyint unsigned auto_increment not null,
-	nombreCategoria varchar(20) not null,
-	PRIMARY KEY (idCategoria)
+	id_categoria tinyint unsigned auto_increment not null,
+	nombre_categoria varchar(20) not null,
+	PRIMARY KEY (id_categoria)
 ) ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- TABLA PRODUCTOS
 -- -----------------------------------------------------
 create table PRODUCTOS (
-	idProducto int unsigned auto_increment not null,
-	idEntrada int unsigned not null,
-	idCategoria tinyint unsigned not null,
-	nombreProducto varchar(20) not null,
-	precioProducto double not null,
-	descripcionProducto varchar(100) NOT NULL,
-	primary key(idProducto),
+	id_producto int unsigned auto_increment not null,
+	id_entrada int unsigned not null,
+	id_categoria tinyint unsigned not null,
+	nombre_producto varchar(20) not null,
+	precio_producto double not null,
+	descripcion_producto varchar(100) NOT NULL,
+	primary key(id_producto),
 	constraint fk_productos_entradas
-	    foreign key  (idEntrada)
-	    references ENTRADAS (idEntrada)
+	    foreign key  (id_entrada)
+	    references ENTRADAS (id_entrada)
 	    ON DELETE CASCADE
 	    ON UPDATE CASCADE,
 	constraint fk_productos_categorias
-	    foreign key (idCategoria)
-	    references CATEGORIAS (idCategoria)
+	    foreign key (id_categoria)
+	    references CATEGORIAS (id_categoria)
 ) engine = InnoDB;
 
 -- -----------------------------------------------------
 -- TABLA PROVEEDORES
 -- -----------------------------------------------------
 create table PROVEEDORES (
-	idProveedor smallint unsigned auto_increment not null,
-    idEntrada int unsigned not null,
+	id_proveedor smallint unsigned auto_increment not null,
+    id_entrada int unsigned not null,
     empresa varchar(50) not null,
-    direccionProveedor varchar(100),
-    nombreProveedor varchar(100) not null,
-    telefonoProveedor varchar(15) not null,
-    emailProveedor varchar(50),
-    descripcionProveedor varchar(150),
-    primary key(idProveedor),
+    direccion_proveedor varchar(100),
+    nombre_proveedor varchar(100) not null,
+    telefono_proveedor varchar(15) not null,
+    email_proveedor varchar(50),
+    descripcion_proveedor varchar(150),
+    primary key(id_proveedor),
     constraint fk_proveedores_entradas
-	    foreign key (idEntrada)
-	    references ENTRADAS (idEntrada)
+	    foreign key (id_entrada)
+	    references ENTRADAS (id_entrada)
 	    ON DELETE cascade
 	    ON UPDATE CASCADE
 ) engine = InnoDB;	
@@ -129,15 +129,15 @@ create table PROVEEDORES (
 -- TABLA VENTAS
 -- -----------------------------------------------------
 create table VENTAS (
-	idVenta int unsigned auto_increment not null,
-	idProducto int unsigned not null,
-	fechaVenta datetime not null,
-	cantidadItemsVentaByProducto int not null,
-	valotTotalVenta int not null,
-	primary key (idVenta),
+	id_venta int unsigned auto_increment not null,
+	id_producto int unsigned not null,
+	fecha_venta datetime not null,
+	cantidad_items_venta_x_producto int not null,
+	valot_total_venta int not null,
+	primary key (id_venta),
 	constraint fk_ventas_productos
-		foreign key (idProducto)
-		references PRODUCTOS (idProducto)
+		foreign key (id_producto)
+		references PRODUCTOS (id_producto)
 		on update cascade
 ) engine = InnoDB;
 
@@ -145,19 +145,19 @@ create table VENTAS (
 -- TABLA FACTURAS
 -- -----------------------------------------------------
 create table FACTURAS (
-	idFactura int unsigned auto_increment not null,
-	idVenta int unsigned not null,
-	nitEmpresaFactura varchar(50) not null,
-	cantidadProductos int not null,
-	ivaProducto int default 19 not null,
-	direccionEmpresaFactura varchar(100),
-	razonSocialFactura varchar(50),
-	fechaFactura datetime not null,
-	valorTotalFactura double not null,
-	primary key (idFactura),
+	id_factura int unsigned auto_increment not null,
+	id_venta int unsigned not null,
+	nit_empresa_factura varchar(50) not null,
+	cantidad_productos int not null,
+	iva_producto int default 19 not null,
+	direccion_empresa_factura varchar(100),
+	razon_social_factura varchar(50),
+	fecha_factura datetime not null,
+	valor_total_factura double not null,
+	primary key (id_factura),
 	constraint fk_facturas_ventas
-		foreign key (idVenta)
-		references VENTAS (idVenta)
+		foreign key (id_venta)
+		references VENTAS (id_venta)
 		on update cascade
 ) engine =InnoDB;
 
@@ -165,15 +165,16 @@ create table FACTURAS (
 -- TABLA GASTOS
 -- -----------------------------------------------------
 create table GASTOS (
-	idGasto tinyint unsigned auto_increment not null,
-	idUsuario smallint unsigned not null,
-	tipoGasto varchar(50) not null,
-	valorGasto double not null,
-	primary key (idGasto),
+	id_gasto tinyint unsigned auto_increment not null,
+	id_usuario smallint unsigned not null,
+	tipo_gasto varchar(50) not null,
+	valor_gasto double not null,
+	primary key (id_gasto),
 	constraint fk_gastos_usuario
-		foreign key (idUsuario)
-		references USUARIOS (idUsuario)
+		foreign key (id_usuario)
+		references USUARIOS (id_usuario)
 		on update cascade
 ) engine = InnoDB;
+
 
 
