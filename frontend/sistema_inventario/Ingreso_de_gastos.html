@@ -1,34 +1,25 @@
-
 <!DOCTYPE html>
-<html class="no-js">
 	<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Base</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Sistema de inventario MGM</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
+	
 	<link rel="shortcut icon" href="favicon.ico">
+
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
 	
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="css/animate.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="css/icomoon.css">
-	<!-- Simple Line Icons -->
-	<link rel="stylesheet" href="css/simple-line-icons.css">
-	<!-- Magnific Popup -->
-	<link rel="stylesheet" href="css/magnific-popup.css">
 	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="css/bootstrap.css">
 
+	<!--Estilos personalizados -->
 	<link rel="stylesheet" href="css/style.css">
 
-	<link rel="stylesheet" id="theme-switch" href="css/style.css">
-	
-	</head>
-	<body>
+</head>
+<body>
 	<!-- Cabezote de la pagina Estados de usuario -->
 	<header id="estilo-header">
-
 		<div class="container">
 			<nav class="navbar navbar-default">
 				<div class="navbar-header">
@@ -53,48 +44,45 @@
 				</ul>
 				</div>
 			</nav>
-	  	</div>
+		</div>
 	</header>
-	<section id="estilo-home" style="background-image: url(images/balance_general.jpg);" data-stellar-background-ratio="0.5">
+
+	<!-- Imagen de fondo de pantalla y con filtro azul -->
+	<section id="estilo-home" style="background-image: url(images/fondo_papeleria.jpg); height: 200px;" data-stellar-background-ratio="0.5">
 		<div class="gradient"></div>
 		<div class="container">
 			<div class="text-wrap">
-				<div class="text-inner">
-					<div class="row">
-						<div class="col-md-8 col-md-offset-2">
-							<h1 class="to-animate">Nombre de Seccion</h1>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 		<div class="slant"></div>
 	</section>
 
-
-
-
-	<section >
-		
-
-
-
-
-
-
-
-	</section>
-	
-	<footer id="footer">
+	<!-- Seccion con los formularios con la informacion para crear un nuevo usuario -->
+	<section id="estilo-contact" >
 		<div class="container">
-			<div class="">
-				<div class="col-md-12 text-center">
-					<p>Sistema de informacion</p>
+			<div class="row row-bottom-padded-md">
+				<div class="col-md-12">
+					<h3>Ingreso de gastos</h3>
+					<div class="form-group ">
+						<label for="name" class="sr-only">Detalle del gasto</label>
+						<input id="name" class="form-control" placeholder="descripción" type="text">
+					</div>
+					<div class="form-group ">
+						<label for="confirnpass" class="sr-only">monto del gasto</label>
+						<input id="confirnpass" class="form-control" placeholder="valor" type="text">
+					</div>
+					<div class="form-group ">
+						<input class="btn btn-primary btn-lg" value="Aceptar" type="submit">
+					</div>
+					
+					</div>
 				</div>
+
 			</div>
 		</div>
-	</footer>
+	</section>
+
+			<script src="./js/script.js"></script>
 
 	</body>
 </html>
-

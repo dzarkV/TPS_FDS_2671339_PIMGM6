@@ -7,10 +7,10 @@ function navegar() {
             window.open("login.html", "_self");
             break;
         case '2':
-            window.open("login.html", "_self");
+            window.open("Actualizar_Usuario.html", "_self");
             break;
         case '3':
-            window.open("login.html", "_self");
+            window.open("Consultar_usuario.html", "_self");
             break;
         case '4':
             window.open("estados_de_usuarios.html", "_self");
