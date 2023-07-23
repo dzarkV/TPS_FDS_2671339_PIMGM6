@@ -1,34 +1,37 @@
-
 <!DOCTYPE html>
-<html class="no-js">
 	<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Sistema de inventario MGM</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>Sistema de inventario MGM</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="shortcut icon" href="favicon.ico">
-	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
+
+<link rel="shortcut icon" href="favicon.ico">
+
+<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
+
+<!-- Animate.css -->
+<link rel="stylesheet" href="css/animate.css">
+<!-- Icomoon Icon Fonts-->
+<link rel="stylesheet" href="css/icomoon.css">
+<!-- Simple Line Icons -->
+<link rel="stylesheet" href="css/simple-line-icons.css">
+<!-- Magnific Popup -->
+<link rel="stylesheet" href="css/magnific-popup.css">
+<!-- Bootstrap  -->
+<link rel="stylesheet" href="css/bootstrap.css">
+
+<link rel="stylesheet" href="css/style.css">
+
+
+<link rel="stylesheet" id="theme-switch" href="css/style.css">
+
 	
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="css/animate.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="css/icomoon.css">
-	<!-- Simple Line Icons -->
-	<link rel="stylesheet" href="css/simple-line-icons.css">
-	<!-- Magnific Popup -->
-	<link rel="stylesheet" href="css/magnific-popup.css">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="css/bootstrap.css">
 
-	<link rel="stylesheet" href="css/style.css">
-
-	<link rel="stylesheet" id="theme-switch" href="css/style.css">
-	
-	</head>
-	<body>
-	<!-- Cabezote de la pagina Estados de usuario -->
+</head>
+<body>
+<!-- Cabezote de la pagina Estados de usuario -->
 	<header id="estilo-header">
-
 		<div class="container">
 			<nav class="navbar navbar-default">
 				<div class="navbar-header">
@@ -53,63 +56,77 @@
 				</ul>
 				</div>
 			</nav>
-	  	</div>
-		<div>
-			<form action="../../form-result.php" method="post" target="_blank">
-
-				<p>
-			  
-				  Búsqueda de Usuario: <input type="search" name="busquedausuario" placeholder="usuario">
-			  
-				  <input type="submit" value="Buscar">
-			  
-				</p>
-			  
-			  </form>
-		
-		</div>
+	  </div>
 	</header>
 
-	<section id="estilo-home" style="background-image: url(images/balance_general.jpg);" data-stellar-background-ratio="0.5">
+	<!-- Imagen de fondo de pantalla y con filtro azul -->
+	<section id="estilo-home" style="background-image: url(images/fondo_papeleria.jpg); height: 200px;" data-stellar-background-ratio="0.5">
 		<div class="gradient"></div>
 		<div class="container">
 			<div class="text-wrap">
-				<div class="text-inner">
-					<div class="row">
-						<div class="col-md-8 col-md-offset-2">
-							<h1 class="to-animate">Nombre de Seccion</h1>
-						</div>
-					</div>
-				</div>
 			</div>
 		</div>
 		<div class="slant"></div>
 	</section>
-
-
-
-
-	<section >
-		
-
-
-
-
-
-
-
-	</section>
-	
-	<footer id="footer">
+	<form action="../../form-result.php" method="post" target="_blank">
+		<p>
+		 Consultar usuario: <input type="search" name="busquedaProducto" placeholder="Buscar">
+		  <input type="submit" value="Buscar">
+		</p>
+	  </form>
+	<section id="estilo-contact" >
 		<div class="container">
-			<div class="">
-				<div class="col-md-12 text-center">
-					<p>Sistema de informacion</p>
+			<div class="row row-bottom-padded-md">
+				<div class="col-md-12">
+					<table class="table">
+						<thead>
+						  <tr>
+							<th scope="col"></th>
+							<th scope="col">Nombre </th>
+							<th scope="col">telefono</th>
+							<th scope="col">correro</th>
+						  </tr>
+						</thead>
+						<tbody>
+						  <tr>
+							<td>
+								<div class="form-check">
+									<input class="form-check-input" type="checkbox" value="" checked>
+								 </div>	
+							</td>
+							<th scope="row">Alexander</th>
+							<td>3214534265</td>
+							<td>aleander@gmail.com</td>
+						  <tr>
+							<td><div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" checked>
+							  </div>
+							</td>
+							<th scope="row">paola</th>
+							<td>3114585674</td>
+							<td>paola@gmail.com</td>
+						  </tr>
+						  <tr>
+							<td><div class="form-check">
+								<input class="form-check-input" type="checkbox" value="" checked>
+							  </div>
+							</td>
+							<th scope="row">diever</th>
+							<td>3057635267</td>
+							<td>diever@gmail.com</td>
+							</td>
+						  </tr>
+						</tbody>
+					  </table>
+					  
+					</div>
 				</div>
+
 			</div>
 		</div>
-	</footer>
+	</section>
+
+			<script src="./js/script.js"></script>
 
 	</body>
 </html>
-

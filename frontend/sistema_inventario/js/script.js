@@ -10,7 +10,7 @@ function navegar() {
             window.open("Actualizar_Usuario.html", "_self");
             break;
         case '3':
-            window.open("Consultar_usuario.html", "_self");
+            window.open("consultar_usuario.html", "_self");
             break;
         case '4':
             window.open("estados_de_usuarios.html", "_self");
@@ -30,16 +30,16 @@ const entry_endpoint = "https://sistema-mgm-service-users.azurewebsites.net"
 const span_message = document.getElementById("login_message")
 
 // mensaje de prueba
-fetch(entry_endpoint, {
-    method: 'GET',
-    headers: {
-    'Content-Type': 'application/json'
-    }
-})
-.then((response) => response.json())
-.then((response) => span_message.innerText = response.message)
-.catch(function(error) {console.log(error)
-});
+// fetch(entry_endpoint, {
+//     method: 'GET',
+//     headers: {
+//     'Content-Type': 'application/json'
+//     }
+// })
+// .then((response) => response.json())
+// .then((response) => span_message.innerText = response.message)
+// .catch(function(error) {console.log(error)
+// });
 
 // obtener referencia al formulario
 const form = document.querySelector('#login-form');
@@ -64,6 +64,7 @@ form.addEventListener('submit', async (event) => {
     if (data.access_token) {
       // si el inicio de sesión fue exitoso, redirigir al usuario a la página de inicio
       window.location.href = "index.html";
+      window.localStorage.setItem("tk", data.access_token);
     } else {
       // si el inicio de sesión falló, mostrar un mensaje de error
       span_message.innerText = data.detail;
