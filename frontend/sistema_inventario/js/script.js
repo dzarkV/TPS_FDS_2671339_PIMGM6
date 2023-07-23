@@ -10,7 +10,7 @@ function navegar() {
             window.open("Actualizar_Usuario.html", "_self");
             break;
         case '3':
-            window.open("Consultar_usuario.html", "_self");
+            window.open("consultar_usuario.html", "_self");
             break;
         case '4':
             window.open("estados_de_usuarios.html", "_self");
