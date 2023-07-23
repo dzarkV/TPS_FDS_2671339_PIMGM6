@@ -30,6 +30,7 @@ El sistema de archivos es
 │       ├── trim4
 │       └── trim5
 ├── backend
+│   ├── inventary-module
 │   └── users-module
 └── frontend
     └── sistema_inventario
