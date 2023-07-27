@@ -6,7 +6,7 @@ from datetime import timedelta
 
 login = APIRouter()
 
-@login.post("/api/token")
+@login.post("/api/login")
 def login_with_token(form_data: OAuth2PasswordRequestForm = Depends()) -> dict:
     user = authenticate_user(form_data.username, form_data.password)
     if not user:
@@ -21,12 +21,12 @@ def login_with_token(form_data: OAuth2PasswordRequestForm = Depends()) -> dict:
     # Token
     access_token_expires = timedelta(days=7)
     access_token_jwt = create_token({"sub": user["id_usuario"],
-                                    "name": user["credenciales"]["usuario"]},
+                                    "name": user["nombre_usuario"]},
                                      access_token_expires)
 
     return {"access_token": access_token_jwt, "token_type": "bearer"}
 
-@login.get("/api/login")
+@login.get("/api/me")
 def login_me(
     current_user: dict | Usuario = Depends(decode_token)) -> dict | Usuario:
     return current_user

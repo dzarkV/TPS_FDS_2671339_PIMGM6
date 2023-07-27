@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl='/api/token')
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl='/api/login')
 
 def verify_pass(pass_hashed: str, form_pass: str) -> bool:
     '''Verify password'''
