@@ -2,7 +2,7 @@ function buscarProducto() {
   var nombre = document.forms["producto-form"]["busquedaProducto"].value;
   var id = document.forms["producto-form"]["busquedaID"].value;
 
-  var url = "http://localhost:8080/api/productos/buscar";
+  var url = "http://localhost:8091/api/productos/buscar";
   if(nombre !== '' && id !== ''){
     url = url + "?idProducto="+id+"&nombreProducto="+nombre;
   }
@@ -59,12 +59,17 @@ function buscarProveedor() {
 
 function buscarusuario() {
 
-  var url = "http://localhost:8080/api/usuario/buscar";
+  var url = "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/name?value=";
 
-
+  const jwtToken = getTokenFromLocalStorage()
+  // const jwtToken = localStorage.getItem('tk')
   // Consumir el endpoint o la url de java
-  fetch(url)
-    .then(response => response.json())
+  fetch(url + document.getElementsByName(buscarusuario), {
+    headers: {
+      Authorization: `Bearer ${jwtToken}`
+    }
+  })
+    .then(response => response.json())  
     .then(datos => mostrarData(datos))
     .catch( error => console.log(error) )
 
@@ -74,9 +79,17 @@ function buscarusuario() {
     console.log(data)
     let body = ""
     for (var i = 0; i < data.length; i++) {      
-        body+=`<tr><td>${data[i].NombreUsuario}</td><td>${data[i].telefono}</td><td>${data[i].correo}</td></tr>`
+        body+=`<tr><td>${data[i].nombre_usuario}</td><td>${data[i].apellido_usuario}</td><td>${data[i].fecha_registro}</td></tr>`
     }
     document.getElementById('data').innerHTML = body
     //console.log(body)
   }
+}
+
+function listarUsuarios() {
+
+}
+
+function getTokenFromLocalStorage() {
+  return localStorage.getItem('tk')
 }
