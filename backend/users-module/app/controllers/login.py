@@ -32,7 +32,7 @@ def decode_token(token: str = Depends(oauth2_scheme)) -> dict:
     except JWTError:
         raise credential_exception
 
-    user = retrieve_user_by_username(username)
+    user = retrieve_user_by_name(username)
     if user is None:
         raise credential_exception
     del user["id_usuario"]
