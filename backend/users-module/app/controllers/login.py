@@ -1,6 +1,6 @@
 
 from fastapi import Depends, HTTPException
-from controllers.usuario import retrieve_user_by_username
+from controllers.usuario import retrieve_user_by_name
 from werkzeug.security import check_password_hash
 from fastapi.security import OAuth2PasswordBearer
 from typing import Union
