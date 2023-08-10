@@ -70,10 +70,10 @@
 	</section>
 	
 	<!-- Para realizar los filtros -->
-<form id="producto-form" method="get">
+<form id="usuario-form" method="get">
 	<p>
 	  Buscar nombre del usuario: 
-	  <input type="text" name="busquedausuario" placeholder="Buscar">
+	  <input type="text" name="busquedaUsuario" placeholder="Buscar" onchange="this.value.trim().length == 0 && listarUsuarios()">
 	  <button type="button" onclick="buscarusuario()">Buscar</button> <!-- al dar click va al metodo indicado -->
 	</p>
 	
@@ -98,6 +98,7 @@
 </section>
 
 <script src="./js/service-listing.js"></script>
+<script src="./js/script.js"></script>
 </body>
 
 </html>

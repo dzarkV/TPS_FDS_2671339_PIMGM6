@@ -26,20 +26,8 @@ function navegar() {
         }
 }
 
-const entry_endpoint = "https://sistema-mgm-service-users.azurewebsites.net"
-const span_message = document.getElementById("login_message")
-
-// mensaje de prueba
-// fetch(entry_endpoint, {
-//     method: 'GET',
-//     headers: {
-//     'Content-Type': 'application/json'
-//     }
-// })
-// .then((response) => response.json())
-// .then((response) => span_message.innerText = response.message)
-// .catch(function(error) {console.log(error)
-// });
+const entry_endpoint = "https://sistema-mgm-service-users.azurewebsites.net";
+const span_message = document.getElementById("login_message");
 
 // obtener referencia al formulario
 const form = document.querySelector('#login-form');
@@ -64,14 +52,13 @@ form.addEventListener('submit', async (event) => {
     if (data.access_token) {
       // si el inicio de sesión fue exitoso, redirigir al usuario a la página de inicio
       window.location.href = "index.html";
-      window.localStorage.setItem("tk", data.access_token);
+      window.localStorage.setItem("jwt", data.access_token);
     } else {
       // si el inicio de sesión falló, mostrar un mensaje de error
       span_message.innerText = data.detail;
     }
     
   });
-
 
   const formProducto = document.querySelector('#producto-form');
 
