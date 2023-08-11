@@ -57,7 +57,7 @@ function buscarProveedor() {
   }
 }
 
-function buscarusuario() {
+function buscarUsuario() {
 
   var url = "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/name?value=";
 
@@ -114,7 +114,4 @@ function listarUsuarios() {
 function getTokenFromLocalStorage() {
   return localStorage.getItem('jwt')
 }
-
-const usuarioInput = document.getElementById('busquedaUsuario');
-const usuarioSearchButton = document.forms['usuario-form']['button'];
 
