@@ -80,3 +80,90 @@ function buscarusuario() {
     //console.log(body)
   }
 }
+
+function crearProducto() {
+  // Capturar informacion
+  var valorNombre = document.forms["crearProductoForm"]["producto"].value;
+  var valorCategoria = document.forms["crearProductoForm"]["categoria"].value;
+  var valorPrecio = document.forms["crearProductoForm"]["precio"].value;
+  var valorDescripcion = document.forms["crearProductoForm"]["descripciónDelProducto"].value;
+  
+  var url = "http://localhost:8080/api/productos/guardar";
+
+  // Datos que enviarás en el cuerpo de la solicitud
+
+  const dataProducto = {
+    idCategoria: {
+      idCategoria: valorCategoria
+    },
+    nombreProducto: valorNombre,
+    precioProducto: valorPrecio,
+    descripcionProducto: valorDescripcion,
+  };
+
+  // Opciones para la solicitud POST
+  const optionsConsumo = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json', // Indicar que los datos se enviarán en formato JSON
+    },
+    body: JSON.stringify(dataProducto), // Convertir los datos a formato JSON y agregarlos al cuerpo de la solicitud
+  };
+
+  // Consumir el endpoint o la url de java
+  // Realizar la solicitud POST utilizando fetch
+  fetch(url, optionsConsumo)
+  .then(response => response.json()) // Analizar la respuesta JSON
+  .then(data => {
+    alert('Se a guardado el producto '+ data.nombreProducto + ' con el ID: '+ data.idProducto);
+  }).catch(error => {
+    alert('Hubo un error:', error);
+  });
+
+}
+
+function registrarProveedor() {
+  // Capturar informacion
+  var valorNombre = document.forms["crearProveedoresForm"]["nombreDeLaEmpresa"].value;
+  var valorDireccion = document.forms["crearProveedoresForm"]["dirección"].value;
+  var valorTelefono = document.forms["crearProveedoresForm"]["telefono"].value;
+  var valorDescripcion = document.forms["crearProveedoresForm"]["descripción"].value;
+  var valorEmpresa = document.forms["crearProveedoresForm"]["empresa"].value;
+  var valorEmail = document.forms["crearProveedoresForm"]["email"].value;
+  
+  var url = "http://localhost:8080/api/proveedores/registar";
+
+  // Datos que enviarás en el cuerpo de la solicitud
+
+  
+
+  const dataProducto ={
+    direccionProveedor: valorDireccion,
+    nombreProveedor: valorNombre,
+    telefonoProveedor: valorTelefono,
+    descripcionProveedor: valorDescripcion,
+    empresa: valorEmpresa,
+    emailProveedor: valorEmail,
+  };
+
+  // Opciones para la solicitud POST
+  const optionsConsumo = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json', // Indicar que los datos se enviarán en formato JSON
+    },
+    body: JSON.stringify(dataProducto), // Convertir los datos a formato JSON y agregarlos al cuerpo de la solicitud
+  };
+
+  // Consumir el endpoint o la url de java
+  // Realizar la solicitud POST utilizando fetch
+  fetch(url, optionsConsumo)
+  .then(response => response.json()) // Analizar la respuesta JSON
+  .then(data => {
+    alert('se ha creado el proveedor ');
+    location.reload();
+  }).catch(error => {
+    alert('Hubo un error:', error);
+  });
+
+}
