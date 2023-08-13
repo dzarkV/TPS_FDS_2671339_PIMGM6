@@ -29,7 +29,7 @@
 	
 
 </head>
-<body>
+<body onload="listarUsuarios()">
 <!-- Cabezote de la pagina Estados de usuario -->
 	<header id="estilo-header">
 		<div class="container">
@@ -52,7 +52,7 @@
 							<option value="6">crear usuario</option>
 						</select>
 					</li>
-					<li style="color:#fff"><span>Alexander</span><br> <span>Administrador</span></li>
+					<li style="color:#fff"><span  id="nombreUsuario">N/A</span><br> <span id="rolUsuario">N/A</span></li>
 				</ul>
 				</div>
 			</nav>
@@ -70,11 +70,11 @@
 	</section>
 	
 	<!-- Para realizar los filtros -->
-<form id="producto-form" method="get">
+<form id="usuario-form" method="get">
 	<p>
 	  Buscar nombre del usuario: 
-	  <input type="text" name="busquedausuario" placeholder="Buscar">
-	  <button type="button" onclick="buscarusuario()">Buscar</button> <!-- al dar click va al metodo indicado -->
+	  <input type="text" name="busquedaUsuario" placeholder="Buscar" onchange="this.value.trim().length == 0 && listarUsuarios()">
+	  <button type="button" onclick="buscarUsuario()">Buscar</button> <!-- al dar click va al metodo indicado -->
 	</p>
 	
 </form>
@@ -86,8 +86,8 @@
 		  <thead>
 			<tr>
 			  <th>Nombre</th>
-			  <th>telefono</th>
-			  <th>correo</th>
+			  <th>Apellido</th>
+			  <th>Fecha registro</th>
 			</th>	
 			</tr>
 		  </thead>
@@ -96,4 +96,10 @@
 		</table>
 	  </div>
 </section>
+
+<script src="./js/service-listing.js"></script>
+<script src="./js/script.js"></script>
+</body>
+
+</html>
 <!-- (fin) -->
