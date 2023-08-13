@@ -1,6 +1,6 @@
 
 from fastapi import Depends, HTTPException
-from controllers.usuario import retrieve_user_by_username
+from controllers.usuario import retrieve_user_by_username, retrieve_user_by_name
 from werkzeug.security import check_password_hash
 from fastapi.security import OAuth2PasswordBearer
 from typing import Union
@@ -32,7 +32,7 @@ def decode_token(token: str = Depends(oauth2_scheme)) -> dict:
     except JWTError:
         raise credential_exception
 
-    user = retrieve_user_by_username(username)
+    user = retrieve_user_by_name(username)
     if user is None:
         raise credential_exception
     del user["id_usuario"]
