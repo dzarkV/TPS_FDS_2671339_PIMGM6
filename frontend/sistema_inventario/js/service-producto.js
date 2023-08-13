@@ -57,29 +57,6 @@ function listarProveedor() {
   }
 }
 
-function buscarusuario() {
-
-  var url = "http://localhost:8080/api/usuario/buscar";
-
-
-  // Consumir el endpoint o la url de java
-  fetch(url)
-    .then(response => response.json())
-    .then(datos => mostrarData(datos))
-    .catch( error => console.log(error) )
-
-
-  // Metodo que pinta los datos
-  const mostrarData = (data) => {
-    console.log(data)
-    let body = ""
-    for (var i = 0; i < data.length; i++) {      
-        body+=`<tr><td>${data[i].NombreUsuario}</td><td>${data[i].telefono}</td><td>${data[i].correo}</td></tr>`
-    }
-    document.getElementById('data').innerHTML = body
-    //console.log(body)
-  }
-}
 
 function crearProducto() {
   // Capturar informacion
