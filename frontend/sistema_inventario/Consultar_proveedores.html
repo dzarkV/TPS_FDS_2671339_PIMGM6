@@ -23,13 +23,12 @@
 
 <link rel="stylesheet" href="css/style.css">
 
-
 <link rel="stylesheet" id="theme-switch" href="css/style.css">
 
 	
 
 </head>
-<body>
+<body onload= "listarProveedor()"> 
 <!-- Cabezote de la pagina Estados de usuario -->
 	<header id="estilo-header">
 		<div class="container">
@@ -75,21 +74,24 @@
 	<p>
 	  Buscar nombre del proveedor: 
 	  <input type="text" name="busquedaproveedor" placeholder="Buscar">
-	  <button type="button" onclick="buscarProveedor()">Buscar</button> <!-- al dar click va al metodo indicado -->
-	</p>
+	  <button type="button" onclick="listarProveedor()">Buscar</button>  <!-- al dar click va al metodo indicado  -->
 	
-</form>
+</form> 
 
 <!-- HTML que pinta las tablas (comienzo) -->
+
 <section id="estilo-contact" >
 	<div class="container mt-4 shadow-lg p-3 mb-5 bg-body rounded">
 		<table class="table table-bordered table-striped">
 		  <thead>
 			<tr>
-			  <th>NombreDeEmpresa</th>
+			  <th>id</th>
+			  <th>Nombre</th>
 			  <th>direccion</th>
 			  <th>telefono</th>
 			  <th>descripcion</th>
+			  <th>empresa</th>
+			  <th>email</th>
 			</th>	
 			</tr>
 		  </thead>
@@ -99,3 +101,9 @@
 	  </div>
 </section>
 <!-- (fin) -->
+<script src="./js/service-producto.js"></script> <!-- Script con la consulta a BD -->
+	<script src="./js/script.js"></script>
+
+	</body>
+</html>
+

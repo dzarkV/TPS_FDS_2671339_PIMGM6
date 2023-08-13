@@ -33,9 +33,9 @@ function buscarProducto() {
 }
 
 
-function buscarProveedor() {
+function listarProveedor() {
 
-  var url = "http://localhost:8080/api/proveedor/buscar";
+  var url = "http://localhost:8080/api/proveedores/listado";
 
 
   // Consumir el endpoint o la url de java
@@ -50,7 +50,7 @@ function buscarProveedor() {
     console.log(data)
     let body = ""
     for (var i = 0; i < data.length; i++) {      
-        body+=`<tr><td>${data[i].NombreDeEmpresa}</td><td>${data[i].direccion}</td><td>${data[i].telefono}</td><td>${data[i].descripcion}</td></tr>`
+        body+=`<tr><td>${data[i].idProveedor}</td><td>${data[i].nombreProveedor}</td><td>${data[i].direccionProveedor}</td><td>${data[i].telefonoProveedor}</td><td>${data[i].descripcionProveedor}</td><td>${data[i].empresa}</td><td>${data[i].emailProveedor}</td></tr>`
     }
     document.getElementById('data').innerHTML = body
     //console.log(body)
@@ -124,7 +124,7 @@ function crearProducto() {
 
 function registrarProveedor() {
   // Capturar informacion
-  var valorNombre = document.forms["crearProveedoresForm"]["nombreDeLaEmpresa"].value;
+  var valorNombre = document.forms["crearProveedoresForm"]["nombreVendedor"].value;
   var valorDireccion = document.forms["crearProveedoresForm"]["dirección"].value;
   var valorTelefono = document.forms["crearProveedoresForm"]["telefono"].value;
   var valorDescripcion = document.forms["crearProveedoresForm"]["descripción"].value;
@@ -134,8 +134,6 @@ function registrarProveedor() {
   var url = "http://localhost:8080/api/proveedores/registar";
 
   // Datos que enviarás en el cuerpo de la solicitud
-
-  
 
   const dataProducto ={
     direccionProveedor: valorDireccion,
