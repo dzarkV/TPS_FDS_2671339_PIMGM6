@@ -3,7 +3,7 @@ function navegar() {
 
   switch (select.value) {
     case "1":
-      window.open("login.html", "_self");
+      window.open(logout(), "_self");
       break;
     case "2":
       window.open("Actualizar_Usuario.html", "_self");
@@ -25,10 +25,30 @@ function navegar() {
   }
 }
 
-let nombre_usuario ;
-let rol_usuario ;
+function logout() {
+  window.localStorage.removeItem("jwt");
+  window.localStorage.removeItem("userSession");
+  window.location.href = "login.html";
+}
 
-// function mostrarUsuario() {}
+async function verificarUsuarioSesion(jwt) {
+  const entry_endpoint = "https://sistema-mgm-service-users.azurewebsites.net";
+
+  if (jwt) {
+    await fetch(entry_endpoint + "/api/me", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    })
+      .then((response) => response.json())
+      .then((data) =>
+        window.localStorage.setItem("userSession", JSON.stringify(data))
+      );
+  } else {
+    window.location.href = "login.html";
+  }
+}
 
 function loginUsuario() {
   const entry_endpoint = "https://sistema-mgm-service-users.azurewebsites.net";
@@ -45,48 +65,32 @@ function loginUsuario() {
     const formData = new FormData(form);
 
     // enviar los datos al servidor usando fetch()
-    const response = await fetch(entry_endpoint + "/api/login", {
+    const responseAuth = await fetch(entry_endpoint + "/api/login", {
       method: "POST",
       body: formData,
     });
 
     // procesar la respuesta del servidor
-    const data = await response.json();
+    const dataAuth = await responseAuth.json();
 
-    if (data.access_token) {
-      // si el inicio de sesión fue exitoso, redirigir al usuario a la página de inicio
-      window.location.href = "index.html";
-      window.localStorage.setItem("jwt", data.access_token);
+    // si el usuario está autenticado con token, guardar en localStorage y redirigir al usuario a la página de inicio
+    if (dataAuth.access_token) {
+      // guardar el token en el almacenamiento local
+      window.localStorage.setItem("jwt", dataAuth.access_token);
 
-      //  ----
-      var url = "https://sistema-mgm-service-users.azurewebsites.net/api/me";
-
-      const jwtToken = localStorage.getItem("jwt");
-
-      const usuario_response =  await fetch(url, {
-        headers: {
-          method: "GET",
-          Authorization: `Bearer ${jwtToken}`,
+      // verificar si el usuario está autenticado y obtener datos
+      verificarUsuarioSesion(dataAuth.access_token).then(
+        () => {
+          // redirigir al usuario a la página de inicio
+          window.location.href = "index.html";
         },
-      });
-      console.log("aaaaaaaaalgo")
-      const usuario_data = await usuario_response.json();
-    
-      if (usuario_data){
-        console.log(usuario_data)
-        // nombre_usuario = usuario_data.data
-      }
-          
-        //   nombre_usuario = datos.nombre_usuario;
-        //   rol_usuario = datos.rol_usuario.nombre_rol;
-        //   console.log(`${nombre_usuario} ${rol_usuario}`);
-        // })
-        // .catch((error) => console.log(error));
-
-      //  ----
+        (error) => {
+          console.log(error);
+        }
+      );
     } else {
       // si el inicio de sesión falló, mostrar un mensaje de error
-      span_message.innerText = data.detail;
+      span_message.innerText = dataAuth.detail;
     }
   });
 }
@@ -95,8 +99,9 @@ window.addEventListener("DOMContentLoaded", function () {
   if (location.pathname.endsWith("login.html") == false) {
     const nombreUsuario = document.getElementById("nombreUsuario");
     const rolUsuario = document.getElementById("rolUsuario");
+    const usuarioSesion = localStorage.getItem("userSession");
 
-    nombreUsuario.innerHTML = nombre_usuario;
-    rolUsuario.innerHTML = rol_usuario;
+    nombreUsuario.innerHTML = JSON.parse(usuarioSesion).nombre_usuario;
+    rolUsuario.innerHTML = JSON.parse(usuarioSesion).rol_usuario.nombre_rol;
   }
 });
