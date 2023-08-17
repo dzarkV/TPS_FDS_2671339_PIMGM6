@@ -18,7 +18,7 @@ function buscarUsuario() {
 
   // Metodo que pinta los datos
   const mostrarData = (data) => {
-    console.log(data)
+    
     let body = "";
     // for (var i = 0; i < data.length; i++) {      
         body=`<tr><td>${data.nombre_usuario}</td><td>${data.apellido_usuario}</td><td>${data.fecha_registro}</td></tr>`
@@ -44,7 +44,7 @@ function listarUsuarios() {
 
   // Metodo que pinta los datos
   const mostrarData = (data) => {
-    console.log(data)
+    
     let body = ""
     for (var i = 0; i < data.length; i++) {      
         body+=`<tr><td>${data[i].nombre_usuario}</td><td>${data[i].apellido_usuario}</td><td>${data[i].fecha_registro}</td></tr>`
