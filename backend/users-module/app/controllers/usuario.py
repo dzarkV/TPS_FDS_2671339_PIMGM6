@@ -73,6 +73,8 @@ def update_dict_recursive(original_user, items_modified):
 
 # Delete a user from the database
 def delete_user(id: str):
+    if not ObjectId.is_valid(id):
+        return False
     user = user_collection.find_one({"_id": ObjectId(id)})
     if user:
         user_collection.delete_one({"_id": ObjectId(id)})

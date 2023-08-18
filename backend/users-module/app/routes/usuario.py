@@ -80,6 +80,7 @@ def update_usuario_data(id: str, data: UpdateUsuario = Body(...)):
             "Usuario con ID: {} actualizado exitosamente.".format(id),
             "Usuario actualizado exitosamente.",
         )
+    Response.status_code = status.HTTP_404_NOT_FOUND
     return ErrorResponseModel(
         "Error al actualizar el usuario.", 404, "No se encontró el usuario."
     )
@@ -101,13 +102,14 @@ def delete_none_in_dict(_dict):
 # Delete a user by id in endpoint /api/usuario/{id}
 @usuario.delete(
     "/api/usuario/{id}", response_description="Usuario eliminado de la base de datos")
-def delete_usuario_data(id: str):
+def delete_usuario_data(id: str, response: Response):
     deleted_usuario = delete_user(id)
     if deleted_usuario:
         return ResponseModel(
             "Usuario con ID: {} eliminado exitosamente.".format(id),
             "Usuario eliminado exitosamente.",
         )
+    response.status_code = status.HTTP_404_NOT_FOUND
     return ErrorResponseModel(
         "Error al eliminar el usuario.", 404, "No se encontró el usuario."
     )
