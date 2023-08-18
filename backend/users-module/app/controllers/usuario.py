@@ -47,8 +47,8 @@ def retrieve_user_by_username(username: str) -> dict:
 
 # Update a user with a matching ID
 def update_user(id: str, data: dict):
-    # Return false if an empty request body is sent.
-    if len(data) < 1:
+    # Return false if an empty request body is sent or id is not valid
+    if len(data) < 1 or not ObjectId.is_valid(id):
         return False
     # Find the user in db    
     user = user_collection.find_one({"_id": ObjectId(id)})

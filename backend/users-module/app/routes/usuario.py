@@ -68,19 +68,23 @@ def get_usuario(
 
 # Update a user by id in endpoint /api/usuario/{id}
 @usuario.put("/api/usuario/{id}")
-def update_usuario_data(id: str, data: UpdateUsuario = Body(...)):
+def update_usuario_data(id: str, response: Response, data: UpdateUsuario = Body(...)):
     user_dict = delete_none_in_dict(data.dict())
-    if user_dict["credenciales"]["contrasena"]:
-        user_dict["credenciales"]["contrasena"] = generate_password_hash(
+    try:
+        if user_dict["credenciales"]["contrasena"]:
+            user_dict["credenciales"]["contrasena"] = generate_password_hash(
                                                             password=user_dict["credenciales"]["contrasena"],
                                                             method="scrypt")
+    except KeyError:
+        print("No pass key")
+    
     updated_usuario = update_user(id, user_dict)
     if updated_usuario:
         return ResponseModel(
             "Usuario con ID: {} actualizado exitosamente.".format(id),
             "Usuario actualizado exitosamente.",
         )
-    Response.status_code = status.HTTP_404_NOT_FOUND
+    response.status_code = status.HTTP_404_NOT_FOUND
     return ErrorResponseModel(
         "Error al actualizar el usuario.", 404, "No se encontró el usuario."
     )
