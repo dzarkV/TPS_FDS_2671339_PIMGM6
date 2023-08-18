@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Body, Query
+from fastapi import APIRouter, Body, Query, Response, status
 from typing import Annotated
 from fastapi.encoders import jsonable_encoder
 from models.usuario_finded_by import Usuario_Finded_by
@@ -37,10 +37,11 @@ def add_usuario_data(usuario: Usuario = Body(...)):
 # Get all users in endpoint /usuarios
 @usuario.get(
     "/api/usuarios", response_description="Usuarios obtenidos de la base de datos")
-def get_all_usuarios():
+def get_all_usuarios(response: Response):
     usuarios = retrieve_all_users()
     if usuarios:
         return ResponseModel(usuarios, "Usuarios obtenidos exitosamente.")
+    response.status_code = status.HTTP_404_NOT_FOUND
     return ErrorResponseModel(
         "No se encontraron usuarios.", 404, "No se encontraron usuarios.")
 
@@ -49,7 +50,8 @@ def get_all_usuarios():
     "/api/usuario/{find_by}", 
     response_description="Usuario obtenido de la base de datos")
 def get_usuario(
-    find_by: Usuario_Finded_by, value: Annotated[str, Query(max_length=25)]):
+    find_by: Usuario_Finded_by, value: Annotated[str, Query(max_length=25)], 
+    response: Response):
     usuario = {}
     if find_by == Usuario_Finded_by.id:
         usuario = retrieve_user_by_id(value)
@@ -60,6 +62,7 @@ def get_usuario(
 
     if usuario:
         return ResponseModel(usuario, "Usuario obtenido exitosamente.")
+    response.status_code = status.HTTP_404_NOT_FOUND
     return ErrorResponseModel(
         "No se encontró el usuario.", 404, "No se encontró el usuario.")
 
