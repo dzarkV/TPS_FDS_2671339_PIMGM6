@@ -104,4 +104,12 @@ window.addEventListener("DOMContentLoaded", function () {
     nombreUsuario.innerHTML = JSON.parse(usuarioSesion).nombre_usuario;
     rolUsuario.innerHTML = JSON.parse(usuarioSesion).rol_usuario.nombre_rol;
   }
+
+  if (location.pathname.endsWith("Actualizar_Usuario.html")) {
+        // carga datos del usuario sesion en el formulario
+        document.getElementsByName('nombre')[0].value = JSON.parse(localStorage.getItem("userSession")).nombre_usuario;
+        document.getElementsByName('apellido')[0].value = JSON.parse(localStorage.getItem("userSession")).apellido_usuario;
+        document.getElementById("username").innerHTML = JSON.parse(localStorage.getItem("userSession")).credenciales.usuario;
+        document.getElementsByName('rol')[0].value = JSON.parse(localStorage.getItem("userSession")).rol_usuario.nombre_rol;
+  }
 });
