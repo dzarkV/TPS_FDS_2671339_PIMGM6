@@ -28,7 +28,6 @@ function crearUsuario() {
       },
     })
       .then((resSearchUsername) => {
-        // const busquedaUsername = await resSearchUsername.json();
         // Si la respuesta es 404 (no existe el usuario), se procede a crearlo
         if (resSearchUsername.status === 404) {
           url =
@@ -74,71 +73,73 @@ function crearUsuario() {
 
 function ActualizarUsuario() {
     // Capturar los datos del formulario
-    var valorNombre = document.forms["crearUsuarioForm"]["nombre"].value;
-    var valorApellido = document.forms["crearUsuarioForm"]["apellido"].value;
-    var valorPassword = document.forms["crearUsuarioForm"]["pass"].value;
-    var checkPassword = document.forms["crearUsuarioForm"]["confirnpass"].value;
-    var username = document.querySelector("#username").innerHTML;
-    var valorRol = document.forms["crearUsuarioForm"]["rol"].value;
+    var valorNombreUpd = document.forms["actualizarUsuarioForm"]["nombre"].value;
+    var valorApellidoUpd = document.forms["actualizarUsuarioForm"]["apellido"].value;
+    var valorPasswordUpd = document.forms["actualizarUsuarioForm"]["pass"].value;
+    var checkPasswordUpd = document.forms["actualizarUsuarioForm"]["confirnpass"].value;
+    var usernameUpd = document.querySelector("#username").innerHTML;
+    var valorRolUpd = document.forms["actualizarUsuarioForm"]["rol"].value;
   
     // Validar campos de contraseña
-    if (valorPassword !== checkPassword) {
+    if (valorPasswordUpd !== checkPasswordUpd) {
       alert("Las contraseñas no coinciden");
-    } else if (valorNombre === "" || valorApellido === "") {
+    } else if (valorNombreUpd === "" || valorApellidoUpd === "") {
       alert("Debe llenar todos los campos");
-    } else if (valorPassword.length < 8) {
+    } else if (valorPasswordUpd.length < 8) {
       alert("La contraseña debe tener al menos 8 caracteres");
     } else {
       // Si las contraseñas coinciden, se procede a verificar con el username en la API si el usuario ya existe
       url =
         "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/username?value=";
-      const jwtToken = getTokenFromLocalStorage();
+      const jwtToken = localStorage.getItem("jwt");
+      const userinSession = JSON.parse(localStorage.getItem("userSession"));
   
-      fetch(url + username, {
+      fetch(url + userinSession.credenciales.usuario, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${jwtToken}`,
         },
       })
-        .then((resSearchUsername) => {
-          // const busquedaUsername = await resSearchUsername.json();
-          // Si la respuesta es 404 (no existe el usuario), se procede a crearlo
-          if (resSearchUsername.status === 404) {
+        .then(async (reSearchUsername) => {
+          // Si la respuesta es 200 (porque existe el usuario), se procede a actualizar los datos según el id del usuario
+          if (reSearchUsername.status === 200) {
+            const busquedaUsername = await reSearchUsername.json();
             url =
-              "https://sistema-mgm-service-users.azurewebsites.net/api/usuario";
+              "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/";
             // Se procede a crear el usuario
-            fetch(url, {
-              method: "POST",
+            fetch(url + busquedaUsername.data[0].id_usuario, {
+              method: "PUT",
               headers: {
+                accept: "application/json",
                 "Content-Type": "application/json",
                 Authorization: `Bearer ${jwtToken}`,
               },
               body: JSON.stringify({
-                nombre_usuario: valorNombre,
-                apellido_usuario: valorApellido,
+                nombre_usuario: valorNombreUpd,
+                apellido_usuario: valorApellidoUpd,
                 rol_usuario: {
                   id_rol: 102,
                   nombre_rol: valorRol
                 },
                 credenciales: {
-                  usuario: username,
-                  contrasena: valorPassword
+                  usuario: usernameUpd,
+                  contrasena: valorPasswordUpd
                 }
-              }),
+              })
             })
-              .then((responseCreateUser) => {
+              .then((responseUpdateUser) => {
                 // Si el usuario se crea exitosamente, se muestra el mensaje y se recarga la página
-                if (responseCreateUser.status === 200) {
-                  alert(`Usuario ${username} creado exitosamente`);
+                if (responseUpdateUser.status === 200) {
+                  alert(`Usuario ${usernameUpd} actualizado exitosamente`);
                   location.reload();
                 } else {
-                  alert("Error al crear el usuario");
+                  alert("Error al actualizar el usuario");
                 }
               })
               .catch((error) => console.log(error));
           } else {
-            // Si el usuario ya existe, se muestra un mensaje de alerta
-            alert("El usuario ya existe");
+            // Si el usuario no existe (404), se muestra un mensaje de alerta
+            alert("El usuario no existe en el sistema");
           }
         })
         .catch((error) => console.log(error));
