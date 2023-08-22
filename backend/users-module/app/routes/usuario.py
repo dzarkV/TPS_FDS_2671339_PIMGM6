@@ -76,7 +76,7 @@ def update_usuario_data(id: str, response: Response, data: UpdateUsuario = Body(
                                                             password=user_dict["credenciales"]["contrasena"],
                                                             method="scrypt")
     except KeyError:
-        print("No pass key")
+        print("No pass key sended")
     
     updated_usuario = update_user(id, user_dict)
     if updated_usuario:
