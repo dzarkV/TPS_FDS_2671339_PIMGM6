@@ -37,8 +37,8 @@ class UpdateUsuario(BaseModel):
     nombre_usuario: Optional[str]
     apellido_usuario: Optional[str]
     fecha_registro: Optional[date]
-    rol_usuario: Optional[UpdateRol | Rol]
-    credenciales: Optional[UpdateCredencial | Credencial]
+    rol_usuario: Optional[UpdateRol]
+    credenciales: Optional[UpdateCredencial]
 
     class Config:
         allow_population_by_field_name = True
