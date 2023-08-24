@@ -71,7 +71,7 @@ function crearUsuario() {
   }
 }
 
-function ActualizarUsuario() {
+function actualizarUsuario() {
     // Capturar los datos del formulario
     var valorNombreUpd = document.forms["actualizarUsuarioForm"]["nombre"].value;
     var valorApellidoUpd = document.forms["actualizarUsuarioForm"]["apellido"].value;
@@ -117,10 +117,10 @@ function ActualizarUsuario() {
               body: JSON.stringify({
                 nombre_usuario: valorNombreUpd,
                 apellido_usuario: valorApellidoUpd,
-                rol_usuario: {
-                  id_rol: 102,
-                  nombre_rol: valorRol
-                },
+                // rol_usuario: {
+                //   id_rol: 102,
+                //   nombre_rol: valorRolUpd
+                // },
                 credenciales: {
                   usuario: usernameUpd,
                   contrasena: valorPasswordUpd
@@ -130,8 +130,8 @@ function ActualizarUsuario() {
               .then((responseUpdateUser) => {
                 // Si el usuario se crea exitosamente, se muestra el mensaje y se recarga la página
                 if (responseUpdateUser.status === 200) {
-                  alert(`Usuario ${usernameUpd} actualizado exitosamente`);
-                  location.reload();
+                  alert(`Usuario ${usernameUpd} actualizado exitosamente. Deberá iniciar sesión nuevamente.`);
+                  logout();
                 } else {
                   alert("Error al actualizar el usuario");
                 }
@@ -145,3 +145,69 @@ function ActualizarUsuario() {
         .catch((error) => console.log(error));
     }
   }
+
+
+  function recuperarPassword() {
+    //Capturar los datos del formulario
+    var valorUsername = document.forms["recuperarPasswordForm"]["username"].value;
+    var valorPassword = document.forms["recuperarPasswordForm"]["pass"].value;
+    var checkPassword = document.forms["recuperarPasswordForm"]["confirmPass"].value;
+
+    // Validar campos de contraseña
+    if (valorPassword !== checkPassword) {
+      alert("Las contraseñas no coinciden"); 
+    } else if (valorPassword.length < 8) {
+      alert("La contraseña debe tener al menos 8 caracteres");
+    } else {
+      // Si las contraseñas coinciden, se procede a verificar con el username en la API si el usuario ya existe
+      url =
+        "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/username?value=";
+
+        // no hay token!!!!
+      const jwtToken = process.env.JWT_RECOVERY_MGM;
+
+      fetch(url + valorUsername, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${jwtToken}`,
+        },
+      })
+        .then((resSearchUsername) => {
+          // Si la respuesta es 200 (porque existe el usuario), se procede a actualizar los datos según el id del usuario
+          if (resSearchUsername.status === 200) {
+            url =
+              "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/";
+            // Se procede a crear el usuario
+            fetch(url + valorUsername, {
+              method: "PUT",
+              headers: {
+                accept: "application/json",
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${jwtToken}`,
+              },
+              body: JSON.stringify({
+                credenciales: {
+                  usuario: valorUsername,
+                  contrasena: valorPassword
+                }
+              })
+            })
+              .then((responseUpdateUser) => {
+                // Si el usuario se crea exitosamente, se muestra el mensaje y se recarga la página
+                if (responseUpdateUser.status === 200) {
+                  alert(`Contraseña del usuario ${valorUsername} actualizada exitosamente.`);
+                  logout();
+                } else {
+                  alert("Error al actualizar el usuario");
+                }
+              })
+              .catch((error) => console.log(error));
+          } else {
+            // Si el usuario no existe (404), se muestra un mensaje de alerta
+            alert("El usuario no existe en el sistema");
+          }
+        })
+        .catch((error) => console.log(error));
+    }
+
+}
