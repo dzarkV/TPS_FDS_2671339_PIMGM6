@@ -1,8 +1,11 @@
 from config.db import user_collection
 from bson.objectid import ObjectId
 
-# helpers which convert data from db to python dict 
+
 def user_helper(user) -> dict:
+    '''Converts a user from MongoDB to a dictionary, it means that
+    this function helps converting data from db to python dict
+    '''
     return {
         "id_usuario": str(user["_id"]),
         "nombre_usuario": user["nombre_usuario"],
@@ -12,45 +15,51 @@ def user_helper(user) -> dict:
         "credenciales": user["credenciales"]
     }
 
-# Retrieve all users present in the database
+
 def retrieve_all_users():
+    '''Retrieve all users present in the database'''
     users = []
     for user in user_collection.find():
         users.append(user_helper(user))
     return users
 
 
-# Add a new user into to the database
 def add_user(user_data: dict) -> dict:
+    '''Add a new user into to the database'''
     user_id_inserted = user_collection.insert_one(user_data).inserted_id
     new_user = user_collection.find_one({"_id": user_id_inserted})
     return user_helper(new_user)
 
 
-# Retrieve a user with a matching ID
 def retrieve_user_by_id(id: str) -> dict:
+    '''Retrieve a user with a matching ID'''
     if not ObjectId.is_valid(id):
         return False
     user = user_collection.find_one({"_id": ObjectId(id)})
     if user:
         return user_helper(user)
 
+
 def retrieve_user_by_name(name: str) -> dict:
-    user = user_collection.find_one({"nombre_usuario": name}) 
+    '''Retrieve a user with a matching name'''
+    user = user_collection.find_one({"nombre_usuario": name})
     if user:
         return user_helper(user)
 
+
 def retrieve_user_by_username(username: str) -> dict:
+    '''Retrieve a user with a matching username'''
     user = user_collection.find_one({"credenciales.usuario": username})
     if user:
         return user_helper(user)
 
-# Update a user with a matching ID
+
 def update_user(id: str, data: dict):
+    '''Update a user with a matching ID'''
     # Return false if an empty request body is sent or id is not valid
     if len(data) < 1 or not ObjectId.is_valid(id):
         return False
-    # Find the user in db    
+    # Find the user in db
     user = user_collection.find_one({"_id": ObjectId(id)})
     if user:
         user_modified = update_dict_recursive(user, data)
@@ -58,12 +67,15 @@ def update_user(id: str, data: dict):
         updated_user = user_collection.update_one(
             {"_id": ObjectId(id)}, {"$set": user_modified}
         )
-        if updated_user:    
+        if updated_user:
             return True
         return False
 
-# Update user's items in dictionary in a recursive way (because of embedded json)
+
 def update_dict_recursive(original_user, items_modified):
+    '''Update user's items in dictionary
+    in a recursive way (because of embedded json)
+    '''
     for key in items_modified.keys():
         if isinstance(original_user[key], dict):
             update_dict_recursive(original_user[key], items_modified[key])
@@ -71,12 +83,12 @@ def update_dict_recursive(original_user, items_modified):
             original_user[key] = items_modified[key]
     return original_user
 
-# Delete a user from the database
+
 def delete_user(id: str):
+    '''Delete a user from the database'''
     if not ObjectId.is_valid(id):
         return False
     user = user_collection.find_one({"_id": ObjectId(id)})
     if user:
         user_collection.delete_one({"_id": ObjectId(id)})
         return True
-

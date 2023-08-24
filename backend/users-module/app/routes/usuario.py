@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Body, Query, Response, status
 from typing import Annotated
 from fastapi.encoders import jsonable_encoder
-from models.usuario_finded_by import Usuario_Finded_by
+from models.usuario_finded_by import UsuarioFindedBy
 from werkzeug.security import generate_password_hash
 
 from controllers.usuario import (
@@ -23,21 +23,23 @@ from models.usuario import (
 
 usuario = APIRouter()
 
-# Add a new user in endpoint /api/usuario
+
 @usuario.post(
     "/api/usuario", response_description="Usuario agregado a la base de datos")
 def add_usuario_data(usuario: Usuario = Body(...)):
+    '''Add a new user in endpoint /api/usuario'''
     usuario = jsonable_encoder(usuario)
     usuario["credenciales"]["contrasena"] = generate_password_hash(
-                                                            password=usuario["credenciales"]["contrasena"], 
-                                                            method="scrypt")
+                                                password=usuario["credenciales"]["contrasena"],
+                                                method="scrypt")
     new_usuario = add_user(usuario)
     return ResponseModel(new_usuario, "Usuario agregado exitosamente.")
 
-# Get all users in endpoint /usuarios
+
 @usuario.get(
     "/api/usuarios", response_description="Usuarios obtenidos de la base de datos")
 def get_all_usuarios(response: Response):
+    '''Get all users in endpoint /usuarios'''
     usuarios = retrieve_all_users()
     if usuarios:
         return ResponseModel(usuarios, "Usuarios obtenidos exitosamente.")
@@ -45,19 +47,20 @@ def get_all_usuarios(response: Response):
     return ErrorResponseModel(
         "No se encontraron usuarios.", 404, "No se encontraron usuarios.")
 
-#Get a user by id or name in endpoint /usuario/{find_by}
+
 @usuario.get(
-    "/api/usuario/{find_by}", 
+    "/api/usuario/{find_by}",
     response_description="Usuario obtenido de la base de datos")
 def get_usuario(
-    find_by: Usuario_Finded_by, value: Annotated[str, Query(max_length=25)], 
+    find_by: UsuarioFindedBy, value: Annotated[str, Query(max_length=25)],
     response: Response):
+    '''Get a user by id or name in endpoint /usuario/{find_by}'''
     usuario = {}
-    if find_by == Usuario_Finded_by.id:
+    if find_by == UsuarioFindedBy.id:
         usuario = retrieve_user_by_id(value)
-    elif find_by == Usuario_Finded_by.name:
+    elif find_by == UsuarioFindedBy.name:
         usuario = retrieve_user_by_name(value)
-    elif find_by == Usuario_Finded_by.username:
+    elif find_by == UsuarioFindedBy.username:
         usuario = retrieve_user_by_username(value)
 
     if usuario:
@@ -66,9 +69,10 @@ def get_usuario(
     return ErrorResponseModel(
         "No se encontró el usuario.", 404, "No se encontró el usuario.")
 
-# Update a user by id in endpoint /api/usuario/{id}
+
 @usuario.put("/api/usuario/{id}")
 def update_usuario_data(id: str, response: Response, data: UpdateUsuario = Body(...)):
+    '''Update a user by id in endpoint /api/usuario/{id}'''
     user_dict = delete_none_in_dict(data.dict())
     try:
         if user_dict["credenciales"]["contrasena"]:
@@ -77,7 +81,7 @@ def update_usuario_data(id: str, response: Response, data: UpdateUsuario = Body(
                                                             method="scrypt")
     except KeyError:
         print("No pass key sended")
-    
+
     updated_usuario = update_user(id, user_dict)
     if updated_usuario:
         return ResponseModel(
@@ -88,6 +92,7 @@ def update_usuario_data(id: str, response: Response, data: UpdateUsuario = Body(
     return ErrorResponseModel(
         "Error al actualizar el usuario.", 404, "No se encontró el usuario."
     )
+
 
 def delete_none_in_dict(_dict):
     """Delete None values recursively from all of the 
@@ -103,10 +108,11 @@ def delete_none_in_dict(_dict):
             delete_none_in_dict(item) for item in _dict if item is not None)
     return _dict
 
-# Delete a user by id in endpoint /api/usuario/{id}
+
 @usuario.delete(
     "/api/usuario/{id}", response_description="Usuario eliminado de la base de datos")
 def delete_usuario_data(id: str, response: Response):
+    '''Delete a user by id in endpoint /api/usuario/{id}'''
     deleted_usuario = delete_user(id)
     if deleted_usuario:
         return ResponseModel(

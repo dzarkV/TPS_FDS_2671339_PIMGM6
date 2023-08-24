@@ -12,5 +12,3 @@ user_collection = db.get_collection(name=getenv(key="COLLECTION_NAME"))
 # except Exception as e:
 #     print(e)
 #     print("Unable to connect to MongoDB. Check your connection details.")
-
-
