@@ -16,7 +16,7 @@ def user_helper(user) -> dict:
     }
 
 
-def retrieve_all_users():
+def retrieve_all_users() -> list:
     '''Retrieve all users present in the database'''
     users = []
     for user in user_collection.find():
@@ -36,8 +36,10 @@ def retrieve_user_by_id(id: str) -> dict:
     if not ObjectId.is_valid(id):
         return False
     user = user_collection.find_one({"_id": ObjectId(id)})
-    if user:
+    if user is not None:
         return user_helper(user)
+    else:
+        return False
 
 
 def retrieve_user_by_name(name: str) -> dict:
