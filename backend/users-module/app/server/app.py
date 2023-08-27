@@ -1,7 +1,7 @@
 from fastapi import FastAPI, Depends
 from routes.usuario import usuario as UsuarioRouter
 from routes.login import login as LoginRouter, login_me
-from config.db import client
+from config.db_conn import client
 
 app = FastAPI(title='Users module',
     description='API REST de servicio de usuarios del sistema MGM',

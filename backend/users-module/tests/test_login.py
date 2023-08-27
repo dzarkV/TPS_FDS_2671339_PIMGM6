@@ -1,5 +1,5 @@
 import pytest
-from app.controllers.login import authenticate_user, verify_pass
+from app.controllers.login import authenticate_user
 
 
 class TestControllerLogin:

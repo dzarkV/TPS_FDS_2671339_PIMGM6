@@ -1,5 +1,5 @@
-from config.db import user_collection
 from bson.objectid import ObjectId
+from config.db_conn import user_collection
 
 
 def user_helper(user) -> dict:
