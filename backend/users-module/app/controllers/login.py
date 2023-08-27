@@ -49,6 +49,8 @@ def decode_token(token: str = Depends(oauth2_scheme)) -> dict:
 
 def authenticate_user(username: str, password: str) -> bool | dict:
     '''Authenticate user'''
+    if not isinstance(username, str) or not isinstance(password, str):
+        return False
     user = retrieve_user_by_username(username)
     if not user:
         return False

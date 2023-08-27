@@ -1,4 +1,4 @@
-from ..config.db import user_collection
+from config.db import user_collection
 from bson.objectid import ObjectId
 
 
