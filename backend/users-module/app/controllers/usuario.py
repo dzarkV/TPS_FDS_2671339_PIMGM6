@@ -1,4 +1,4 @@
-from config.db import user_collection
+from ..config.db import user_collection
 from bson.objectid import ObjectId
 
 
@@ -47,6 +47,8 @@ def retrieve_user_by_name(name: str) -> dict:
     user = user_collection.find_one({"nombre_usuario": name})
     if user:
         return user_helper(user)
+    else:
+        return False
 
 
 def retrieve_user_by_username(username: str) -> dict:
@@ -54,6 +56,8 @@ def retrieve_user_by_username(username: str) -> dict:
     user = user_collection.find_one({"credenciales.usuario": username})
     if user:
         return user_helper(user)
+    else:
+        return False
 
 
 def update_user(id: str, data: dict):
