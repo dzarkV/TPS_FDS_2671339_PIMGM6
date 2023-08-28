@@ -3,13 +3,15 @@ from typing import Optional
 
 
 class Rol(BaseModel):
-    ''' Modelo de Rol de usuario '''
+    """Modelo de Rol de usuario"""
+
     id_rol: int
     nombre_rol: str
 
 
 class UpdateRol(BaseModel):
-    ''' Modelo de Rol de usuario cuando se actualizan los datos'''
+    """Modelo de Rol de usuario cuando se actualizan los datos"""
+
     nombre_rol: Optional[str]
 
     class Config:
