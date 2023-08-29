@@ -1,5 +1,5 @@
 runapp:
-	python app/main.py
+	python3 app/main.py
 
 buildenv:
 	python -m venv venv
@@ -14,3 +14,6 @@ buildapp:
 	buildenv
 	activateenv
 	installlibs
+
+testapp:
+	cd app && python -m pytest -vv
