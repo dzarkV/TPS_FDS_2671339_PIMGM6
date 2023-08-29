@@ -1,12 +1,14 @@
-from fastapi import Depends, HTTPException
-from werkzeug.security import check_password_hash
-from fastapi.security import OAuth2PasswordBearer
-from typing import Union
 from datetime import datetime, timedelta
-from jose import jwt, JWTError
 from os import getenv
+from typing import Union
+
 from dotenv import load_dotenv
-from .usuario import retrieve_user_by_username, retrieve_user_by_name
+from fastapi import Depends, HTTPException
+from fastapi.security import OAuth2PasswordBearer
+from jose import JWTError, jwt
+from werkzeug.security import check_password_hash
+
+from .usuario import retrieve_user_by_name, retrieve_user_by_username
 
 load_dotenv()
 

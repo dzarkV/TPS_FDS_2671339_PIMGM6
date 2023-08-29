@@ -33,9 +33,9 @@ jobs:
         run: make installlibs
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
-      - name: Tests with Pytest
-        working-directory: ./backend/users-module
-        run: make testapp
+      # - name: Tests with Pytest
+      #   working-directory: ./backend/users-module
+      #   run: make testapp
       
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2

@@ -1,9 +1,8 @@
-import sys
-
-from fastapi import FastAPI, Depends
-from routes.usuario import usuario as UsuarioRouter
-from routes.login import login as LoginRouter, login_me
 from db_conn import client
+from fastapi import Depends, FastAPI
+from routes.login import login as LoginRouter
+from routes.login import login_me
+from routes.usuario import usuario as UsuarioRouter
 
 app = FastAPI(
     title="Users module",
@@ -19,11 +18,6 @@ app.include_router(LoginRouter, tags=["Login"])
 def root_page():
     return {"message": "Qué hace"}
 
-
-@app.on_event("startup")
-def starting():
-    print(sys.path)
-    print(sys.modules)
 
 @app.on_event("shutdown")
 def shutdown():
