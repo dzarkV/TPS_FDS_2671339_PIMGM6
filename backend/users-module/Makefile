@@ -16,4 +16,4 @@ buildapp:
 	installlibs
 
 testapp:
-	pytest -v
+	cd app && python -m pytest -vv

@@ -10,6 +10,7 @@ class TestControllerLogin:
         [
             ("test_user", "$2b$12$0Z1Z1Z1Z1Z1Z1Z1Z1Z1Z1"),
             ("uservalid", 12345),
+            (" ", " "),
             ({"data"}, True),
             ([], []),
         ],

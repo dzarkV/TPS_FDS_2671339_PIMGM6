@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 from jose import jwt, JWTError
 from os import getenv
 from dotenv import load_dotenv
-from controllers.usuario import retrieve_user_by_username, retrieve_user_by_name
+from .usuario import retrieve_user_by_username, retrieve_user_by_name
 
 load_dotenv()
 

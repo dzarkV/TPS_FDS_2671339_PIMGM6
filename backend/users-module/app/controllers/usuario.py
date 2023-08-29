@@ -1,10 +1,11 @@
 from bson.objectid import ObjectId
-from config.db_conn import user_collection
+from db_conn import user_collection
+# from app.db_conn import user_collection
 
 
 def user_helper(user) -> dict:
     """Converts a user from MongoDB to a dictionary, it means that
-    this function helps converting data from db to python dict
+    this function helps to convert data from db to python dict
     """
     return {
         "id_usuario": str(user["_id"]),
@@ -31,7 +32,7 @@ def add_user(user_data: dict) -> dict:
     return user_helper(new_user)
 
 
-def retrieve_user_by_id(id: str) -> dict:
+def retrieve_user_by_id(id: str) -> dict | bool:
     """Retrieve a user with a matching ID"""
     if not ObjectId.is_valid(id):
         return False
@@ -42,7 +43,7 @@ def retrieve_user_by_id(id: str) -> dict:
         return False
 
 
-def retrieve_user_by_name(name: str) -> dict:
+def retrieve_user_by_name(name: str) -> dict | bool:
     """Retrieve a user with a matching name"""
     user = user_collection.find_one({"nombre_usuario": name})
     if user:
@@ -51,7 +52,7 @@ def retrieve_user_by_name(name: str) -> dict:
         return False
 
 
-def retrieve_user_by_username(username: str) -> dict:
+def retrieve_user_by_username(username: str) -> dict | bool:
     """Retrieve a user with a matching username"""
     user = user_collection.find_one({"credenciales.usuario": username})
     if user:
