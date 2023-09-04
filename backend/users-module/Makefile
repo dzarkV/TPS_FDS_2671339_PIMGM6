@@ -16,4 +16,4 @@ buildapp:
 	installlibs
 
 testapp:
-	cd app && python -m pytest -vv
+	cd app && python -m pytest -vv --html=report-tests.html --self-contained-html
