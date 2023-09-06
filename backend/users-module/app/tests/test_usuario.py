@@ -14,6 +14,14 @@ class TestControllerUsuario:
     Pruebas unitarias para controlador usuario
     """
 
+    @pytest.fixture(autouse=True)
+    def slow_down_tests(self):
+        """Delay between tests"""
+        import time
+        yield
+        time.sleep(0.5)
+
+
     USUARIO_VALIDO = {
         "_id": "60a7b3b6e4b9f9b5f0e1b1a2",
         "nombre_usuario": "nombre_user",
