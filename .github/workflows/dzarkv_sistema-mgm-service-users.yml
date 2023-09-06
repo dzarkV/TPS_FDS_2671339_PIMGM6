@@ -33,16 +33,17 @@ jobs:
       
       - name: Install dependencies
         working-directory: ./backend/users-module
-        run: make installlibs
+        run: |
+          make installlibs
+          cd app/
           
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       - name: Tests with Pytest
-        working-directory: ./backend/users-module
-        run: |
-          pip list
-          pip install pytest pytest-md pytest-emoji
-          cd app/
-      - uses: pavelzw/pytest-action@v2
+        uses: pavelzw/pytest-action@v2
+        # working-directory: ./backend/users-module/app
+        # run: |
+        #   pip list
+        #   pip install pytest pytest-md pytest-emoji
         with:
           emoji: true
           verbose: true
