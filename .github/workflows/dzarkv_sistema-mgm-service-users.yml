@@ -26,9 +26,9 @@ jobs:
         working-directory: ./backend/users-module
         run: |
           make buildenv
-          export MONGO_DETAILS=${{ secrets.MONGO_DETAILS }} >> venv/bin/activate
-          export DB_NAME=${{ secrets.DB_NAME }} >> venv/bin/activate
-          export COLLECTION_NAME=${{ secrets.COLLECTION_NAME }} >> venv/bin/activate
+          echo 'export MONGO_DETAILS=${{ secrets.MONGO_DETAILS }}' >> venv/bin/activate
+          echo 'export DB_NAME=${{ secrets.DB_NAME }}' >> venv/bin/activate
+          echo 'export COLLECTION_NAME=${{ secrets.COLLECTION_NAME }}' >> venv/bin/activate
           tail -n 6 venv/bin/activate
           source venv/bin/activate
       
