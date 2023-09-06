@@ -33,23 +33,13 @@ jobs:
       
       - name: Install dependencies
         working-directory: ./backend/users-module
-        run: |
-          make installlibs
-          cd app/
+        run: make installlibs
           
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       - name: Tests with Pytest
-        uses: pavelzw/pytest-action@v2
-        # working-directory: ./backend/users-module/app
-        # run: |
-        #   pip list
-        #   pip install pytest pytest-md pytest-emoji
-        with:
-          emoji: true
-          verbose: true
-          job-summary: true
-          click-to-expand: true
-          report-title: 'Test Users Report' 
+        working-directory: ./backend/users-module
+        run: |
+          cd app/ && python -m pytest -vv
       
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
