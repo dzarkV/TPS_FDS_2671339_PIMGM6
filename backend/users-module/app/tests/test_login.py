@@ -5,13 +5,6 @@ from app.controllers.login import authenticate_user
 class TestControllerLogin:
     """Pruebas unitarias para controlador login"""
 
-    @pytest.fixture(autouse=True)
-    def slow_down_tests(self):
-        """Fixture para ralentizar las pruebas"""
-        import time
-        yield
-        time.sleep(0.5)
-
     @pytest.mark.parametrize(
         "username, password",
         [
