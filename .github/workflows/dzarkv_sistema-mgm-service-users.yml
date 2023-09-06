@@ -37,9 +37,10 @@ jobs:
           
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       - name: Tests with Pytest
-        working-directory: ./backend/users-module
+        working-directory: ./backend/users-module/app
         run: |
-          cd app && python -m pytest -vv
+          source venv/bin/activate
+          python -m pytest -vv
       
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
