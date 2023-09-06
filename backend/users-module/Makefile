@@ -15,5 +15,10 @@ buildapp:
 	activateenv
 	installlibs
 
-testapp:
+testapp-report:
 	cd app && python -m pytest -vv --html=report-tests.html --self-contained-html
+
+env-to-job:
+	@echo export MONGO_DETAILS=${{ secrets.MONGO_DETAILS }} >> venv/bin/activate
+    @echo export DB_NAME=${{ secrets.DB_NAME }} >> venv/bin/activate
+    @echo export COLLECTION_NAME=${{ secrets.COLLECTION_NAME }} >> venv/bin/activate
