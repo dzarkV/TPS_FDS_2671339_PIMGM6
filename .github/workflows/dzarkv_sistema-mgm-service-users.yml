@@ -26,7 +26,9 @@ jobs:
         working-directory: ./backend/users-module
         run: |
           make buildenv
-          make env-to-job
+          export MONGO_DETAILS=${{ secrets.MONGO_DETAILS }} >> venv/bin/activate
+          export DB_NAME=${{ secrets.DB_NAME }} >> venv/bin/activate
+          export COLLECTION_NAME=${{ secrets.COLLECTION_NAME }} >> venv/bin/activate
           source venv/bin/activate
       
       - name: Install dependencies
