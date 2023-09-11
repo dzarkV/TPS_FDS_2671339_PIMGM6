@@ -45,6 +45,8 @@ jobs:
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       - name: Tests with Pytest
         uses: pavelzw/pytest-action@v2
+        with:
+          custom-arguments: '--rootdir=/home/runner/work/TPS_FDS_2671339_PMGM6/TPS_FDS_2671339_PMGM6/backend/users-module'
           
       
       - name: Upload artifact for deployment jobs
