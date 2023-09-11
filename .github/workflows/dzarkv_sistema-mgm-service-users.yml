@@ -42,9 +42,10 @@ jobs:
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       - name: Tests with Pytest
         # working-directory: ./backend/users-module
-        run: pwd && pytest -vv --junit-xml=test-results.xml
+        run: pytest -vv --junit-xml=test-results.xml
         # uses: pavelzw/pytest-action@v2
       - name: Surface failing tests
+        working-directory: ./backend/users-module
         if: always()
         uses: pmeier/pytest-results-action@main
         with:

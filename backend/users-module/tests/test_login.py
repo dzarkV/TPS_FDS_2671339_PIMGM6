@@ -5,7 +5,6 @@ from app.controllers.login import authenticate_user
 class TestControllerLogin:
     """Pruebas unitarias para controlador login"""
 
-
     @pytest.mark.parametrize(
         "username, password",
         [
