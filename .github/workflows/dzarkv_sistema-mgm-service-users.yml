@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
+        shell: bash
         working-directory: ./backend/users-module
 
     steps:
@@ -28,6 +29,7 @@ jobs:
 
       - name: Create and start virtual environment with env
         run: |
+          pwd
           make buildenv
           echo 'export MONGO_DETAILS=${{ secrets.MONGO_DETAILS }}' >> venv/bin/activate
           echo 'export DB_NAME=usersMGM' >> venv/bin/activate
@@ -36,6 +38,7 @@ jobs:
       
       - name: Install dependencies
         run: |
+          pwd
           make installlibs
           pip install pytest pytest-md pytest-emoji
           
