@@ -45,7 +45,6 @@ jobs:
         run: pytest -vv --junit-xml=test-results.xml
         # uses: pavelzw/pytest-action@v2
       - name: Surface failing tests
-        working-directory: ./backend/users-module
         if: always()
         uses: pmeier/pytest-results-action@main
         with:
