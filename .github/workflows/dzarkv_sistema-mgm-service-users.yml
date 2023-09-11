@@ -26,20 +26,21 @@ jobs:
         working-directory: ./backend/users-module
         run: |
           make buildenv
+          echo 'export MONGO_DETAILS=${{ secrets.MONGO_DETAILS }}' >> venv/bin/activate
+          echo 'export DB_NAME=usersMGM' >> venv/bin/activate
+          echo 'export COLLECTION_NAME=${{ secrets.COLLECTION_NAME }}' >> venv/bin/activate
           source venv/bin/activate
-      # echo 'export MONGO_DETAILS=${{ secrets.MONGO_DETAILS }}' >> venv/bin/activate
-      # echo 'export DB_NAME=usersMGM' >> venv/bin/activate
-      # echo 'export COLLECTION_NAME=${{ secrets.COLLECTION_NAME }}' >> venv/bin/activate
       
       - name: Install dependencies
         working-directory: ./backend/users-module
         run: make installlibs
+        run: pip install pytest pytest-md pytest-emoji
           
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
-      # - name: Tests with Pytest
-      #   working-directory: ./backend/users-module
-      #   run: |
-      #     cd app/ && python -m pytest -vv
+      - name: Tests with Pytest
+        working-directory: ./backend/users-module
+        uses: pavelzw/pytest-action@v2
+          
       
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
