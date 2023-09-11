@@ -48,7 +48,7 @@ jobs:
         if: always()
         uses: pmeier/pytest-results-action@main
         with:
-          path: test-results.xml
+          path: ./backend/users-module/test-results.xml
       
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
