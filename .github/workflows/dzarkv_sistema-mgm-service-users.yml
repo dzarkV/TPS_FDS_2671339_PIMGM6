@@ -53,7 +53,7 @@ jobs:
         with:
           name: users-api
           path: | 
-            .
+            ./backend/users-module/
             !venv/
           if-no-files-found: error
 
