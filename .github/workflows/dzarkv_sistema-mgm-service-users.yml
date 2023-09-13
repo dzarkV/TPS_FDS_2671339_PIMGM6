@@ -53,6 +53,7 @@ jobs:
         with:
           name: users-api
           path: | 
+            .
             !venv/
           if-no-files-found: error
 
