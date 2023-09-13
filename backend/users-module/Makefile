@@ -15,5 +15,5 @@ buildapp:
 	activateenv
 	installlibs
 
-testapp:
-	cd app && python -m pytest -vv
+testapp-report:
+	cd app && python -m pytest -vv --html=report-tests.html --self-contained-html

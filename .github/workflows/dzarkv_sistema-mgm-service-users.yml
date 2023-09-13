@@ -13,36 +13,47 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./backend/users-module
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Check repo
+        uses: actions/checkout@v2
 
       - name: Set up Python version
         uses: actions/setup-python@v1
         with:
           python-version: '3.10'
 
-      - name: Create and start virtual environment
-        working-directory: ./backend/users-module 
+      - name: Create and start virtual environment with env
         run: |
           make buildenv
           source venv/bin/activate
+        # echo 'export MONGO_DETAILS=${{ secrets.MONGO_DETAILS }}' >> venv/bin/activate
+        # echo 'export DB_NAME=usersMGM' >> venv/bin/activate
+        # echo 'export COLLECTION_NAME=${{ secrets.COLLECTION_NAME }}' >> venv/bin/activate
       
       - name: Install dependencies
-        working-directory: ./backend/users-module
         run: make installlibs
-        
-      # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
-      # - name: Tests with Pytest
-      #   working-directory: ./backend/users-module
-      #   run: make testapp
       
+      # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
+      - name: Tests with Pytest
+        run: pytest -vv --junit-xml=test-results.xml
+      - name: Surface failing tests
+        if: always()
+        uses: pmeier/pytest-results-action@main
+        with:
+          path: ./backend/users-module/test-results.xml
+
+
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
         with:
           name: users-api
-          path: |
-            ./backend/users-module 
+          path: | 
+            ./backend/users-module/
             !venv/
           if-no-files-found: error
 
