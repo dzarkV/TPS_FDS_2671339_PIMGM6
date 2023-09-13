@@ -30,26 +30,24 @@ jobs:
       - name: Create and start virtual environment with env
         run: |
           make buildenv
-          echo 'export MONGO_DETAILS=${{ secrets.MONGO_DETAILS }}' >> venv/bin/activate
-          echo 'export DB_NAME=usersMGM' >> venv/bin/activate
-          echo 'export COLLECTION_NAME=${{ secrets.COLLECTION_NAME }}' >> venv/bin/activate
           source venv/bin/activate
+        # echo 'export MONGO_DETAILS=${{ secrets.MONGO_DETAILS }}' >> venv/bin/activate
+        # echo 'export DB_NAME=usersMGM' >> venv/bin/activate
+        # echo 'export COLLECTION_NAME=${{ secrets.COLLECTION_NAME }}' >> venv/bin/activate
       
       - name: Install dependencies
         run: make installlibs
-        # pip install pytest pytest-md pytest-emoji
       
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       - name: Tests with Pytest
-        # working-directory: ./backend/users-module
         run: pytest -vv --junit-xml=test-results.xml
-        # uses: pavelzw/pytest-action@v2
       - name: Surface failing tests
         if: always()
         uses: pmeier/pytest-results-action@main
         with:
           path: ./backend/users-module/test-results.xml
-      
+
+
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
         with:
