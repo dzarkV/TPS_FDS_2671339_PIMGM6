@@ -51,3 +51,6 @@ Se esta usando [Github actions](https://docs.github.com/en/actions/quickstart) c
 
 Se construyó usando HTML, CSS y Javascript. Se consume con fetch las APIs de los microservicios del frontend.
 
+## Tests
+
+https://github.com/dzarkV/TPS_FDS_2671339_PMGM6/actions/runs/6177856071/attempts/1#summary-16769890679
