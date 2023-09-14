@@ -2,12 +2,15 @@
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 # More info on Python, GitHub Actions, and Azure App Service: https://aka.ms/python-webapps-actions
 
-name: Build and deploy Python app to Azure Web App - sistema-mgm-service-users
+name: Build_tests_and_deploy_Python_app_to_Azure_Web_App
 
 on:
   push:
     branches:
       - dzarkV
+  pull_request:
+    types: [opened]
+    branches: main
   workflow_dispatch:
 
 jobs:
@@ -20,10 +23,10 @@ jobs:
 
     steps:
       - name: Check repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Python version
-        uses: actions/setup-python@v1
+        uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
@@ -49,7 +52,7 @@ jobs:
 
 
       - name: Upload artifact for deployment jobs
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: users-api
           path: | 
@@ -66,7 +69,7 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: users-api
           path: .
