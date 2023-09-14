@@ -1,8 +1,8 @@
-name: Automated API tests using Postman CLI
+name: Automated_API_tests_using_Postman_CLI
 
 on:
   workflow_run:
-    workflows: ["Build and deploy Python app to Azure Web App - sistema-mgm-service-users"]
+    workflows: ["Build_tests_and_deploy_Python_app_to_Azure_Web_App"]
     types:
       - completed
 
