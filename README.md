@@ -53,4 +53,6 @@ Se construyó usando HTML, CSS y Javascript. Se consume con fetch las APIs de lo
 
 ## Tests
 
-https://github.com/dzarkV/TPS_FDS_2671339_PMGM6/actions/runs/6177856071/attempts/1#summary-16769890679
+Las pruebas unitarias del módulo de usuarios usan la técnica mock para no involucrar a la base de datos. Están configurados en el archivo de workflow `yml` de Github Actions, y son realizados en cada ejecución. [Aquí un ejemplo](https://github.com/dzarkV/TPS_FDS_2671339_PMGM6/actions/runs/6177789367/attempts/1#summary-16769697756). 
+
+También se configuró un workflow para realizar las pruebas a la API de usuarios con Postman CLI [aquí](.github/workflows/Automated_API_tests_using_Postman_CLI.yml).
