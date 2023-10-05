@@ -49,7 +49,7 @@ Se esta usando [Github actions](https://docs.github.com/en/actions/quickstart) c
 
 ## Frontend
 
-Se construyó usando HTML, CSS y Javascript. Se consume con fetch las APIs de los microservicios del frontend.
+Se construyó usando HTML, CSS y Javascript. Se consume con fetch las APIs de los microservicios desde el frontend.
 
 ## Tests
 
