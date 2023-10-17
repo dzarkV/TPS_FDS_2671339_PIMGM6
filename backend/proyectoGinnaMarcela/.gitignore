@@ -32,4 +32,5 @@ build/
 ### VS Code ###
 .vscode/
 
-backend/proyectoGinnaMarcela/src/main/resources/dev.env
+*.env
+.dockerignore
