@@ -5,9 +5,9 @@
 name: Build_tests_and_deploy_Python_app_to_Azure_Web_App
 
 on:
-  push:
-    branches:
-      - dzarkV
+  #push:
+  #  branches:
+  #    - dzarkV
   pull_request:
     types: [opened]
     branches: main
