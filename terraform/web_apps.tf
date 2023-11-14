@@ -7,7 +7,7 @@ resource "azurerm_service_plan" "mgm-sp" {
 }
 
 resource "azurerm_linux_web_app" "mgm-users" {
-  name                = "${var.prefix}-service-users"
+  name                = "${var.prefix}-service-app-for-mgm-users"
   resource_group_name = azurerm_resource_group.mgm-rg.name
   location            = azurerm_resource_group.mgm-rg.location
   service_plan_id     = azurerm_service_plan.mgm-sp.id
@@ -21,7 +21,7 @@ resource "azurerm_linux_web_app" "mgm-users" {
 }
 
 resource "azurerm_linux_web_app" "mgm-inventary" {
-  name                = "${var.prefix}-service-inventary"
+  name                = "${var.prefix}-service-app-for-mgm-inventary"
   resource_group_name = azurerm_resource_group.mgm-rg.name
   location            = azurerm_resource_group.mgm-rg.location
   service_plan_id     = azurerm_service_plan.mgm-sp.id

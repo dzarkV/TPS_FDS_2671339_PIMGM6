@@ -1,6 +1,20 @@
 # This file is maintained automatically by "terraform init".
 # Manual edits may be lost in future updates.
 
+provider "registry.terraform.io/ariga/atlas" {
+  version     = "0.5.8"
+  constraints = "0.5.8"
+  hashes = [
+    "h1:YHR3/VHfUjaTX3Se3TCMYoAWHeeQiu3CPsw667UgKGU=",
+    "zh:4aebd83c3023c328cd3eebc5ee24566fe3c8386a5916cb7febcd2da7d617549d",
+    "zh:8110796a1ca5a333da618d949ac6f495ae916ff99b3e8e95b3d95fe85e9be75f",
+    "zh:9de4d8a2c2525688d52b01819d4b30ec34cd1b91dd9f40fd73734e26fedbc98b",
+    "zh:9e3b0b7de2d68d2c04c1871f29cb0d9450191892b75761a416112fc99978b424",
+    "zh:dec22799875c4cacb552cd0fdb66538694e6b11536519d878d123c45cbfc69f3",
+    "zh:f809ab383cca0a5f83072981c64208cbd7fa67e986a86ee02dd2c82333221e32",
+  ]
+}
+
 provider "registry.terraform.io/hashicorp/azurerm" {
   version     = "3.79.0"
   constraints = "~> 3.79.0"

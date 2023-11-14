@@ -19,3 +19,12 @@ resource "azurerm_mysql_flexible_database" "mgm-db" {
   charset             = "utf8mb3"
   collation           = "utf8mb3_unicode_ci"
 }
+
+data "atlas_schema" "mgm-db-schema" {
+  src = "file://../assets/docs/trim2/4_bbdd/inventarioScript-schema-v2.sql"
+}
+
+resource "atlas_schema" "mgm-db-schema" {
+  url = "mysql://${azurerm_mysql_flexible_server.mgm-db-server.administrator_login}:${azurerm_mysql_flexible_server.mgm-db-server.administrator_password}@${azurerm_mysql_flexible_server.mgm-db-server.fqdn}"
+  hcl = data.atlas_schema.mgm-db-schema.hcl
+}
