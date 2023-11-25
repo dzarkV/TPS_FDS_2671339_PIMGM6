@@ -60,21 +60,33 @@ Al volver del reinicio del equipo, vaya a la [página de Docker](https://docs.do
 Vaya a la página [página de Azure CLI](https://learn.microsoft.com/es-es/cli/azure/install-azure-cli-windows?tabs=azure-cli) y haga clic en el botón _Versión más reciente de la CLI de Azure (64 bits)_. Siga los pasos de instalación.
 
 ### Instalar Terraform
-Vaya a la página [página de Terraform](https://developer.hashicorp.com/terraform/install) y haga clic en el botón de descarga de _AMD64_. Siga los pasos de instalación.
+Vaya a la página [página de Terraform](https://developer.hashicorp.com/terraform/install) y, en el apartado de Windows, haga clic en el botón de descarga de _AMD64_. Siga los pasos de instalación. Deberá descomprimir el archivo que se descarga. 
+
+1. Cree una carpeta en `C:/` llamada terraform
+2. Copie el archivo que descargó de terraform y extraiga su contenido en la carpeta creada en el paso anterior.
+3. Vaya al menú de inicio de Windows, y escriba `variables de entorno`
+4. En la ventana que sale, dé clic en _Variables de entorno_
+5. En la sección llamada Variables de sistema, dé clic en Nuevo, agregue el onmbre de `terraform` y el valor, la ruta `C:/terraform`. Finalmente dé clic en Aceptar
+6. En la lista de variables de entorno (la venta que queda), busque la variable Path y dé clic en Editar. En la ventana que surge, dé clic en Nuevo, y pegue nuevamente la ruta `C:/terraform`.
+7. Ahora solo haga clic en Aceptar.
 
 Este paso es fundamental para poder desplegar los recursos que necesita el sistema MGM. 
 
 ## Descripción de los recursos definidos con Terraform
 
-Terraform permite maniobrar sobre los proveedores de nube, interactuar con APIs y realizar otras tareas por medio de plugins llamados **providers** o proveedores. Tanto los providers como los recursos están definidos en su respectiva carpeta. Los providers necesarios para el despliegue del sistema MGM son:
+Terraform permite maniobrar sobre los proveedores de nube, interactuar con APIs y realizar otras tareas por medio de plugins llamados **providers** o proveedores. 
+
+![Terraform](../trim4/terraform.png)
+
+Tanto los providers como los recursos están definidos en su respectiva carpeta. Los providers necesarios para el despliegue del sistema MGM son:
 
 ### Providers
 Se definen dos providers: **azurerm** para interactuar con la cuenta de nube de Azure y **atlas** para poder correr el script de creación de base de datos dentro del recurso de base de datos de MySQL.
 
 | Nombre | Versión |
 |------|---------|
-| <a name="provider_atlas"></a> [atlas](#provider\_atlas) | 0.5.8 |
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.79.0 |
+| [atlas](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs) | 0.5.8 |
+| [azurerm](https://registry.terraform.io/providers/ariga/atlas/latest/docs) | 3.79.0 |
 
 ### Recursos
 
@@ -112,5 +124,6 @@ Una vez cuente con las herramientas de despliegue instaladas en su pc siga los s
 3. Escriba el comando: `git clone https://github.com/dzarkV/TPS_FDS_2671339_PMGM6.git`
 4. Escriba el comando: `cd TPS_FDS_2671339_PMGM6`
 5. Escriba el comando: `code .`
+6. 
 
 Establecer la cuenta "Azure para estudiantes" como la cuenta por defecto con el siguiente comando `az account set --subscription "Azure para estudiantes"`.
