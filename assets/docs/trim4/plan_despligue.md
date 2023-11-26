@@ -11,7 +11,7 @@ El propósito del presente documento es establecer cómo se llevará a cabo la i
 El software de invetario MGM permitirá a sus usuarios realizar el registro y seguimiento de los procesos de venta y compra de la microempresa beneficiada, con lo que se pretende obtener información precisa de las ganancias y de los gastos, así como el detalle de los productos existentes, los proveedores y las facturas que se generan.
 
 ## Alcance
-Este documento es de interés para el cliente y para los involucrados en el desarrollo, pues se refiere a la primera puesta en marcha de la solución en la nube, y posterior uso a través del navegador web.
+Este documento es de interés para el cliente y para los involucrados en el desarrollo, pues se refiere a la primera puesta en marcha de la solución en la nube, y posterior uso a través del navegador web. Para ello, se definen los procedimientos de despliegue con el uso de algunas herramientas.
 
 ## Planificación del despliegue
 Se provee un script declarativo de aprovisionamiento de recursos en la nube con la herramienta Terraform y una serie de instrucciones para configurar ciertos recursos importantes que contienen el código del sistema MGM. El aprovisionamiento se hará usando infraestructura como código.
@@ -35,14 +35,14 @@ Para el caso que nos ocupa, se describe la infraestructura necesaria para el sis
 ## Herramientas de despliegue
 Las siguientes herramientas se usarán para el despliegue de los componentes necesarios para el funcionamiento del sistema MGM:
 
-* Cuenta en la nube de Microsoft Azure
+* Cuenta en la nube de Microsoft Azure (Azure para estudiantes)
 * La interfaz de la línea de comandos de Azure o Azure CLI
 * Terraform como herramienta de infraestructura como código 
 * Azure portal para detalles de configuración
 * Git
 * Docker
 
-Algunas de estas herramientas son necesarias para apoyar la ejecución del despliegue (como Docker), como se verá más adelante. Por lo demás, Git, Docker, Azure CLI y Terraform son herramientas que deben estar instaladas en el equipo desde donde se lanzará el despliegue, por lo que se menciona a continuación su instalación (también puede optar por ejecutar el script [install-tools](../../../terraform/install-tools.ps1) en la terminal de Powershell), específicamente para el sistema operativo Windows 10 o Windows 11 (antes de iniciar a instalar las herramientas necesarias, asegúrese de que su equipo tiene conexión a internet):
+Algunas de estas herramientas son necesarias para apoyar la ejecución del despliegue (como Docker), como se verá más adelante. Por lo demás, Git, Docker, Azure CLI y Terraform son herramientas que deben estar instaladas en el equipo desde donde se lanzará el despliegue, por lo que se menciona a continuación su instalación (también puede optar por ejecutar el script [install-tools](../../../terraform/install-tools.ps1) en la terminal de Powershell, asegúrese que tiene permisos de ejecución), específicamente para el sistema operativo Windows 10 o Windows 11 (antes de iniciar a instalar las herramientas necesarias, asegúrese de que su equipo tiene conexión a internet):
 
 ### Instalar Git
 Vaya a la [página de git](https://git-scm.com/download/win), haga clic en 64-bit y espere a que complete la descarga. Al finalizar esta, ejecute el archivo `.exe` y dé clic en _siguiente_ hasta finalizar la instalación.
@@ -60,28 +60,28 @@ Al volver del reinicio del equipo, vaya a la [página de Docker](https://docs.do
 Vaya a la página [página de Azure CLI](https://learn.microsoft.com/es-es/cli/azure/install-azure-cli-windows?tabs=azure-cli) y haga clic en el botón _Versión más reciente de la CLI de Azure (64 bits)_. Siga los pasos de instalación.
 
 ### Instalar Terraform
-Vaya a la página [página de Terraform](https://developer.hashicorp.com/terraform/install) y, en el apartado de Windows, haga clic en el botón de descarga de _AMD64_. Siga los pasos de instalación. Deberá descomprimir el archivo que se descarga. 
+Vaya a la página [página de Terraform](https://developer.hashicorp.com/terraform/install) y, en el apartado de Windows, haga clic en el botón de descarga de _AMD64_. Siga los pasos de instalación. Deberá descomprimir el archivo que se descarga siguiendo las instrucciones a continuación: 
 
 1. Cree una carpeta en `C:/` llamada terraform
-2. Copie el archivo que descargó de terraform y extraiga su contenido en la carpeta creada en el paso anterior.
+2. Copie el archivo .zip que descargó de terraform y extraiga su contenido en la carpeta creada en el paso anterior.
 3. Vaya al menú de inicio de Windows, y escriba `variables de entorno`
 4. En la ventana que sale, dé clic en _Variables de entorno_
-5. En la sección llamada Variables de sistema, dé clic en Nuevo, agregue el onmbre de `terraform` y el valor, la ruta `C:/terraform`. Finalmente dé clic en Aceptar
-6. En la lista de variables de entorno (la venta que queda), busque la variable Path y dé clic en Editar. En la ventana que surge, dé clic en Nuevo, y pegue nuevamente la ruta `C:/terraform`.
-7. Ahora solo haga clic en Aceptar.
+5. En la sección llamada Variables de sistema, dé clic en Nuevo, agregue el nombre de `terraform` y el valor, la ruta `C:/terraform` (anteriomente creada). Finalmente dé clic en Aceptar
+6. En la lista de variables de entorno de sistema, busque la variable Path y dé clic en Editar. En la ventana que surge, dé clic en Nuevo, y pegue nuevamente la ruta `C:/terraform`.
+7. Ahora solo haga clic en Aceptar en todas las ventanas que quedan.
 
-Este paso es fundamental para poder desplegar los recursos que necesita el sistema MGM. 
+Este paso es fundamental para usa IaC y poder desplegar los recursos que necesita el sistema MGM. 
 
 ## Descripción de los recursos definidos con Terraform
 
 Terraform permite maniobrar sobre los proveedores de nube, interactuar con APIs y realizar otras tareas por medio de plugins llamados **providers** o proveedores. 
 
-![Terraform](../trim4/terraform.png)
+![Terraform](../trim4/terraform.png)<br><center>_Obtenido de terraform.hashicorp.com_ [Fuente](https://developer.hashicorp.com/terraform/intro)</center>
 
 Tanto los providers como los recursos están definidos en su respectiva carpeta. Los providers necesarios para el despliegue del sistema MGM son:
 
 ### Providers
-Se definen dos providers: **azurerm** para interactuar con la cuenta de nube de Azure y **atlas** para poder correr el script de creación de base de datos dentro del recurso de base de datos de MySQL.
+Se definen dos providers: **azurerm** para interactuar con la cuenta de nube de Azure y **atlas** para poder correr el script de creación de base de datos dentro del recurso de base de datos de MySQL (esta base de datos se utiliza para normalizar el esquema antes de planificar las migraciones y para simular los cambios a fin de garantizar su aplicabilidad antes de la ejecución).
 
 | Nombre | Versión |
 |------|---------|
@@ -111,19 +111,33 @@ Datos necesarios para la creación de algunos recursos.
 
 | Nombre | Descripción | Tipo | Default | Requerido |
 |------|-------------|------|---------|:--------:|
-| <a name="input_db_password"></a> [db\_password](#input\_db\_password) | Clave de administrador de base de datos | `string` | n/a | yes |
-| <a name="input_db_username"></a> [db\_username](#input\_db\_username) | Nombre de usuario administrador de base de datos | `string` | n/a | yes |
-| <a name="input_prefix"></a> [prefix](#input\_prefix) | Prefijo del grupo de recursos que es único en la suscripción de Azure | `string` | `"sistema-mgm"` | no |
-| <a name="input_resource_group_location"></a> [resource\_group\_location](#input\_resource\_group\_location) | Localización (región) para el grupo de recursos | `string` | `"southcentralus"` | no |
+| <a name="input_db_password"></a> [db\_password](../../../terraform/variables.tf) | Clave de administrador de base de datos | `string` | n/a | sí |
+| <a name="input_db_username"></a> [db\_username](../../../terraform/variables.tf) | Nombre de usuario administrador de base de datos | `string` | n/a | sí |
+| <a name="input_prefix"></a> [prefix](../../../terraform/variables.tf) | Prefijo del grupo de recursos que es único en la suscripción de Azure | `string` | `"sistema-mgm"` | no |
+| <a name="input_resource_group_location"></a> [resource\_group\_location](../../../terraform/variables.tf) | Localización (región) para el grupo de recursos | `string` | `"southcentralus"` | no |
+| <a name="input_jwt_recovery"></a> [jwt_recovery](../../../terraform/variables.tf) | Token de recuperación de credenciales | `string` | n/a | no |
 
 ## Procedimiento de despliegue
 Una vez cuente con las herramientas de despliegue instaladas en su pc siga los siguientes pasos:
 
 1. Cree una carpeta
-2. Dentro de la carpeta, de click derecho y abra Git bash
-3. Escriba el comando: `git clone https://github.com/dzarkV/TPS_FDS_2671339_PMGM6.git`
-4. Escriba el comando: `cd TPS_FDS_2671339_PMGM6`
-5. Escriba el comando: `code .`
-6. 
+2. Dentro de la carpeta, de clic derecho y abra Git bash (instrucciones válidas solo con git bash)
+3. Escriba el comando y ejecútelo oprimiendo la tecla _Enter_: `git clone https://github.com/dzarkV/TPS_FDS_2671339_PMGM6.git`
+4. Escriba el comando: `cd TPS_FDS_2671339_PMGM6/terraform`
+5. Escriba el siguiente comando, reemplazando los valores entre comillas si así lo desea (estos valores serán las credenciales de la base de datos): 
+```bash
+cat << EOF >> env_dev.auto.tfvars
+db_username = "superuserdatabase"
+db_password = "superpassworddatabase"
+jwt_recovery = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDgzYjRlMTM2YmMzY2VjMWFjZWE3MDQiLCJuYW1lIjoiRGluZW5zZSIsImV4cCI6MTY5Mjc0OTMyMn0.sEFoL4bC-PyRxGiGkL4G7DO2P01ME4hQjd21ppPtFVU"
+EOF
+```
+6. Inicie sesión en Azure con Azure CLI, para ello, escriba `az login`. Esto le abrirá un navegador en donde deberá colocar sus credenciales de la cuenta de Azure (si no desea iniciar sesión con el navegador, puede optar por el comando `az login -u usuario -p contraseña`, donde deberá reemplazar las palabras `usuario` y `contraseña` por sus respectivas credenciales). 
+7. Establezca la cuenta "Azure para estudiantes" como la cuenta por defecto con el siguiente comando `az account set --subscription "Azure para estudiantes"`.
+8. Ejecute el comando `terraform validate`. Este comando validará que la configuración presente en el directorio actual de ejecución no tenga errores de sintaxis.
+9. Ejecute el siguiente comando para ejecutar un contenedor de docker que le permitirá al provider **atlas** ejecutar el script DDL para crear el schema de la base de datos, con el siguiente comando 
+`docker run --rm --name dev-db -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=pass mysql:8`
+10. Ejecute el comando `terraform plan`
+11. Ejecute el comando `terraform apply`
 
-Establecer la cuenta "Azure para estudiantes" como la cuenta por defecto con el siguiente comando `az account set --subscription "Azure para estudiantes"`.
+El último paso empezará la ejecución de la implementación de los recursos en la nube.

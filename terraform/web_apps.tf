@@ -6,8 +6,8 @@ resource "azurerm_service_plan" "mgm-sp" {
   sku_name            = "F1"
 }
 
-resource "azurerm_linux_web_app" "mgm-users" {
-  name                = "${var.prefix}-service-app-for-mgm-users"
+resource "azurerm_linux_web_app" "mgm-frontend" {
+  name                = "${var.prefix}-service-app-page"
   resource_group_name = azurerm_resource_group.mgm-rg.name
   location            = azurerm_resource_group.mgm-rg.location
   service_plan_id     = azurerm_service_plan.mgm-sp.id
@@ -15,20 +15,24 @@ resource "azurerm_linux_web_app" "mgm-users" {
   site_config {
     always_on = false
     application_stack {
-      python_version = "3.9"
+      docker_image_name   = "dzarkv/inventoryfe:v0.0.1"
+      docker_registry_url = "https://index.docker.io"
     }
+  }
+
+  app_settings = {
+    JWT_RECOVERY_MGM = var.jwt_recovery
   }
 }
 
 resource "azurerm_linux_web_app" "mgm-inventary" {
-  name                = "${var.prefix}-service-app-for-mgm-inventary"
+  name                = "${var.prefix}-service-app-for-inventary"
   resource_group_name = azurerm_resource_group.mgm-rg.name
   location            = azurerm_resource_group.mgm-rg.location
   service_plan_id     = azurerm_service_plan.mgm-sp.id
 
   site_config {
-    ftps_state = "Disabled"
-    always_on  = false
+    always_on = false
     application_stack {
       docker_image_name   = "dzarkv/inventorybe:v0.0.3"
       docker_registry_url = "https://index.docker.io"

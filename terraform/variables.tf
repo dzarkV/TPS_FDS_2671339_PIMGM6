@@ -21,3 +21,9 @@ variable "db_password" {
   description = "The password of the database administrator."
   sensitive   = true
 }
+
+variable "jwt_recovery" {
+  type        = string
+  description = "JWT Recovery Key"
+  sensitive   = true
+}
