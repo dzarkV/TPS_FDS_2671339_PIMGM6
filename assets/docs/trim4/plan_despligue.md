@@ -134,10 +134,11 @@ EOF
 ```
 6. Inicie sesión en Azure con Azure CLI, para ello, escriba `az login`. Esto le abrirá un navegador en donde deberá colocar sus credenciales de la cuenta de Azure (si no desea iniciar sesión con el navegador, puede optar por el comando `az login -u usuario -p contraseña`, donde deberá reemplazar las palabras `usuario` y `contraseña` por sus respectivas credenciales). 
 7. Establezca la cuenta "Azure para estudiantes" como la cuenta por defecto con el siguiente comando `az account set --subscription "Azure para estudiantes"`.
-8. Ejecute el comando `terraform validate`. Este comando validará que la configuración presente en el directorio actual de ejecución no tenga errores de sintaxis.
-9. Ejecute el siguiente comando para ejecutar un contenedor de docker que le permitirá al provider **atlas** ejecutar el script DDL para crear el schema de la base de datos, con el siguiente comando 
-`docker run --rm --name dev-db -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=pass mysql:8`
-10. Ejecute el comando `terraform plan`
-11. Ejecute el comando `terraform apply`
+8. Ejecute el comando `terraform init`
+9. Ejecute el comando `terraform validate`. Este comando validará que la configuración presente en el directorio actual de ejecución no tenga errores de sintaxis.
+10. Ejecute el siguiente comando para ejecutar un contenedor de docker que le permitirá al provider **atlas** ejecutar el script DDL para crear el schema de la base de datos, con el siguiente comando 
+`docker run --rm --name dev-db -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=pass -e MYSQL_DATABSE=bbdd_inventario mysql:8`
+11. Ejecute el comando `terraform plan`
+12. Ejecute el comando `terraform apply`
 
 El último paso empezará la ejecución de la implementación de los recursos en la nube.

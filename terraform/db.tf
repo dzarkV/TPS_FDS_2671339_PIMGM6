@@ -20,6 +20,13 @@ resource "azurerm_mysql_flexible_database" "mgm-db" {
   collation           = "utf8mb3_unicode_ci"
 }
 
+resource "azurerm_mysql_flexible_server_configuration" "disable_tls" {
+  name                = "require_secure_transport"
+  server_name         = azurerm_mysql_flexible_server.mgm-db-server.name
+  resource_group_name = azurerm_resource_group.mgm-rg.name
+  value               = "off"
+}
+
 data "atlas_schema" "mgm-db-schema" {
   src = "file://../assets/docs/trim2/4_bbdd/inventarioScript-schema-v2.sql"
 }

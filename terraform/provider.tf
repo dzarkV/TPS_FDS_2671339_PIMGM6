@@ -25,5 +25,5 @@ provider "azurerm" {
 
 # Configure the Atlas Provider to manage Atlas schemas
 provider "atlas" {
-  dev_url = "docker://mysql/8/dev-db"
+  dev_url = "docker://mysql/8/bbdd_inventario"
 }
