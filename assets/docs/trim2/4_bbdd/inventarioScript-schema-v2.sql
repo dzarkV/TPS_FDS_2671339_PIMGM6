@@ -4,16 +4,14 @@
 -- mediumint -8.388.608 a 8.388.607 	unsigned: 			0 hasta 16.777.215
 -- int -2.147.483.648 a 2.147.483.647 	unsigned:			0 hasta 4.294.967.295
 
+-- -----------------------------------------------------
 
 
-
-
-DROP SCHEMA IF EXISTS BBDD_INVENTARIO;
 -- -----------------------------------------------------
 -- ESTRUCTURA BBDD_INVENTARIO
 -- -----------------------------------------------------
-CREATE SCHEMA BBDD_INVENTARIO DEFAULT CHARACTER SET utf8 ;
-USE BBDD_INVENTARIO;
+-- CREATE SCHEMA BBDD_INVENTARIO DEFAULT CHARACTER SET utf8 ;
+-- USE BBDD_INVENTARIO;
 
 -- -----------------------------------------------------
 -- TABLA ROLES

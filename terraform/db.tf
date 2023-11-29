@@ -1,5 +1,5 @@
 resource "azurerm_mysql_flexible_server" "mgm-db-server" {
-  name                   = "${var.prefix}-db-server"
+  name                   = "${var.prefix}-db-inventary-server"
   resource_group_name    = azurerm_resource_group.mgm-rg.name
   location               = azurerm_resource_group.mgm-rg.location
   administrator_login    = var.db_username
@@ -13,11 +13,11 @@ resource "azurerm_mysql_flexible_server" "mgm-db-server" {
 }
 
 resource "azurerm_mysql_flexible_database" "mgm-db" {
-  name                = "${var.prefix}-db"
+  name                = "bbdd_inventario"
   resource_group_name = azurerm_resource_group.mgm-rg.name
   server_name         = azurerm_mysql_flexible_server.mgm-db-server.name
-  charset             = "utf8mb3"
-  collation           = "utf8mb3_unicode_ci"
+  charset             = "utf8mb4"
+  collation           = "utf8mb4_0900_ai_ci"
 }
 
 resource "azurerm_mysql_flexible_server_configuration" "disable_tls" {
@@ -32,6 +32,6 @@ data "atlas_schema" "mgm-db-schema" {
 }
 
 resource "atlas_schema" "mgm-db-schema" {
-  url = "mysql://${azurerm_mysql_flexible_server.mgm-db-server.administrator_login}:${azurerm_mysql_flexible_server.mgm-db-server.administrator_password}@${azurerm_mysql_flexible_server.mgm-db-server.fqdn}"
+  url = "mysql://${azurerm_mysql_flexible_server.mgm-db-server.administrator_login}:${azurerm_mysql_flexible_server.mgm-db-server.administrator_password}@${azurerm_mysql_flexible_server.mgm-db-server.fqdn}:3306/${azurerm_mysql_flexible_database.mgm-db.name}"
   hcl = data.atlas_schema.mgm-db-schema.hcl
 }

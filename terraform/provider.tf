@@ -2,12 +2,12 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "~> 3.79.0"
+      version = "~> 3.82.0"
     }
 
     atlas = {
       source  = "ariga/atlas"
-      version = "0.5.8"
+      version = "0.6.1"
     }
   }
   required_version = ">= 1.1.0"

@@ -127,8 +127,8 @@ Una vez cuente con las herramientas de despliegue instaladas en su pc siga los s
 5. Escriba el siguiente comando, reemplazando los valores entre comillas si así lo desea (estos valores serán las credenciales de la base de datos): 
 ```bash
 cat << EOF >> env_dev.auto.tfvars
-db_username = "superuserdatabase"
-db_password = "superpassworddatabase"
+db_username = "sup3rus3rdatabas3"
+db_password = "superp4sswordd4t4b4se"
 jwt_recovery = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2NDgzYjRlMTM2YmMzY2VjMWFjZWE3MDQiLCJuYW1lIjoiRGluZW5zZSIsImV4cCI6MTY5Mjc0OTMyMn0.sEFoL4bC-PyRxGiGkL4G7DO2P01ME4hQjd21ppPtFVU"
 EOF
 ```
@@ -136,9 +136,8 @@ EOF
 7. Establezca la cuenta "Azure para estudiantes" como la cuenta por defecto con el siguiente comando `az account set --subscription "Azure para estudiantes"`.
 8. Ejecute el comando `terraform init`
 9. Ejecute el comando `terraform validate`. Este comando validará que la configuración presente en el directorio actual de ejecución no tenga errores de sintaxis.
-10. Ejecute el siguiente comando para ejecutar un contenedor de docker que le permitirá al provider **atlas** ejecutar el script DDL para crear el schema de la base de datos, con el siguiente comando 
-`docker run --rm --name dev-db -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=pass -e MYSQL_DATABSE=bbdd_inventario mysql:8`
-11. Ejecute el comando `terraform plan`
-12. Ejecute el comando `terraform apply`
+10. Ejecute el comando `terraform plan -var-file=env_dev.auto.tfvars`. Esto para ejecutar el plan de ejecución de despliegue con las variables definidas en el archivo creado en el paso 5.
+11. Finalmente ejecute el comando `terraform apply -var-file=env_dev.auto.tfvars`
 
 El último paso empezará la ejecución de la implementación de los recursos en la nube.
+
