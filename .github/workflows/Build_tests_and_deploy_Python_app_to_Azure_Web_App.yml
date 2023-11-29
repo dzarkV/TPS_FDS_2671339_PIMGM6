@@ -5,9 +5,9 @@
 name: Build_tests_and_deploy_Python_app_to_Azure_Web_App
 
 on:
-  push:
-    branches:
-      - dzarkV
+  #push:
+  #  branches:
+  #    - dzarkV
   pull_request:
     types: [opened]
     branches: main
@@ -41,6 +41,7 @@ jobs:
       - name: Install dependencies
         run: make installlibs
       
+
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       - name: Tests with Pytest
         run: pytest -vv --junit-xml=test-results.xml

@@ -142,5 +142,5 @@ class TestControllerUsuario:
         ],
     )
     def test_delete_user_by_id_invalid(self, mock_db, objectId, expected):
-        """Test to check the delete user with invalid id doesn´t work"""
+        """Test to check the delete user with invalid id doesn't work"""
         assert delete_user(objectId) is expected
