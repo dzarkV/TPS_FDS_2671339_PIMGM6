@@ -5,12 +5,9 @@
 name: Build_tests_and_deploy_Python_app_to_Azure_Web_App
 
 on:
-  #push:
-  #  branches:
-  #    - dzarkV
   pull_request:
-    types: [opened]
-    branches: main
+    types: [closed]
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -34,9 +31,6 @@ jobs:
         run: |
           make buildenv
           source venv/bin/activate
-        # echo 'export MONGO_DETAILS=${{ secrets.MONGO_DETAILS }}' >> venv/bin/activate
-        # echo 'export DB_NAME=usersMGM' >> venv/bin/activate
-        # echo 'export COLLECTION_NAME=${{ secrets.COLLECTION_NAME }}' >> venv/bin/activate
       
       - name: Install dependencies
         run: make installlibs
