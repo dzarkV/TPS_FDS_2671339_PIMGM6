@@ -22,9 +22,6 @@ jobs:
         working-directory: ./backend/proyectoGinnaMarcela
 
     steps:
-      - name: Check repo
-        uses: actions/checkout@v4
-
       - name: Set up Java version
         uses: actions/setup-java@v4
         with:
@@ -52,21 +49,14 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: ./backend/proyectoGinnaMarcela/Dockerfile
+          context: "{{defaultContext}}:backend/proyectoGinnaMarcela/Dockerfile"
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE__JAVA_NAME }}:v0.0.3
 
   image-frontend:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: ./frontend
 
     steps:
-      - name: Check repo
-        uses: actions/checkout@v4
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 
@@ -82,7 +72,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v5
         with:
-          context: ./frontend/Dockerfile
+          context: "{{defaultContext}}:frontend/Dockerfile"
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE__FRONTEND_NAME }}:v0.0.1
 
