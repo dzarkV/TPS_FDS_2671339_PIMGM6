@@ -19,7 +19,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: ./backend/proyectoGinnaMarcela
+        working-directory: backend/proyectoGinnaMarcela
 
     steps:
       - name: Set up Java version
@@ -55,6 +55,10 @@ jobs:
 
   image-frontend:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: frontend/
 
     steps:
       - name: Set up QEMU
