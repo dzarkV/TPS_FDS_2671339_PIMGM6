@@ -53,6 +53,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           # context: "{{defaultContext}}:backend/proyectoGinnaMarcela/Dockerfile"
+          file: backend/proyectoGinnaMarcela/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE__JAVA_NAME }}:v0.0.3
 
@@ -83,6 +84,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           # context: "{{defaultContext}}:frontend/Dockerfile"
+          file: frontend/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.IMAGE__FRONTEND_NAME }}:v0.0.1
 
