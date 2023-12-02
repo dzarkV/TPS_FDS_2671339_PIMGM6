@@ -1,5 +1,5 @@
 
-DROP SCHEMA IF EXISTS BBDD_INVENTARIO;
+
 -- -----------------------------------------------------
 -- ESTRUCTURA BBDD_INVENTARIO
 -- -----------------------------------------------------
