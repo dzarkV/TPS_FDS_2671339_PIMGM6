@@ -28,7 +28,7 @@ resource "azurerm_mysql_flexible_server_configuration" "disable_tls" {
 }
 
 data "atlas_schema" "mgm-db-schema" {
-  src = "file://../assets/docs/trim2/4_bbdd/inventarioScript-schema-v2.sql"
+  src = "file://../assets/docs/trim2/4_bbdd/inventarioScript-schema-v3.sql"
 }
 
 resource "atlas_schema" "mgm-db-schema" {

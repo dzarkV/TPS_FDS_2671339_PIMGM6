@@ -6,12 +6,12 @@
 
 -- -----------------------------------------------------
 
-
+DROP SCHEMA IF EXISTS BBDD_INVENTARIO;
 -- -----------------------------------------------------
 -- ESTRUCTURA BBDD_INVENTARIO
 -- -----------------------------------------------------
--- CREATE SCHEMA BBDD_INVENTARIO DEFAULT CHARACTER SET utf8 ;
--- USE BBDD_INVENTARIO;
+CREATE SCHEMA BBDD_INVENTARIO DEFAULT CHARACTER SET utf8 ;
+USE BBDD_INVENTARIO;
 
 -- -----------------------------------------------------
 -- TABLA ROLES
