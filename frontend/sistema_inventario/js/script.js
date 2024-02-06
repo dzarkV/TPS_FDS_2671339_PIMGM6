@@ -3,21 +3,18 @@ function navegar() {
 
   switch (select.value) {
     case "1":
-      window.open(logout(), "_self");
-      break;
-    case "2":
       window.open("Actualizar_Usuario.html", "_self");
       break;
-    case "3":
+    case "2":
       window.open("consultar_usuario.html", "_self");
       break;
-    case "4":
+    case "3":
       window.open("estados_de_usuarios.html", "_self");
       break;
-    case "5":
+    case "4":
       window.open("eliminar_usuario.html", "_self");
       break;
-    case "6":
+    case "5":
       window.open("crear_usuario.html", "_self");
       break;
     default:
@@ -96,6 +93,7 @@ function loginUsuario() {
 }
 
 window.addEventListener("DOMContentLoaded", function () {
+  // obtener datos de usuario en sesion
   if (location.pathname.endsWith("login.html") == false) {
     const nombreUsuario = document.getElementById("nombreUsuario");
     const rolUsuario = document.getElementById("rolUsuario");
@@ -103,6 +101,12 @@ window.addEventListener("DOMContentLoaded", function () {
 
     nombreUsuario.innerHTML = JSON.parse(usuarioSesion).nombre_usuario;
     rolUsuario.innerHTML = JSON.parse(usuarioSesion).rol_usuario.nombre_rol;
+
+    // deshabilitar opciones de menu para vendedores
+    if (JSON.parse(usuarioSesion).rol_usuario.nombre_rol == "Vendedor") {
+      const selectFuncionUsuario = document.getElementById("funcionUsuario");
+      selectFuncionUsuario.remove();
+    }
   }
 
   if (location.pathname.endsWith("Actualizar_Usuario.html")) {
