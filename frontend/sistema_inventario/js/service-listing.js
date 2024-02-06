@@ -57,7 +57,7 @@ function listarUsuarios() {
           // Tambien se agrega un boton para cambiar el estado del usuario
           body += `<td><a class="estilo-intro-icon icon-user" style="color:green;"></a></td><td><button id="btn-state" class="btn btn-primary" style="background-color: red;" onclick="cambiarEstadoUsuario()">Deshabilitar</button></td></tr>`;
         } else {
-          body += `<td><a class="estilo-intro-icon icon-user" style="color:red;"></a></td><td><button id="btn-state" class="btn btn-primary" style="background-color: #52d3aa;" onclick="cambiarEstadoUsuario()">Habilitar</button></td></tr>`;
+          body += `<td><a class="estilo-intro-icon icon-user" style="color:red;"></a></td><td><button id="btn-state" class="btn btn-primary" onclick="cambiarEstadoUsuario()">Habilitar</button></td></tr>`;
         }
       }
       document.getElementById("data-users").innerHTML = body;
