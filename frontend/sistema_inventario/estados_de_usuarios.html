@@ -10,14 +10,10 @@
 
 <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
 
-<!-- Animate.css -->
-<link rel="stylesheet" href="css/animate.css">
 <!-- Icomoon Icon Fonts-->
 <link rel="stylesheet" href="css/icomoon.css">
 <!-- Simple Line Icons -->
 <link rel="stylesheet" href="css/simple-line-icons.css">
-<!-- Magnific Popup -->
-<link rel="stylesheet" href="css/magnific-popup.css">
 <!-- Bootstrap  -->
 <link rel="stylesheet" href="css/bootstrap.css">
 
@@ -28,7 +24,7 @@
 
 
 	</head>
-	<body>
+	<body onload="listarUsuarios()">
 	<!-- Cabezote de la pagina Estados de usuario -->
 	<header id="estilo-header">
 
@@ -54,7 +50,7 @@
 					<li style="color:#fff">
 						<span  id="nombreUsuario">x</span><br>
 						<span id="rolUsuario">x</span><br>
-						<button id="btn-logout" style="background-color: #52d3aa;" onclick="logout()">Cerrar sesión</button>					
+						<button id="btn-logout" class="btn btn-primary" onclick="logout()">Cerrar sesión</button>					
 					</li>
 				</ul>
 				</div>
@@ -81,33 +77,13 @@
 						<thead>
 						  <tr>
 							<th scope="col">Nombre</th>
+							<th scope="col">Apellido</th>
+							<th scope="col">Rol</th>
 							<th scope="col">Estado</th>
 							<th scope="col">Acción</th>
 						  </tr>
 						</thead>
-						<tbody>
-						  <tr>
-							<th scope="row">Alexander</th>
-							<td>Activo</td>
-							<td>
-								<a class="estilo-intro-icon icon-user" style="color:green;"></a>
-								<a class="estilo-intro-icon icon-user" style="color:red;"></a></td>
-						  </tr>
-						  <tr>
-							<th scope="row">Paola</th>
-							<td>Inactivo</td>
-							<td>
-								<a class="estilo-intro-icon icon-user" style="color:green;"></a>
-								<a class="estilo-intro-icon icon-user" style="color:red;"></a></td>
-						  </tr>
-						  <tr>
-							<th scope="row">Diever</th>
-							<td>Inactivo</td>
-							<td>
-								<a class="estilo-intro-icon icon-user" style="color:green;"></a>
-								<a class="estilo-intro-icon icon-user" style="color:red;"></a>
-							</td>
-						  </tr>
+						<tbody id="data-users">
 						</tbody>
 					  </table>
 					</div>
@@ -117,6 +93,6 @@
 	</section>
 
 	<script src="js/script.js"></script>
-
+	<script src="js/service-listing.js"></script>
 	</body>
 </html>
