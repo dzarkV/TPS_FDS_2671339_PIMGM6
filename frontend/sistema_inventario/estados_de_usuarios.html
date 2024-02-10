@@ -10,14 +10,10 @@
 
 <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
 
-<!-- Animate.css -->
-<link rel="stylesheet" href="css/animate.css">
 <!-- Icomoon Icon Fonts-->
 <link rel="stylesheet" href="css/icomoon.css">
 <!-- Simple Line Icons -->
 <link rel="stylesheet" href="css/simple-line-icons.css">
-<!-- Magnific Popup -->
-<link rel="stylesheet" href="css/magnific-popup.css">
 <!-- Bootstrap  -->
 <link rel="stylesheet" href="css/bootstrap.css">
 
@@ -28,7 +24,7 @@
 
 
 	</head>
-	<body>
+	<body onload="listarUsuarios()">
 	<!-- Cabezote de la pagina Estados de usuario -->
 	<header id="estilo-header">
 
@@ -44,15 +40,18 @@
 					<li style="margin: 0px 16px">
 						<select class="form-select form-select-lg mb-3" id="funcionUsuario" onchange="navegar()">
 							<option selected> Ajustes usuario</option>
-							<option value="1">cerrar sesión</option>
-							<option value="2">actualizar usuario</option>
-							<option value="3">consultar usuario</option>
-							<option value="4">estado de usuario</option>
-							<option value="5">eliminar usuario</option>
-							<option value="6">crear usuario</option>
+							<option value="1">actualizar usuario</option>
+							<option value="2">consultar usuario</option>
+							<option value="3">estado de usuario</option>
+							<option value="4">eliminar usuario</option>
+							<option value="5">crear usuario</option>
 						</select>
 					</li>
-					<li style="color:#fff"><span  id="nombreUsuario">N/A</span><br> <span id="rolUsuario">N/A</span></li>
+					<li style="color:#fff">
+						<span  id="nombreUsuario">x</span><br>
+						<span id="rolUsuario">x</span><br>
+						<button id="btn-logout" class="btn btn-primary" onclick="logout()">Cerrar sesión</button>					
+					</li>
 				</ul>
 				</div>
 			</nav>
@@ -78,33 +77,13 @@
 						<thead>
 						  <tr>
 							<th scope="col">Nombre</th>
+							<th scope="col">Apellido</th>
+							<th scope="col">Rol</th>
 							<th scope="col">Estado</th>
 							<th scope="col">Acción</th>
 						  </tr>
 						</thead>
-						<tbody>
-						  <tr>
-							<th scope="row">Alexander</th>
-							<td>Activo</td>
-							<td>
-								<a class="estilo-intro-icon icon-user" style="color:green;"></a>
-								<a class="estilo-intro-icon icon-user" style="color:red;"></a></td>
-						  </tr>
-						  <tr>
-							<th scope="row">Paola</th>
-							<td>Inactivo</td>
-							<td>
-								<a class="estilo-intro-icon icon-user" style="color:green;"></a>
-								<a class="estilo-intro-icon icon-user" style="color:red;"></a></td>
-						  </tr>
-						  <tr>
-							<th scope="row">Diever</th>
-							<td>Inactivo</td>
-							<td>
-								<a class="estilo-intro-icon icon-user" style="color:green;"></a>
-								<a class="estilo-intro-icon icon-user" style="color:red;"></a>
-							</td>
-						  </tr>
+						<tbody id="data-users">
 						</tbody>
 					  </table>
 					</div>
@@ -113,7 +92,7 @@
 		</div>
 	</section>
 
-	<script src="./js/script.js"></script>
-
+	<script src="js/script.js"></script>
+	<script src="js/service-listing.js"></script>
 	</body>
 </html>

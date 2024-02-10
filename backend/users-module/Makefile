@@ -1,5 +1,5 @@
 runapp:
-	python app/main.py
+	python3 app/main.py
 
 buildenv:
 	python -m venv venv
@@ -14,3 +14,6 @@ buildapp:
 	buildenv
 	activateenv
 	installlibs
+
+testapp-report:
+	cd app && python -m pytest -vv --html=report-tests.html --self-contained-html

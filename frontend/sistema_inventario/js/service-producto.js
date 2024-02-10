@@ -2,7 +2,7 @@ function buscarProducto() {
   var nombre = document.forms["producto-form"]["busquedaProducto"].value;
   var id = document.forms["producto-form"]["busquedaID"].value;
 
-  var url = "http://localhost:8080/api/productos/buscar";
+  var url = "https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/productos/buscar";
   if(nombre !== '' && id !== ''){
     url = url + "?idProducto="+id+"&nombreProducto="+nombre;
   }
@@ -35,7 +35,7 @@ function buscarProducto() {
 
 function listarProveedor() {
 
-  var url = "http://localhost:8080/api/proveedores/listado";
+  var url = "https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/proveedor/buscar";
 
 
   // Consumir el endpoint o la url de java
@@ -65,7 +65,7 @@ function crearProducto() {
   var valorPrecio = document.forms["crearProductoForm"]["precio"].value;
   var valorDescripcion = document.forms["crearProductoForm"]["descripciónDelProducto"].value;
   
-  var url = "http://localhost:8080/api/productos/guardar";
+  var url = "https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/productos/guardar";
 
   // Datos que enviarás en el cuerpo de la solicitud
 
@@ -108,7 +108,7 @@ function registrarProveedor() {
   var valorEmpresa = document.forms["crearProveedoresForm"]["empresa"].value;
   var valorEmail = document.forms["crearProveedoresForm"]["email"].value;
   
-  var url = "http://localhost:8080/api/proveedores/registar";
+  var url = "https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/proveedores/registar";
 
   // Datos que enviarás en el cuerpo de la solicitud
 
