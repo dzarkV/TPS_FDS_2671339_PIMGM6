@@ -44,15 +44,18 @@
 					<li style="margin: 0px 16px">
 						<select class="form-select form-select-lg mb-3" id="funcionUsuario" onchange="navegar()">
 							<option selected> Ajustes usuario</option>
-							<option value="1">cerrar sesión</option>
-							<option value="2">actualizar usuario</option>
-							<option value="3">consultar usuario</option>
-							<option value="4">estado de usuario</option>
-							<option value="5">eliminar usuario</option>
-							<option value="6">crear usuario</option>
+							<option value="1">actualizar usuario</option>
+							<option value="2">consultar usuario</option>
+							<option value="3">estado de usuario</option>
+							<option value="4">eliminar usuario</option>
+							<option value="5">crear usuario</option>
 						</select>
 					</li>
-					<li style="color:#fff"><span  id="nombreUsuario">N/A</span><br> <span id="rolUsuario">N/A</span></li>
+					<li style="color:#fff">
+						<span  id="nombreUsuario">x</span><br>
+						<span id="rolUsuario">x</span><br>
+						<button id="btn-logout" class="btn btn-primary" onclick="logout()">Cerrar sesión</button>					
+					</li>
 				</ul>
 				</div>
 			</nav>
