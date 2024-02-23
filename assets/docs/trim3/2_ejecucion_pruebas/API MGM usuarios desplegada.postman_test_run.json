@@ -1,0 +1,738 @@
+{
+	"id": "f749d71a-1d1f-4826-bc91-911e89713351",
+	"name": "API MGM usuarios desplegada",
+	"timestamp": "2023-09-16T15:20:15.852Z",
+	"collection_id": "18292224-5b588881-a1ab-4e07-b3ae-0f0525cda40d",
+	"folder_id": 0,
+	"environment_id": "18292224-a38e6446-e330-41c2-81d7-06e746b8592a",
+	"totalPass": 36,
+	"delay": 0,
+	"persist": false,
+	"status": "finished",
+	"startedAt": "2023-09-16T15:19:09.107Z",
+	"totalFail": 0,
+	"results": [
+		{
+			"id": "53c78f50-d4b2-4a09-924a-bc1e28fcc4b0",
+			"name": "Login de usuario",
+			"url": "https://sistema-mgm-service-users.azurewebsites.net/api/login",
+			"time": 64201,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Código de status 200": true,
+				"Response is a json object": true,
+				"Cuerpo de respuesta trae un token": true,
+				"Un token de acceso es devuelto": true
+			},
+			"testPassFailCounts": {
+				"Código de status 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is a json object": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Cuerpo de respuesta trae un token": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Un token de acceso es devuelto": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				64201
+			],
+			"allTests": [
+				{
+					"Código de status 200": true,
+					"Response is a json object": true,
+					"Cuerpo de respuesta trae un token": true,
+					"Un token de acceso es devuelto": true
+				}
+			]
+		},
+		{
+			"id": "2872da91-773b-4f60-8e0b-1cc46df8b7b7",
+			"name": "Login de usuario inválido",
+			"url": "https://sistema-mgm-service-users.azurewebsites.net/api/login",
+			"time": 88,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Código de status 401 (no autorizado)": true,
+				"La respuesta no devuelve un token de acceso": true
+			},
+			"testPassFailCounts": {
+				"Código de status 401 (no autorizado)": {
+					"pass": 1,
+					"fail": 0
+				},
+				"La respuesta no devuelve un token de acceso": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				88
+			],
+			"allTests": [
+				{
+					"Código de status 401 (no autorizado)": true,
+					"La respuesta no devuelve un token de acceso": true
+				}
+			]
+		},
+		{
+			"id": "82604c9a-871b-452f-9668-86565fa84450",
+			"name": "Crear usuario",
+			"url": "https://sistema-mgm-service-users.azurewebsites.net/api/usuario",
+			"time": 232,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Response is a json object": true,
+				"El usuario creado en la respuesta tiene un ID": true,
+				"El usuario creado tiene los datos necesarios para un usuario": true,
+				"El usuario creado en la respuesta tiene los mismos datos enviados de la solicitud": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response is a json object": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El usuario creado en la respuesta tiene un ID": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El usuario creado tiene los datos necesarios para un usuario": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El usuario creado en la respuesta tiene los mismos datos enviados de la solicitud": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				232
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Response is a json object": true,
+					"El usuario creado en la respuesta tiene un ID": true,
+					"El usuario creado tiene los datos necesarios para un usuario": true,
+					"El usuario creado en la respuesta tiene los mismos datos enviados de la solicitud": true
+				}
+			]
+		},
+		{
+			"id": "c6d6fa10-5c1b-48e2-ae41-a995bcf27c36",
+			"name": "Crear usuario datos inválidos",
+			"url": "https://sistema-mgm-service-users.azurewebsites.net/api/usuario",
+			"time": 75,
+			"responseCode": {
+				"code": 422,
+				"name": "Unprocessable Entity"
+			},
+			"tests": {
+				"Status code is 422 Unprocessable entity": true
+			},
+			"testPassFailCounts": {
+				"Status code is 422 Unprocessable entity": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				75
+			],
+			"allTests": [
+				{
+					"Status code is 422 Unprocessable entity": true
+				}
+			]
+		},
+		{
+			"id": "99fed29f-6526-4af8-a391-b0447b9096ae",
+			"name": "Crear usuario datos sin rol",
+			"url": "https://sistema-mgm-service-users.azurewebsites.net/api/usuario",
+			"time": 77,
+			"responseCode": {
+				"code": 422,
+				"name": "Unprocessable Entity"
+			},
+			"tests": {
+				"Status code is 422 Unprocessable entity": true
+			},
+			"testPassFailCounts": {
+				"Status code is 422 Unprocessable entity": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				77
+			],
+			"allTests": [
+				{
+					"Status code is 422 Unprocessable entity": true
+				}
+			]
+		},
+		{
+			"id": "c09a46da-1afc-4ad0-84ac-e1702da175db",
+			"name": "Crear usuario datos sin credenciales",
+			"url": "https://sistema-mgm-service-users.azurewebsites.net/api/usuario",
+			"time": 80,
+			"responseCode": {
+				"code": 422,
+				"name": "Unprocessable Entity"
+			},
+			"tests": {
+				"Status code is 422 Unprocessable entity": true
+			},
+			"testPassFailCounts": {
+				"Status code is 422 Unprocessable entity": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				80
+			],
+			"allTests": [
+				{
+					"Status code is 422 Unprocessable entity": true
+				}
+			]
+		},
+		{
+			"id": "26aac7a7-2f8f-44f9-93b9-f547462fefd4",
+			"name": "Obtener usuario en sesion activa",
+			"url": "https://sistema-mgm-service-users.azurewebsites.net/api/me",
+			"time": 77,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"El usuario de respuesta no debe tener campo de contraseña": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El usuario de respuesta no debe tener campo de contraseña": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				77
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"El usuario de respuesta no debe tener campo de contraseña": true
+				}
+			]
+		},
+		{
+			"id": "fbcd843a-6f8e-4b34-9af0-3a3a5df1a61d",
+			"name": "Obtener usuario en sesion sin JWT",
+			"url": "https://sistema-mgm-service-users.azurewebsites.net/api/me",
+			"time": 71,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status code is 401 (Not authenticated)": true
+			},
+			"testPassFailCounts": {
+				"Status code is 401 (Not authenticated)": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				71
+			],
+			"allTests": [
+				{
+					"Status code is 401 (Not authenticated)": true
+				}
+			]
+		},
+		{
+			"id": "36d35c74-a711-4b35-8f24-b3671996028a",
+			"name": "Obtener usuario en sesion activa con parámetros inválidos",
+			"url": "https://sistema-mgm-service-users.azurewebsites.net/api/me/id=1",
+			"time": 72,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 400": true
+			},
+			"testPassFailCounts": {
+				"Status code is 400": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				72
+			],
+			"allTests": [
+				{
+					"Status code is 400": true
+				}
+			]
+		},
+		{
+			"id": "172379ee-d4ca-4324-a49e-a9dc13e5653e",
+			"name": "Obtener usuario por username",
+			"url": "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/username?value=lalolan",
+			"time": 77,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"La respuesta se adecúa al JSON schema definido": true,
+				"El usuario obtenido es el mismo que se envio por parámetro de consulta": true
+			},
+			"testPassFailCounts": {
+				"La respuesta se adecúa al JSON schema definido": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El usuario obtenido es el mismo que se envio por parámetro de consulta": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				77
+			],
+			"allTests": [
+				{
+					"La respuesta se adecúa al JSON schema definido": true,
+					"El usuario obtenido es el mismo que se envio por parámetro de consulta": true
+				}
+			]
+		},
+		{
+			"id": "5ffdd834-99a0-43a5-8fae-465cc5cb06bd",
+			"name": "Obtener usuario por username inexistente",
+			"url": "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/username?value=Gregoria95",
+			"time": 80,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 404 (Not Found)": true
+			},
+			"testPassFailCounts": {
+				"Status code is 404 (Not Found)": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				80
+			],
+			"allTests": [
+				{
+					"Status code is 404 (Not Found)": true
+				}
+			]
+		},
+		{
+			"id": "168ca401-e6ae-46ff-aa45-c41e73c9b4ae",
+			"name": "Obtener usuario por nombre",
+			"url": "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/name?value=Lalo",
+			"time": 88,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"El nombre del usuario obtenido es el mismo que se envio por parámetro de consulta": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El nombre del usuario obtenido es el mismo que se envio por parámetro de consulta": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				88
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"El nombre del usuario obtenido es el mismo que se envio por parámetro de consulta": true
+				}
+			]
+		},
+		{
+			"id": "1375af92-52a0-4ccc-a061-d907985b3324",
+			"name": "Obtener usuario por id",
+			"url": "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/id?value=6505c7adab4615d4243ab248",
+			"time": 77,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"El id del usuario obtenido es el mismo que se envio por parámetro de consulta": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"El id del usuario obtenido es el mismo que se envio por parámetro de consulta": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				77
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"El id del usuario obtenido es el mismo que se envio por parámetro de consulta": true
+				}
+			]
+		},
+		{
+			"id": "1d774c1b-0a7a-4302-b48b-788fbc8b8550",
+			"name": "Todos los usuarios",
+			"url": "https://sistema-mgm-service-users.azurewebsites.net/api/usuarios",
+			"time": 88,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Status code is 200": true,
+				"Todos los usuarios de la respuesta tienen los datos completos": true
+			},
+			"testPassFailCounts": {
+				"Status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Todos los usuarios de la respuesta tienen los datos completos": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				88
+			],
+			"allTests": [
+				{
+					"Status code is 200": true,
+					"Todos los usuarios de la respuesta tienen los datos completos": true
+				}
+			]
+		},
+		{
+			"id": "19392d81-c443-4e7a-83a9-fbbd7bf877c7",
+			"name": "Actualizar solo username",
+			"url": "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/6505c7adab4615d4243ab248",
+			"time": 88,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response status code is 200": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 200": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				88
+			],
+			"allTests": [
+				{
+					"Response status code is 200": true
+				}
+			]
+		},
+		{
+			"id": "d287e316-93dc-4920-b87f-9c6ec4fee8c8",
+			"name": "Actualizar usuario con ID incorrecto",
+			"url": "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/648",
+			"time": 201,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Status code is 404 (Not Found)": true
+			},
+			"testPassFailCounts": {
+				"Status code is 404 (Not Found)": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				201
+			],
+			"allTests": [
+				{
+					"Status code is 404 (Not Found)": true
+				}
+			]
+		},
+		{
+			"id": "db9ea8f7-e0bd-4593-89e4-b7e05a5a02b2",
+			"name": "Actualizar usuario sin JWT",
+			"url": "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/648",
+			"time": 72,
+			"responseCode": {
+				"code": 401,
+				"name": "Unauthorized"
+			},
+			"tests": {
+				"Status code is 401 (Not authenticated)": true
+			},
+			"testPassFailCounts": {
+				"Status code is 401 (Not authenticated)": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				72
+			],
+			"allTests": [
+				{
+					"Status code is 401 (Not authenticated)": true
+				}
+			]
+		},
+		{
+			"id": "9bcdf35c-895a-4a7e-a929-146195d3764d",
+			"name": "Actualizar con valores usuario",
+			"url": "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/6505c7adab4615d4243ab248",
+			"time": 87,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Verificar en la respuesta que el id coincide con el enviado en la solicitud": true
+			},
+			"testPassFailCounts": {
+				"Verificar en la respuesta que el id coincide con el enviado en la solicitud": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				87
+			],
+			"allTests": [
+				{
+					"Verificar en la respuesta que el id coincide con el enviado en la solicitud": true
+				}
+			]
+		},
+		{
+			"id": "59e06daf-830b-495e-9acb-0d1e72471ce2",
+			"name": "Borrar usuario",
+			"url": "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/6505c7adab4615d4243ab248",
+			"time": 96,
+			"responseCode": {
+				"code": 200,
+				"name": "OK"
+			},
+			"tests": {
+				"Response status code is 200": true,
+				"Response has the required fields": true,
+				"Data is an array with at least one element": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has the required fields": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Data is an array with at least one element": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				96
+			],
+			"allTests": [
+				{
+					"Response status code is 200": true,
+					"Response has the required fields": true,
+					"Data is an array with at least one element": true
+				}
+			]
+		},
+		{
+			"id": "d2bde4c2-a718-48eb-ad52-31766d9d3830",
+			"name": "Borrar usuario con id incorrecto",
+			"url": "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/123456",
+			"time": 75,
+			"responseCode": {
+				"code": 404,
+				"name": "Not Found"
+			},
+			"tests": {
+				"Response status code is 404": true,
+				"Response has the required fields": true
+			},
+			"testPassFailCounts": {
+				"Response status code is 404": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has the required fields": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				75
+			],
+			"allTests": [
+				{
+					"Response status code is 404": true,
+					"Response has the required fields": true
+				}
+			]
+		}
+	],
+	"count": 1,
+	"totalTime": 66002,
+	"collection": {
+		"requests": [
+			{
+				"id": "53c78f50-d4b2-4a09-924a-bc1e28fcc4b0",
+				"method": "POST"
+			},
+			{
+				"id": "2872da91-773b-4f60-8e0b-1cc46df8b7b7",
+				"method": "POST"
+			},
+			{
+				"id": "82604c9a-871b-452f-9668-86565fa84450",
+				"method": "POST"
+			},
+			{
+				"id": "c6d6fa10-5c1b-48e2-ae41-a995bcf27c36",
+				"method": "POST"
+			},
+			{
+				"id": "99fed29f-6526-4af8-a391-b0447b9096ae",
+				"method": "POST"
+			},
+			{
+				"id": "c09a46da-1afc-4ad0-84ac-e1702da175db",
+				"method": "POST"
+			},
+			{
+				"id": "26aac7a7-2f8f-44f9-93b9-f547462fefd4",
+				"method": "GET"
+			},
+			{
+				"id": "fbcd843a-6f8e-4b34-9af0-3a3a5df1a61d",
+				"method": "GET"
+			},
+			{
+				"id": "36d35c74-a711-4b35-8f24-b3671996028a",
+				"method": "GET"
+			},
+			{
+				"id": "172379ee-d4ca-4324-a49e-a9dc13e5653e",
+				"method": "GET"
+			},
+			{
+				"id": "5ffdd834-99a0-43a5-8fae-465cc5cb06bd",
+				"method": "GET"
+			},
+			{
+				"id": "168ca401-e6ae-46ff-aa45-c41e73c9b4ae",
+				"method": "GET"
+			},
+			{
+				"id": "1375af92-52a0-4ccc-a061-d907985b3324",
+				"method": "GET"
+			},
+			{
+				"id": "1d774c1b-0a7a-4302-b48b-788fbc8b8550",
+				"method": "GET"
+			},
+			{
+				"id": "19392d81-c443-4e7a-83a9-fbbd7bf877c7",
+				"method": "PUT"
+			},
+			{
+				"id": "d287e316-93dc-4920-b87f-9c6ec4fee8c8",
+				"method": "PUT"
+			},
+			{
+				"id": "db9ea8f7-e0bd-4593-89e4-b7e05a5a02b2",
+				"method": "PUT"
+			},
+			{
+				"id": "9bcdf35c-895a-4a7e-a929-146195d3764d",
+				"method": "PUT"
+			},
+			{
+				"id": "59e06daf-830b-495e-9acb-0d1e72471ce2",
+				"method": "DELETE"
+			},
+			{
+				"id": "d2bde4c2-a718-48eb-ad52-31766d9d3830",
+				"method": "DELETE"
+			}
+		]
+	}
+}
