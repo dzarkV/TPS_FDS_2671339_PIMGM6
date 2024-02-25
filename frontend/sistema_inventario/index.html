@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Sistema de inventario MGM</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Sistema de inventario MGM</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,400italic,700' rel='stylesheet'
+		type='text/css'>
 
 	<link rel="stylesheet" href="css/simple-line-icons.css">
 	<!-- Bootstrap  -->
@@ -14,8 +16,9 @@
 
 	<link rel="stylesheet" href="css/style.css">
 
-	</head>
-	<body>
+</head>
+
+<body>
 
 	<!-- Cabezote de la pagina Estados de usuario -->
 	<header id="estilo-header">
@@ -23,45 +26,55 @@
 		<div class="container">
 			<nav class="navbar navbar-default">
 				<div class="navbar-header">
-					<a href="#" class="js-estilo-nav-toggle estilo-nav-toggle" ><i></i></a>
-					<a class="navbar-brand" href="index.html">MGM</a> 
+					<a href="#" class="js-estilo-nav-toggle estilo-nav-toggle"><i></i></a>
+					<a class="navbar-brand" href="index.html">MGM</a>
 				</div>
 				<!-- Menu de seleccion -->
 				<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-right">
-					<li style="margin: 0px 16px">
-						<select class="form-select form-select-lg mb-3" id="funcionUsuario" onchange="navegar()">
-							<option selected> Ajustes usuario</option>
-							<option value="1">actualizar usuario</option>
-							<option value="2">consultar usuario</option>
-							<option value="3">estado de usuario</option>
-							<option value="4">eliminar usuario</option>
-							<option value="5">crear usuario</option>
-						</select>
-					</li>
-					<li style="color:#fff">
-						<span  id="nombreUsuario">x</span><br>
-						<span id="rolUsuario">x</span><br>
-						<button id="btn-logout" class="btn btn-primary" onclick="logout()">Cerrar sesión</button>					
-					</li>
-				</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li style="margin: 0px 16px">
+							<select class="form-select form-select-lg mb-3" id="funcionUsuario"
+								onchange="navegar()">
+								<option selected> Ajustes usuario</option>
+								<option value="1">actualizar usuario</option>
+								<option value="2">consultar usuario</option>
+								<option value="3">estado de usuario</option>
+								<option value="4">eliminar usuario</option>
+								<option value="5">crear usuario</option>
+							</select>
+						</li>
+						<li style="color:#fff">
+							<span id="nombreUsuario">x</span><br>
+							<span id="rolUsuario">x</span><br>
+							<button id="btn-logout" class="btn btn-primary" onclick="logout()">Cerrar
+								sesión</button>
+						</li>
+					</ul>
 				</div>
 			</nav>
-			</div>
+		</div>
 	</header>
 
-	<section id="estilo-home" style="background-image: url(images/fondo_papeleria.jpg);" data-stellar-background-ratio="0.5">
+	<!-- <section id="estilo-home" style="background-image: url(images/fondo_papeleria.jpg);" data-stellar-background-ratio="0.5">
 		<div class="gradient"></div>
 
+	</section> -->
+	<section id="estilo-home"
+		style="background-image: url(images/balance_general.jpg); max-height: 300px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);"
+		data-stellar-background-ratio="0.5">
+		<div class="gradient">
+		</div>
+		<div class="slant"></div>
 	</section>
 
-	<section id="estilo-intro">
-		<div class="container">
-			<div class="row row-bottom-padded-lg">
-				<div class="estilo-block to-animate" style="background-image: url(images/productos.jpg);">
+
+	<section id="estilo-intro" style="margin-left: 140px; padding-top: 30px;">
+		<div>
+			<div class="row row-bottom-padded-lg flex-container">
+				<div class="estilo-block to-animate" style="background-image: url(images/productos.jpg);" >
 					<div class="overlay-darker"></div>
 					<div class="overlay"></div>
-					<div class="estilo-text">
+					<div class="estilo-text rounded">
 						<i class="estilo-intro-icon icon-bulb"></i>
 						<h2>Productos</h2>
 						<p><a href="./Productos.html" class="btn btn-primary">Ingresar</a></p>
@@ -93,19 +106,21 @@
 						<h2>Reportes</h2>
 						<p><a href="./reportes.html" class="btn btn-primary">Ingresar</a></p>
 					</div>
-				</div><div class="estilo-block to-animate" style="background-image: url(images/inventarios.jpg);">
+				</div>
+				<div class="estilo-block to-animate" style="background-image: url(images/inventarios.jpg);">
 					<div class="overlay-darker"></div>
 					<div class="overlay"></div>
 					<div class="estilo-text">
 						<i class="estilo-intro-icon icon-archive"></i>
-						<h2>Inventarios</h2>
-						<p><a href="#" class="btn btn-primary">Ingresar</a></p>
+						<h2>Inventario</h2>
+						<p><a href="inventario.html" class="btn btn-primary">Ingresar</a></p>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-	
+
+
 	<footer id="footer">
 		<div class="container">
 			<div class="">
@@ -117,5 +132,6 @@
 	</footer>
 
 	<script src="js/script.js"></script>
-	</body>
+</body>
+
 </html>

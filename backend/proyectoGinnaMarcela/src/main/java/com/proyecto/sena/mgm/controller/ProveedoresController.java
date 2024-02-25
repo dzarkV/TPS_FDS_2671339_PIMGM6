@@ -11,9 +11,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.proyecto.sena.mgm.entity.CategoriaEntity;
+import com.proyecto.sena.mgm.entity.ProductosEntity;
 import com.proyecto.sena.mgm.entity.ProveedoresEntity;
 import com.proyecto.sena.mgm.service.ProveedoresService;
 
@@ -34,6 +36,11 @@ public class ProveedoresController {
 	@GetMapping("/listado/{id}")
     public ResponseEntity<ProveedoresEntity> consultarPorId(@PathVariable("id") Integer idProducto){
         return new ResponseEntity<>(ProveedoresService.findById(idProducto), HttpStatus.OK);
+    }
+    
+	@GetMapping("/listado/empresa/{empresa}")
+    public ResponseEntity<List<ProveedoresEntity>> buscarPorProveedoor(@RequestParam(required = false) String empresa){
+        return new ResponseEntity<>(ProveedoresService.findByEmpresa(empresa), HttpStatus.OK);
     }
 	
 	@PostMapping("/registar")
