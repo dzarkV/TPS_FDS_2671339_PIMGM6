@@ -9,6 +9,8 @@ public interface ProveedoresService {
 	List<ProveedoresEntity> getAll();
 	
 	public ProveedoresEntity findById(Integer id);
+
+	public List<ProveedoresEntity> findByEmpresa(String empresa);
 	
 	public ProveedoresEntity save(ProveedoresEntity producto);
 	
