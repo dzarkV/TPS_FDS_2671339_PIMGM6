@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ventas</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="shortcut icon" href="favicon.ico">
+
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,400italic,700' rel='stylesheet'
+		type='text/css'>
+
+	<!-- Animate.css -->
+	<link rel="stylesheet" href="css/animate.css">
+	<!-- Icomoon Icon Fonts-->
+	<link rel="stylesheet" href="css/icomoon.css">
+	<!-- Simple Line Icons -->
+	<link rel="stylesheet" href="css/simple-line-icons.css">
+	<!-- Magnific Popup -->
+	<link rel="stylesheet" href="css/magnific-popup.css">
+	<!-- Bootstrap  -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+
+	<link rel="stylesheet" href="css/style.css">
+
+	<link rel="stylesheet" id="theme-switch" href="css/style.css">
+
+</head>
+
+<body>
+	<!-- Cabezote de la pagina Estados de usuario -->
+	<header id="estilo-header">
+
+		<div class="container">
+			<nav class="navbar navbar-default">
+				<div class="navbar-header">
+					<a href="#" class="js-estilo-nav-toggle estilo-nav-toggle"><i></i></a>
+					<a class="navbar-brand" href="index.html">MGM</a>
+				</div>
+				<!-- Menu de seleccion -->
+				<div id="navbar" class="navbar-collapse collapse">
+					<ul class="nav navbar-nav navbar-right">
+						<li style="margin: 0px 16px">
+							<select class="form-select form-select-lg mb-3" id="funcionUsuario"
+								onchange="navegar()">
+								<option selected> Ajustes usuario</option>
+								<option value="1">actualizar usuario</option>
+								<option value="2">consultar usuario</option>
+								<option value="3">estado de usuario</option>
+								<option value="4">eliminar usuario</option>
+								<option value="5">crear usuario</option>
+							</select>
+						</li>
+						<li style="color:#fff">
+							<span id="nombreUsuario">x</span><br>
+							<span id="rolUsuario">x</span><br>
+							<button id="btn-logout" class="btn btn-primary" onclick="logout()">Cerrar
+								sesión</button>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</div>
+	</header>
+
+	<section id="estilo-home"
+		style="background-image: url(images/balance_general.jpg); max-height: 300px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);"
+		data-stellar-background-ratio="0.5">
+		<div class="gradient" style="display: flex; align-items: center; justify-content: center;">
+			<h1 class="to-animate" style="color: white; font-size: 80px; text-align: center;">ventas</h1>
+		</div>
+		<div class="slant"></div>
+	</section>
+
+
+
+	<footer id="footer">
+		<div class="container">
+			<div class="">
+				<div class="col-md-12 text-center">
+					<p>Sistema de informacion</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<script src="js/script.js"></script>
+</body>
+
+</html>
