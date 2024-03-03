@@ -163,7 +163,7 @@ function actualizarUsuario() {
       url =
         "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/username?value=";
 
-        // no hay token!!!!
+      // token desde variable de entorno
       const jwtToken = process.env.JWT_RECOVERY_MGM;
 
       fetch(url + valorUsername, {
@@ -172,13 +172,14 @@ function actualizarUsuario() {
           Authorization: `Bearer ${jwtToken}`,
         },
       })
-        .then((resSearchUsername) => {
+        .then(async (resSearchUsername) => {
           // Si la respuesta es 200 (porque existe el usuario), se procede a actualizar los datos según el id del usuario
           if (resSearchUsername.status === 200) {
+            const busquedaUsername = await reSearchUsername.json();
             url =
               "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/";
             // Se procede a crear el usuario
-            fetch(url + valorUsername, {
+            fetch(url + busquedaUsername.data[0].id_usuario, {
               method: "PUT",
               headers: {
                 accept: "application/json",
@@ -210,4 +211,106 @@ function actualizarUsuario() {
         .catch((error) => console.log(error));
     }
 
+}
+
+function obtenerFilaUsuario() {
+  // Obtiene la fila del usuario en la tabla
+  
+  // Obtener todos los botones de estado
+  const botonesEstado = document.querySelectorAll("#btn-state");
+
+  // Agregar un evento a cada boton
+  botonesEstado.forEach(function(boton) {
+    boton.addEventListener("click", function(event) {
+      // Obtener los datos de la fila del boton seleccionado
+      const accion = boton.textContent || boton.innerText || boton.innerHTML;
+      const fila = event.target.closest('tr');
+      const idUsuario = fila.getAttribute('data-id');
+      const nombreUsuario = fila.getAttribute('data-user');
+
+      // Condicional según la acción del botón
+      if (accion === "Habilitar" || accion === "Deshabilitar") {
+        if (confirm(`¿Está seguro de habilitar el usuario ${nombreUsuario}?`)) {
+          // Llamar a la funcion para cambiar el estado del usuario
+          actualizarEstadoUsuario(accion, idUsuario, nombreUsuario);
+        }
+      }
+      else if(accion === "Eliminar"){
+        if (confirm(`¿Está seguro de eliminar el usuario ${nombreUsuario}?`)) {
+          // Llamar a la funcion para cambiar el estado del usuario
+          eliminarUsuario(idUsuario, nombreUsuario);
+        }
+      }
+
+    });
+  });
+}
+
+function actualizarEstadoUsuario(accion, id, usuario) {
+  // Actualizar el estado del usuario
+  const status = accion === "Habilitar" ? true : false;
+  // Consumir el endpoint usuario service para buscar un usuario por nombre y obtener id
+  var urlBuscar = "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/username?value=";
+  const jwtToken = getTokenFromLocalStorage();
+
+  // Consultar API pasando el nombre buscado
+  fetch(urlBuscar + usuario, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${jwtToken}`,
+    },
+  })
+    .then(async (response) => {
+      const user = await response.json();
+      // Se procede a actualizar el estado del usuario
+      url = "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/";
+      fetch(url + id, {
+        method: "PUT",
+        headers: {
+          accept: "application/json",
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${jwtToken}`,
+        },
+        body: JSON.stringify({
+          nombre_usuario: user.data[0].nombre_usuario,
+          apellido_usuario: user.data[0].apellido_usuario,
+          credenciales: {
+            estado: status,
+          },
+        }),
+      })
+        .then((responseUpdatedStatus) => {
+          if (responseUpdatedStatus.status === 200) {
+            alert(`Usuario ${user.data[0].nombre_usuario} ${user.data[0].apellido_usuario} ${status ? "habilitado" : "deshabilitado"} exitosamente.`);
+            location.reload();
+          } else {
+            alert("Error al actualizar el estado del usuario");
+          }
+        })
+        .catch((error) => console.log(error));
+    })
+    .catch((error) => console.log(error));
+  
+}
+
+function eliminarUsuario(id, usuario) {
+  // Consumir el endpoint usuario service para eliminar un usuario
+  var url = "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/";
+  const jwtToken = getTokenFromLocalStorage();
+
+  fetch(url + id, {
+    method: "DELETE",
+    headers: {
+      Authorization: `Bearer ${jwtToken}`,
+    },
+  })
+    .then((response) => {
+      if (response.status === 200) {
+        alert(`Usuario ${usuario} eliminado exitosamente.`);
+        location.reload();
+      } else {
+        alert("Error al eliminar el usuario");
+      }
+    })
+    .catch((error) => console.log(error));
 }

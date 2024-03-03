@@ -10,14 +10,8 @@
 
 <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
 
-<!-- Animate.css -->
-<link rel="stylesheet" href="css/animate.css">
-<!-- Icomoon Icon Fonts-->
-<link rel="stylesheet" href="css/icomoon.css">
 <!-- Simple Line Icons -->
 <link rel="stylesheet" href="css/simple-line-icons.css">
-<!-- Magnific Popup -->
-<link rel="stylesheet" href="css/magnific-popup.css">
 <!-- Bootstrap  -->
 <link rel="stylesheet" href="css/bootstrap.css">
 
@@ -29,7 +23,7 @@
 	
 
 </head>
-<body>
+<body onload="listarUsuarios()">
 <!-- Cabezote de la pagina Estados de usuario -->
 	<header id="estilo-header">
 		<div class="container">
@@ -72,57 +66,30 @@
 		<div class="slant"></div>
 	</section>
 
-	<section id="estilo-contact" >
+	<section id="estilo-contact">
 		<div class="container">
 			<div class="row row-bottom-padded-md">
 				<div class="col-md-12">
 					<table class="table">
 						<thead>
 						  <tr>
-							<th scope="col"></th>
 							<th scope="col">Nombre</th>
-							<th scope="col">Perfil</th>
+							<th scope="col">Apellido</th>
+							<th scope="col">Rol</th>
+							<th scope="col">Acción</th>
 						  </tr>
 						</thead>
-						<tbody>
-						  <tr>
-							<td>
-								<div class="form-check">
-									<input class="form-check-input" type="checkbox" value="" checked>
-								 </div>	
-							</td>
-							<th scope="row">Alexander</th>
-							<td>Vendedor</td>
-						  <tr>
-							<td><div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" checked>
-							  </div>
-							</td>
-							<th scope="row">Paola</th>
-							<td>Vendedor</td>
-						  </tr>
-						  <tr>
-							<td><div class="form-check">
-								<input class="form-check-input" type="checkbox" value="" checked>
-							  </div>
-							</td>
-							<th scope="row">Diever</th>
-							<td>Vendedor</td>
-							</td>
-						  </tr>
+						<tbody id="data-users">
 						</tbody>
 					  </table>
-					  <div class="form-group ">
-						<input class="btn btn-primary btn-lg" value="Eliminar Usuario" type="submit">
-					</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</section>
 
 			<script src="js/script.js"></script>
-
+			<script src="js/service-listing.js"></script>
+			<script src="js/service-user.js"></script>
 	</body>
 </html>
