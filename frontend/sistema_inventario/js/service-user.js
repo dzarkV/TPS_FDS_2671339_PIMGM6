@@ -163,7 +163,7 @@ function actualizarUsuario() {
       url =
         "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/username?value=";
 
-        // no hay token!!!!
+      // token desde variable de entorno
       const jwtToken = process.env.JWT_RECOVERY_MGM;
 
       fetch(url + valorUsername, {
@@ -172,13 +172,14 @@ function actualizarUsuario() {
           Authorization: `Bearer ${jwtToken}`,
         },
       })
-        .then((resSearchUsername) => {
+        .then(async (resSearchUsername) => {
           // Si la respuesta es 200 (porque existe el usuario), se procede a actualizar los datos según el id del usuario
           if (resSearchUsername.status === 200) {
+            const busquedaUsername = await reSearchUsername.json();
             url =
               "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/";
             // Se procede a crear el usuario
-            fetch(url + valorUsername, {
+            fetch(url + busquedaUsername.data[0].id_usuario, {
               method: "PUT",
               headers: {
                 accept: "application/json",
