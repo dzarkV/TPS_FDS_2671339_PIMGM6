@@ -29,10 +29,9 @@
 
 </head>
 
-<body>
+<body onload="listarVentas()">
 	<!-- Cabezote de la pagina Estados de usuario -->
 	<header id="estilo-header">
-
 		<div class="container">
 			<nav class="navbar navbar-default">
 				<div class="navbar-header">
@@ -65,27 +64,62 @@
 		</div>
 	</header>
 
-	<section id="estilo-home"
-		style="background-image: url(images/balance_general.jpg); max-height: 300px; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.3);"
+	<!-- Imagen de fondo de pantalla y con filtro azul -->
+	<section id="estilo-home" style="background-image: url(images/fondo_papeleria.jpg); height: 200px;"
 		data-stellar-background-ratio="0.5">
-		<div class="gradient" style="display: flex; align-items: center; justify-content: center;">
-			<h1 class="to-animate" style="color: white; font-size: 80px; text-align: center;">ventas</h1>
+		<div class="gradient"></div>
+		<div class="container">
+			<div class="text-wrap">
+			</div>
 		</div>
 		<div class="slant"></div>
 	</section>
 
-
-
-	<footer id="footer">
-		<div class="container">
-			<div class="">
-				<div class="">
-					<p>Sistema de informacion</p>
-				</div>
-			</div>
+	<!-- Para realizar los filtros -->
+	<div class="row"  style="margin-top: 5%; margin-left: 5%;">
+		<div class="col-sm-8">
+			<form id="ventas-form" method="get">
+				<p>
+					Buscar id de la venta:
+					<input type="text" name="busquedaID" placeholder="id">
+					<button type="button" onclick="buscarVenta()">Buscar</button>
+				</p>
+			</form>
 		</div>
-	</footer>
+	
+		<div class="col-sm-4">
+			<a href="agregar_venta.html">
+				<button class="btn btn-info">
+					Agregar Venta
+				</button>
+			</a>
+		</div>
+	</div>
+
+	<!-- HTML que pinta las tablas (comienzo) -->
+	<section id="estilo-contact">
+		<div class="container mt-4 shadow-lg p-3 mb-5 bg-body rounded">
+			<table class="table table-bordered table-striped">
+				<thead>
+					<tr>
+						<th>Id</th>
+						<th>Id-stock</th>
+						<th>Fecha de la Venta</th>
+						<th>Cantidad De Items</th>
+						<th>Valor Total</th>
+						</th>
+					</tr>
+				</thead>
+				<tbody id="data">
+				</tbody>
+			</table>
+		</div>
+	</section>
+	<!-- (fin) -->
+
+	<script src="js/service-ventas.js"></script> <!-- Script con la consulta a BD -->
 	<script src="js/script.js"></script>
+
 </body>
 
 </html>

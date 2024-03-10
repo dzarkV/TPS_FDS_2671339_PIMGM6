@@ -33,6 +33,7 @@ function registrarProveedor() {
      var valorEmail = document.forms["crearProveedoresForm"]["email"].value;
 
      var url = "https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/proveedores/registar";
+     
 
      // Datos que enviarás en el cuerpo de la solicitud
 
