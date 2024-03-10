@@ -19,7 +19,7 @@ body {
   color: #777777;
   color: #7f7f7f;
   background: #fff;
-  height: 100%;
+  height: 50%;
   position: relative;
 }
 
@@ -229,7 +229,7 @@ h1, h2, h3, h4, h5, h6 {
   bottom: 0;
   margin-top: -150px;
   z-index: 10;
-  padding-bottom: 7em;
+  /* padding-bottom: 7em; */
 }
 
 #estilo-intro > div {
@@ -378,37 +378,21 @@ h1, h2, h3, h4, h5, h6 {
   transition: 0.3s;
 }
 
-#footer {
-  padding: 50px 0;
+#footer{
+  display: flex;
+  width: 100%;
+  height: auto;
+  justify-content: center;
+  align-items: center;
   color: #7f7f7f;
-  position: relative;
-}
-#footer .gotop {
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  margin-left: -40px;
-  background: #fff;
-  z-index: 8;
-  width: 80px;
-  height: 80px;
-  font-size: 30px;
-  padding-top: 5px;
   text-align: center;
-  vertical-align: middle;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  -ms-border-radius: 50%;
-  border-radius: 50%;
-  -webkit-transition: 0.2s;
-  -o-transition: 0.2s;
-  transition: 0.2s;
 }
-#footer .gotop:hover, #footer .gotop:focus {
+
+.gotop:hover, .gotop:focus {
   top: -25px;
   text-decoration: none !important;
 }
-#footer .copyright {
+.copyright {
   font-size: 16px;
   margin-bottom: 0px;
   padding-bottom: 0;
@@ -448,7 +432,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .row-bottom-padded-lg {
-  padding-bottom: 7em;
+  padding-bottom: 2em;
 }
 
 
