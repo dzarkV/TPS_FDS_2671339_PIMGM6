@@ -22,6 +22,43 @@ function listarGastos() {
      }
    };
 
+function buscarGasto() {
+    var id = document.forms["gastos-form"]["busquedaID"].value;
+
+    var url = "https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/gastos/listado";
+    //  var url = "http://localhost:8080/api/gastos/listado";
+
+
+    url = url + "/" + id;
+
+    console.log(url);
+    // Consumir el endpoint o la url de java
+    fetch(url)
+         .then(response => response.json())
+         .then(datos => mostrarData(datos))
+         .catch(error => console.log(error))
+         console.log("holafech",data)
+
+
+    // Metodo que pinta los datos
+    const mostrarData = (data) => {
+         let body = "";
+         
+         if (Array.isArray(data)) {
+             // Caso en que se recibe un array de gastos
+             for (let i = 0; i < data.length; i++) {
+              body += `<tr><td>${data[i].idGasto}</td><td>${data[i].tipoGasto}</td><td>${data[i].valorGasto}</td></tr>`
+         }
+         } else {
+             // Caso en que se recibe un solo proveedor (objeto)
+             body += `<tr><td>${data.idGasto}</td><td>${data.tipoGasto}</td><td>${data.valorGasto}</td></tr>`
+         }
+     
+         document.getElementById('data').innerHTML = body;
+     }
+     
+}
+
 function agregarGasto() {
 
     // Capturar informacion
@@ -29,6 +66,8 @@ function agregarGasto() {
     var valorValorGasto = document.forms["crearGastoForm"]["valorGasto"].value;
   
      var url = "https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/gastos/guardar";
+    //  var url = "http://localhost:8080/api/gastos/guardar";
+
   
   
     // Datos que enviarás en el cuerpo de la solicitud
@@ -65,5 +104,11 @@ function agregarGasto() {
       .catch(error => {
         alert('Hubo un error: ' + error.message);
       });
+
+      document.getElementById("guardarBoton").addEventListener("click", function() {
+        // Redireccionar al home
+        window.location.href = "Gastos.html";
+      });
+
   }
   
