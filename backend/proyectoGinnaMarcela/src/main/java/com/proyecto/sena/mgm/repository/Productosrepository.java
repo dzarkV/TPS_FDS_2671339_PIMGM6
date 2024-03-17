@@ -23,6 +23,6 @@ public interface Productosrepository extends JpaRepository<ProductosEntity, Inte
 }
 
 
-@Query(value = "SELECT SUM(valot_total_venta) FROM bbdd_inventario.ventas WHERE date(fecha_venta) = current_date();",
-nativeQuery = true)
-Integer 
+//@Query(value = "SELECT SUM(valot_total_venta) FROM bbdd_inventario.ventas WHERE date(fecha_venta) = current_date();",
+//nativeQuery = true)
+//Integer 
