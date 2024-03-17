@@ -26,7 +26,7 @@ function listarVentas() {
    function buscarVenta() {
      var id = document.forms["ventas-form"]["busquedaID"].value;
 
-     var url = "https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/venta/listado";
+     var url = "https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/ventas/listado";
 
      url = url + "/" + id;
 
