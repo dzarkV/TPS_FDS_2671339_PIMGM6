@@ -65,7 +65,6 @@ function crearProducto() {
   var valorDescripcion = document.forms["crearProductoForm"]["descripciónDelProducto"].value;
 
   var url = "https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/productos/guardar";
-  // Datos que enviarás en el cuerpo de la solicitud
 
   const dataProducto = {
     idCategoria: {

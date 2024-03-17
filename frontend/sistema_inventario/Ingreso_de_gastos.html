@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<title>Sistema de inventario MGM</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Sistema de inventario MGM</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 	<link rel="shortcut icon" href="favicon.ico">
 
-	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
-	
+	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,400italic,700' rel='stylesheet'
+		type='text/css'>
+
 	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="css/bootstrap.css">
 
@@ -17,34 +19,37 @@
 	<link rel="stylesheet" href="css/style.css">
 
 </head>
+
 <body>
 	<!-- Cabezote de la pagina Estados de usuario -->
 	<header id="estilo-header">
 		<div class="container">
 			<nav class="navbar navbar-default">
 				<div class="navbar-header">
-					<a href="#" class="js-estilo-nav-toggle estilo-nav-toggle" ><i></i></a>
-					<a class="navbar-brand" href="index.html">MGM</a> 
+					<a href="#" class="js-estilo-nav-toggle estilo-nav-toggle"><i></i></a>
+					<a class="navbar-brand" href="index.html">MGM</a>
 				</div>
 				<!-- Menu de seleccion -->
 				<div id="navbar" class="navbar-collapse collapse">
-				<ul class="nav navbar-nav navbar-right">
-					<li style="margin: 0px 16px">
-						<select class="form-select form-select-lg mb-3" id="funcionUsuario" onchange="navegar()">
-							<option selected> Ajustes usuario</option>
-							<option value="1">actualizar usuario</option>
-							<option value="2">consultar usuario</option>
-							<option value="3">estado de usuario</option>
-							<option value="4">eliminar usuario</option>
-							<option value="5">crear usuario</option>
-						</select>
-					</li>
-					<li style="color:#fff">
-						<span  id="nombreUsuario">x</span><br>
-						<span id="rolUsuario">x</span><br>
-						<button id="btn-logout" class="btn btn-primary" onclick="logout()">Cerrar sesión</button>					
-					</li>
-				</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li style="margin: 0px 16px">
+							<select class="form-select form-select-lg mb-3" id="funcionUsuario"
+								onchange="navegar()">
+								<option selected> Ajustes usuario</option>
+								<option value="1">actualizar usuario</option>
+								<option value="2">consultar usuario</option>
+								<option value="3">estado de usuario</option>
+								<option value="4">eliminar usuario</option>
+								<option value="5">crear usuario</option>
+							</select>
+						</li>
+						<li style="color:#fff">
+							<span id="nombreUsuario">x</span><br>
+							<span id="rolUsuario">x</span><br>
+							<button id="btn-logout" class="btn btn-primary" onclick="logout()">Cerrar
+								sesión</button>
+						</li>
+					</ul>
 				</div>
 			</nav>
 		</div>
@@ -59,33 +64,43 @@
 			</div>
 		</div>
 		<div class="slant"></div>
-	</section>	
+	</section>
 
 	<!-- Seccion con los formularios con la informacion para crear un nuevo usuario -->
-	<section id="estilo-contact" >
-		<div class="container">
-			<div class="row row-bottom-padded-md">
-				<div class="col-md-12">
-					<h2 class="text-center text-primary">Ingreso de gastos</h2>
-					<div class="form-group" style="margin-top: 100px;">
-						<label for="confirnpass">Detalle del gasto:</label><input id="name" class="form-control" placeholder="descripción del gasto" type="text">
-					</div>
-					<div class="form-group">
-						<label for="confirnpass">monto del gasto:</label>
-						<input id="confirnpass" class="form-control" placeholder="valor del gasto" type="text">
-					</div>
-					<div class="form-group ">
-						<input class="btn btn-primary btn-lg" value="Aceptar" type="submit">
-					</div>
-					
+	<form id="crearGastoForm" method="post">
+		<section id="estilo-contact">
+			<div class="container">
+				<div class="row row-bottom-padded-md">
+					<div class="col-md-12">
+
+						<h2
+							style="text-align: center; margin-top: 2em; font-size: 2em; font-family: 'Franklin Gothic Medium'; color: #483D8B;">
+							Ingreso de gastos</h2>
+
+						<div class="form-group" style="margin-top: 50px;">
+							<label>Detalle del gasto:</label>
+							<input class="form-control" placeholder="descripción del gasto" type="text" id="tipoGasto" name="tipoGasto"> 
+						</div>
+						<div class="form-group">
+							<label>monto del gasto:</label>
+							<input class="form-control" placeholder="valor del gasto" type="number" id="valorGasto" name="valorGasto">
+						</div>
+						<div class="form-group ">
+							<button class="btn btn-primary btn-lg" type="button" onclick="agregarGasto()">Agregar
+								Gasto</button>
+						</div>
+
 					</div>
 				</div>
 
 			</div>
-		</div>
-	</section>
+			</div>
+		</section>
+	</form>
 
-			<script src="js/script.js"></script>
+	<script src="js/service-gastos.js"></script>
+	<script src="js/script.js"></script>
 
-	</body>
+</body>
+
 </html>

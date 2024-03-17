@@ -34,9 +34,9 @@ public class VentasServiceImpl implements VentasService {
 //	return ventasRepository.findByFechaVenta(fechaVenta).orElse(null);
 //}	
 	
-//	public ProductosEntity save(ProductosEntity producto) {
-//		return productosrepository.save(producto);
-//	}
+	public VentasEntity save(VentasEntity venta) {
+		return ventasRepository.save(venta);
+	}
 
 //	public void delete(Integer id) {
 //		 productosrepository.deleteById(id);

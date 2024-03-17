@@ -67,19 +67,17 @@
 	</section>
 
 	<!-- Seccion con los formularios con la informacion para crear un nuevo usuario -->
-	<form id="crearVentaForm" method="post">
+	<form id="crearVentasForm" method="post">
 		<section id="estilo-contact">
 		    <div class="container">
 			   <div class="row row-bottom-padded-md">
 				  <div class="col-md-12">
 					 <h3 style="margin-top: 50px; margin-bottom: 50px;">Agregar Venta</h3>
-	 
 					 <div class="form-group">
-						<input type="text" class="form-control" id="idStock" placeholder="id del stock" name="idStock">
+						<input type="number" class="form-control" id="idStock" placeholder="Id del Stock" name="idStock">
 					 </div>
-	 
 					 <div class="form-group">
-						<input type="number" class="form-control" id="fechaVenta" placeholder="Fecha de la Venta" name="fechaVenta">
+						<input type="date" class="form-control" id="fechaVenta" placeholder="Fecha de la Venta" name="fechaVenta">
 					 </div>
 	 
 					 <div class="form-group">
@@ -87,7 +85,7 @@
 					 </div>
 	 
 					 <div class="form-group">
-						<input type="text" class="form-control" id="valorTotal" placeholder="Valor Total" name="valorTotal">
+						<input type="number" class="form-control" id="valorTotal" placeholder="Valor Total" name="valorTotal">
 					 </div>
 	 
 					 <div class="form-group">
@@ -98,9 +96,8 @@
 		    </div>
 		</section>
 	 </form>
-	 
 
-	<script src="js/service-producto.js"></script> <!-- Script con la consulta a BD -->
+	<script src="js/service-ventas.js"></script> 
 	<script src="js/script.js"></script>
 
 </body>
