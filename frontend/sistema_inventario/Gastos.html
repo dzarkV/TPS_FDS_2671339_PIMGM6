@@ -12,20 +12,15 @@
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,400italic,700' rel='stylesheet'
 		type='text/css'>
 
-	<!-- Simple Line Icons -->
-	<link rel="stylesheet" href="css/simple-line-icons.css">
 	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="css/bootstrap.css">
 
+	<!--Estilos personalizados -->
 	<link rel="stylesheet" href="css/style.css">
-
-	<link rel="stylesheet" id="theme-switch" href="css/style.css">
-
-
 
 </head>
 
-<body onload="listarProductos()">
+<body onload="listarGastos()">
 	<!-- Cabezote de la pagina Estados de usuario -->
 	<header id="estilo-header">
 		<div class="container">
@@ -72,19 +67,25 @@
 	</section>
 
 	<!-- Para realizar los filtros -->
-	<form id="producto-form" method="get">
-		<p>
-			Buscar nombre de producto:
-			<input type="text" name="busquedaProducto" placeholder="Buscar">
-			<button type="button" onclick="buscarProducto()">Buscar</button>
-			<!-- al dar click va al metodo indicado -->
-		</p>
-		<p>
-			Buscar producto ID:
-			<input type="text" name="busquedaID" placeholder="0000">
-			<button type="button" onclick="buscarProducto()">Buscar</button>
-		</p>
-	</form>
+	<div class="row"  style="margin-top: 5%; margin-left: 5%;">
+		<div class="col-sm-8">
+			<form id="ventas-form" method="get">
+				<p>
+					Buscar Gasto:
+					<input type="text" name="busquedaID" placeholder="buscar gasto">
+					<button type="button" onclick="buscarGasto()">Buscar</button>
+				</p>
+			</form>
+		</div>
+	
+		<div class="col-sm-4">
+			<a href="Ingreso_de_gastos.html">
+				<button class="btn btn-info">
+					Agregar Gasto
+				</button>
+			</a>
+		</div>
+	</div>
 
 	<!-- HTML que pinta las tablas (comienzo) -->
 	<section id="estilo-contact">
@@ -92,10 +93,9 @@
 			<table class="table table-bordered table-striped">
 				<thead>
 					<tr>
-						<th>codigo</th>
-						<th>producto</th>
-						<th>precio</th>
-						<th>descripción</th>
+						<th>Id</th>
+						<th>Tipo de Gasto</th>
+						<th>Valor del gasto</th>
 						</th>
 					</tr>
 				</thead>
@@ -106,7 +106,7 @@
 	</section>
 	<!-- (fin) -->
 
-	<script src="js/service-producto.js"></script> <!-- Script con la consulta a BD -->
+	<script src="js/service-gastos.js"></script> <!-- Script con la consulta a BD -->
 	<script src="js/script.js"></script>
 
 </body>

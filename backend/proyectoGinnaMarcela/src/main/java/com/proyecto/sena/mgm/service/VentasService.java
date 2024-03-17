@@ -11,9 +11,9 @@ public interface VentasService {
 	
 	public VentasEntity findById(Integer id);
 	
-	public VentasEntity findByFechaVenta(String fechaVenta);
+//	public VentasEntity findByFechaVenta(String fechaVenta);
 	
-	//public ProductosEntity save(ProductosEntity producto);
+	public VentasEntity save(VentasEntity venta);
 	
 	//public List<ProductosEntity> buscarProducto(Integer idProducto, String nombreProducto);
 	

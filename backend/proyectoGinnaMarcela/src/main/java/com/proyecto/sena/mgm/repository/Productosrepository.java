@@ -21,3 +21,8 @@ public interface Productosrepository extends JpaRepository<ProductosEntity, Inte
 	List<ProductosEntity> findByNombreProductoAndIdProducto(@Param("nombre") String nombreProducto, @Param("id") Integer idProducto);
 
 }
+
+
+@Query(value = "SELECT SUM(valot_total_venta) FROM bbdd_inventario.ventas WHERE date(fecha_venta) = current_date();",
+nativeQuery = true)
+Integer 

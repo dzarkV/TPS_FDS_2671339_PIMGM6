@@ -38,10 +38,16 @@ public class VentasController {
         return new ResponseEntity<>(ventasService.findById(idVenta), HttpStatus.OK);
     }
 	
-//	@PostMapping("/guardar")
-//    public ResponseEntity<VentasEntity> guardar(@RequestBody VentasEntity venta){
-//        return new ResponseEntity<>(VentasService.save(venta), HttpStatus.OK);
+	@PostMapping("/guardar")
+    public ResponseEntity<VentasEntity> guardar(@RequestBody VentasEntity venta){
+        return new ResponseEntity<>(ventasService.save(venta), HttpStatus.OK);
+    }
+	
+//	@PostMapping("/reporte")
+//    public Integer reporteVentaDiaria(@RequestBody VentasEntity venta){
+//        return new ResponseEntity<>(ventasService.save(venta), HttpStatus.OK);
 //    }
+	
 //	
 //	@GetMapping("/buscar")
 //    public ResponseEntity<List<VentasEntity>> buscarProducto(@RequestParam(required = false) Integer idProducto, @RequestParam(required = false) String nombreProducto){

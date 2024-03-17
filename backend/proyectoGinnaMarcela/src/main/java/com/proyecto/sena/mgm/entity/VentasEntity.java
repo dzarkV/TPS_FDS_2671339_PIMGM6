@@ -1,5 +1,7 @@
 package com.proyecto.sena.mgm.entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,7 +24,7 @@ public class VentasEntity {
 	private Integer idStock;
 	
 	@Column(name = "fecha_venta")
-	private String fechaVenta;
+	private LocalDate fechaVenta;
 	
 	@Column(name = "cantidad_items_venta_x_producto")
 	private Integer cantidadItemsVentaXProducto;
@@ -31,7 +33,7 @@ public class VentasEntity {
 	private Integer valorTotalVenta;
 
 	
-	public VentasEntity(Integer idVenta, Integer idStock, String fechaVenta, Integer cantidadItemsVentaXProducto,
+	public VentasEntity(Integer idVenta, Integer idStock, LocalDate fechaVenta, Integer cantidadItemsVentaXProducto,
 			Integer valorTotalVenta) {
 		this.idVenta = idVenta;
 		this.idStock = idStock;
@@ -58,11 +60,11 @@ public class VentasEntity {
 		this.idStock = idStock;
 	}
 
-	public String getFechaVenta() {
+	public LocalDate getFechaVenta() {
 		return fechaVenta;
 	}
 
-	public void setFechaVenta(String fechaVenta) {
+	public void setFechaVenta(LocalDate fechaVenta) {
 		this.fechaVenta = fechaVenta;
 	}
 
