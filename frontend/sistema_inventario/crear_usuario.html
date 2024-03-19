@@ -18,12 +18,12 @@
 
 </head>
 <body>
-	<ul class="nav nav-tabs" role="tablist" style="background-color: #808080; color: black;">
+	<ul class="nav nav-tabs" role="tablist" style="background-color: #5F818C;">
 		<li class="active"><a href="index.html">Home</a></li>
 		<li><a style="color: black;" href="Productos.html">Productos</a></li>
-		<li><a style="color: black;" href="proveedores.html">Proveedores</a></li>
-		<li><a style="color: black;" href="ventas.html">Ventas</a></li>
-		<li><a style="color: black;" href="reportes.html">Reportes</a></li>
+			<li><a style="color: black;" href="proveedores.html">Proveedores</a></li>
+			<li><a style="color: black;" href="ventas.html">Ventas</a></li>
+			<li><a style="color: black;" href="reportes.html">Reportes</a></li>
 	</ul>
 	<!-- Cabezote de la pagina Estados de usuario -->
 	<header id="estilo-header">
@@ -98,7 +98,10 @@
 					</div>
 					<div class="form-group ">
 						<label class="sr-only">Rol</label>
-						<input name="rol" class="form-control" placeholder="rol" type="text" value="Vendedor" disabled>
+						<select name="rol" class="form-control form-select-lg" id="rol" placehold="Seleccione un rol" required>
+							<option selected value="Vendedor">Vendedor</option>
+							<option value="Administrador">Administrador</option>
+						</select>
 					</div>
 					<div class="form-group ">
 						<input class="btn btn-primary btn-lg" value="Guardar Usuario" type="button" onclick="crearUsuario()">

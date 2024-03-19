@@ -43,7 +43,7 @@ function crearUsuario() {
               nombre_usuario: valorNombre,
               apellido_usuario: valorApellido,
               rol_usuario: {
-                id_rol: 102,
+                id_rol: valorRol === "Administrador" ? 101 : 102,
                 nombre_rol: valorRol
               },
               credenciales: {
@@ -77,8 +77,11 @@ function actualizarUsuario() {
     var valorApellidoUpd = document.forms["actualizarUsuarioForm"]["apellido"].value;
     var valorPasswordUpd = document.forms["actualizarUsuarioForm"]["pass"].value;
     var checkPasswordUpd = document.forms["actualizarUsuarioForm"]["confirnpass"].value;
-    var usernameUpd = document.querySelector("#username").innerHTML;
-    var valorRolUpd = document.forms["actualizarUsuarioForm"]["rol"].value;
+    var usernameToUpdate = document.querySelector("#username").innerHTML;
+    var valorRolToUpdate = document.forms["actualizarUsuarioForm"]["rol"].value;
+
+    // Id de usuario a actualizar en atributo option select 
+    var idUserToUpdate = document.getElementById("data-usuarios").options[document.getElementById("data-usuarios").selectedIndex].getAttribute("data-id");
   
     // Validar campos de contraseña
     if (valorPasswordUpd !== checkPasswordUpd) {
@@ -90,11 +93,11 @@ function actualizarUsuario() {
     } else {
       // Si las contraseñas coinciden, se procede a verificar con el username en la API si el usuario ya existe
       url =
-        "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/username?value=";
+        "https://sistema-mgm-service-users.azurewebsites.net/api/usuario/id?value=";
       const jwtToken = localStorage.getItem("jwt");
-      const userinSession = JSON.parse(localStorage.getItem("userSession"));
+      // const userinSession = JSON.parse(localStorage.getItem("userSession"));
   
-      fetch(url + userinSession.credenciales.usuario, {
+      fetch(url + idUserToUpdate, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${jwtToken}`,
@@ -117,21 +120,21 @@ function actualizarUsuario() {
               body: JSON.stringify({
                 nombre_usuario: valorNombreUpd,
                 apellido_usuario: valorApellidoUpd,
-                // rol_usuario: {
-                //   id_rol: 102,
-                //   nombre_rol: valorRolUpd
-                // },
+                rol_usuario: {
+                  id_rol: valorRolToUpdate === "Administrador" ? 101 : 102,
+                  nombre_rol: valorRolToUpdate
+                },
                 credenciales: {
-                  usuario: usernameUpd,
+                  usuario: usernameToUpdate,
                   contrasena: valorPasswordUpd
                 }
               })
             })
               .then((responseUpdateUser) => {
-                // Si el usuario se crea exitosamente, se muestra el mensaje y se recarga la página
+                // Si el usuario se actualiza exitosamente, se muestra el mensaje y se recarga la página
                 if (responseUpdateUser.status === 200) {
-                  alert(`Usuario ${usernameUpd} actualizado exitosamente. Deberá iniciar sesión nuevamente.`);
-                  logout();
+                  alert(`Usuario ${usernameToUpdate} actualizado exitosamente.`);
+                  location.reload();
                 } else {
                   alert("Error al actualizar el usuario");
                 }
@@ -139,7 +142,7 @@ function actualizarUsuario() {
               .catch((error) => console.log(error));
           } else {
             // Si el usuario no existe (404), se muestra un mensaje de alerta
-            alert("El usuario no existe en el sistema");
+            alert("El usuario no existe en el sistema. \n Por favor, cree un usuario nuevo.");
           }
         })
         .catch((error) => console.log(error));
@@ -230,7 +233,7 @@ function obtenerFilaUsuario() {
 
       // Condicional según la acción del botón
       if (accion === "Habilitar" || accion === "Deshabilitar") {
-        if (confirm(`¿Está seguro de habilitar el usuario ${nombreUsuario}?`)) {
+        if (confirm(`¿Está seguro de ${accion.toLowerCase()} el usuario ${nombreUsuario}?`)) {
           // Llamar a la funcion para cambiar el estado del usuario
           actualizarEstadoUsuario(accion, idUsuario, nombreUsuario);
         }
