@@ -8,6 +8,8 @@ on:
   pull_request:
     types: [closed]
     branches: [main]
+    paths:
+      - 'backend/users-module/**'
   workflow_dispatch:
 
 jobs:
