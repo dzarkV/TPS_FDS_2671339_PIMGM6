@@ -2,11 +2,12 @@
 name: Build_java_and_frontend_Docker_images_and_push_to_DockerHub
 
 on:
-  # push:
-  #   branches: [dzarkV]
   pull_request:
     types: [closed]
     branches: [main]
+    paths:
+      - 'backend/proyectoGinnaMarcela/**'
+      - 'frontend/sistema_inventario/**'
   workflow_dispatch:
 
 env:
