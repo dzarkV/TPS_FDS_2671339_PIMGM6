@@ -112,3 +112,33 @@ if(location.pathname.endsWith("Actualizar_Usuario.html")== true){
 }
 )
 };
+
+function listarProveedoresEnSelect() {
+  fetch('https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/proveedores/listado')
+      .then(response => response.json())
+      .then(data => {
+          const select = document.getElementById('proveedor');
+          data.forEach(proveedor => {
+              const option = document.createElement('option');
+              option.value = proveedor.id;
+              option.text = proveedor.nombre;
+              select.appendChild(option);
+          });
+      })
+      .catch(error => console.error('Error:', error));
+}
+
+function listarProductosEnSelect() {
+  fetch('https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/productos/listado')
+      .then(response => response.json())
+      .then(data => {
+          const select = document.getElementById('productos');
+          data.forEach(producto => {
+              const option = document.createElement('option');
+              option.value = producto.id;
+              option.text = producto.nombreProducto;
+              select.appendChild(option);
+          });
+      })
+      .catch(error => console.error('Error:', error));
+}

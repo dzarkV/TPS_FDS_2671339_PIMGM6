@@ -1,13 +1,30 @@
+-- ALGUNAS NOTAS DE TIPOS DE DATOS
+-- tinyint -128 a 127			unsigned (sin signo negativo):  0 hasta 255
+-- smallint -32.768 a 32.767		unsigned: 			0 hasta 65.535
+-- mediumint -8.388.608 a 8.388.607 	unsigned: 			0 hasta 16.777.215
+-- int -2.147.483.648 a 2.147.483.647 	unsigned:			0 hasta 4.294.967.295
+
 -- -----------------------------------------------------
 
 
 -- -----------------------------------------------------
 -- ESTRUCTURA BBDD_INVENTARIO
 -- -----------------------------------------------------
--- DROP SCHEMA IF EXISTS BBDD_INVENTARIO;
 -- CREATE SCHEMA BBDD_INVENTARIO DEFAULT CHARACTER SET utf8 ;
 -- USE BBDD_INVENTARIO;
---
+
+-- -----------------------------------------------------
+-- TABLA ENTRADAS
+-- -----------------------------------------------------
+create table ENTRADAS (
+	id_entrada int unsigned auto_increment not null comment 'campo para identificar ingreso de productos',
+	fecha_entrada date not null comment 'campo para ingresar fecha de entrada de productos',
+	cantidad_items_entrada int not null comment 'campo para ingresar cantidad de productos entrantes',
+	costo_total_entrada int not null comment 'campo para ingresar valor monetario del total de productos',
+	costo_unitario double comment 'campo para ingresar valor monetario del producto por unidad',
+	primary key (id_entrada)
+) engine = InnoDB;
+
 -- -----------------------------------------------------
 -- TABLA CATEGORIAS
 -- -----------------------------------------------------
@@ -22,6 +39,7 @@ CREATE table CATEGORIAS (
 -- -----------------------------------------------------
 create table PRODUCTOS (
 	id_producto int unsigned auto_increment not null comment 'identificacion de producto',
+	id_entrada int unsigned not null comment 'identificacion de productos que ingresan al inventario',
 	id_categoria tinyint unsigned not null comment 'identificacion de categroías de productos',
 	nombre_producto varchar(50) not null comment 'ingresar nombre de producto',
 	precio_producto double not null comment 'precio del producto en la empresa',
@@ -29,6 +47,11 @@ create table PRODUCTOS (
 	marca varchar(50) comment 'marca del producto',
 	referencia varchar(50) comment 'referencia del producto',
 	primary key(id_producto),
+	constraint fk_productos_entradas
+	    foreign key  (id_entrada)
+	    references ENTRADAS (id_entrada)
+	    ON DELETE CASCADE
+	    ON UPDATE CASCADE,
 	constraint fk_productos_categorias
 	    foreign key (id_categoria)
 	    references CATEGORIAS (id_categoria)
@@ -39,50 +62,20 @@ create table PRODUCTOS (
 -- -----------------------------------------------------
 create table PROVEEDORES (
 	id_proveedor smallint unsigned auto_increment not null comment 'identificación de proveedor',
+    id_entrada int unsigned not null comment 'identificación de entrada de producto',
     empresa varchar(50) not null comment 'nombre de la empresa',
     direccion_proveedor varchar(100) comment 'campo para direccion de la empresa',
     nombre_proveedor varchar(100) not null comment 'campo para nombre de la persona',
     telefono_proveedor varchar(15) not null comment 'campo para telefono de la empesa o personal',
     email_proveedor varchar(50) comment 'campo para correo electonico de la empresa',
     descripcion_proveedor varchar(150) comment 'campo para describir brevemente los productos que ofrece la empresa',
-    primary key(id_proveedor)
-) engine = InnoDB;
-
--- -----------------------------------------------------
--- TABLA ENTRADAS
--- -----------------------------------------------------
-create table ENTRADAS (
-	id_entrada int unsigned auto_increment not null comment 'campo para identificar ingreso de productos',
-	fecha_entrada date not null comment 'campo para ingresar fecha de entrada de productos',
-	cantidad_items_entrada int not null comment 'campo para ingresar cantidad de productos entrantes',
-	costo_unitario double comment 'campo para ingresar valor monetario del producto por unidad',
-	id_proveedor smallint unsigned not null comment 'id de proveedor para la entrada',
-	id_producto int unsigned not null comment 'id de producto para la entrada',
-	constraint fk_entradas_proveedores
-	    foreign key (id_proveedor)
-	    references PROVEEDORES (id_proveedor)
+    primary key(id_proveedor),
+    constraint fk_proveedores_entradas
+	    foreign key (id_entrada)
+	    references ENTRADAS (id_entrada)
 	    ON DELETE cascade
-	    ON UPDATE cascade,
-	constraint fk_entradas_productos
-	    foreign key (id_producto)
-	    references PRODUCTOS (id_producto)
-	    ON DELETE cascade
-	    ON UPDATE cascade,
-	primary key (id_entrada)
+	    ON UPDATE CASCADE
 ) engine = InnoDB;
-
--- -----------------------------------------------------
--- TABLA INTERMEDIA ENTRADAS PRODUCTOS PROVEEDORES
--- -----------------------------------------------------
-CREATE TABLE ENTRADAS_PRODUCTOS_PROVEEDORES (
-    id_entrada INT UNSIGNED NOT NULL,
-    id_producto INT UNSIGNED NOT NULL,
-    id_proveedor smallint UNSIGNED NOT NULL,
-    PRIMARY KEY (id_entrada, id_producto, id_proveedor),
-    FOREIGN KEY (id_entrada) REFERENCES ENTRADAS(id_entrada),
-    FOREIGN KEY (id_producto) REFERENCES PRODUCTOS(id_producto),
-    FOREIGN KEY (id_proveedor) REFERENCES PROVEEDORES(id_proveedor)
-) ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- TABLA STOCK
@@ -142,6 +135,4 @@ create table GASTOS (
 	valor_gasto double not null comment 'ingresar el valor total del gasto',
 	primary key (id_gasto)
 ) engine = InnoDB;
-
-
 
