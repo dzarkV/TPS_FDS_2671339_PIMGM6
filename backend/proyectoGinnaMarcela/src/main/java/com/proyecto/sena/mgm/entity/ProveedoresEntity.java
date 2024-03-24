@@ -15,9 +15,6 @@ public class ProveedoresEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idProveedor;
 	
-	@Column(name = "id_entrada")
-	private Integer idEntrada;
-	
 	@Column(name = "empresa")
 	private String empresa;
 	
@@ -36,10 +33,9 @@ public class ProveedoresEntity {
 	@Column(name = "email_proveedor")
 	private String emailProveedor;
 
-	public ProveedoresEntity(Integer idProveedor, Integer idEntrada, String empresa, String direccionProveedor,
+	public ProveedoresEntity(Integer idProveedor, String empresa, String direccionProveedor,
 			String nombreProveedor, String telefonoProveedor, String descripcionProveedor, String emailProveedor) {
 		this.idProveedor = idProveedor;
-		this.idEntrada = idEntrada;
 		this.empresa = empresa;
 		this.direccionProveedor = direccionProveedor;
 		this.nombreProveedor = nombreProveedor;
@@ -75,14 +71,6 @@ public class ProveedoresEntity {
 
 	public void setIdProveedor(Integer idProveedor) {
 		this.idProveedor = idProveedor;
-	}
-
-	public Integer getIdEntrada() {
-		return idEntrada;
-	}
-
-	public void setIdEntrada(Integer idEntrada) {
-		this.idEntrada = idEntrada;
 	}
 
 	public String getDireccionProveedor() {

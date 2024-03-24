@@ -74,6 +74,14 @@ function listarUsuarios() {
       }
       document.getElementById("data-users").innerHTML = body;
     }
+
+    else if(location.pathname.endsWith("Actualizar_Usuario.html")== true){
+      // Añadir nombres de los usuario en el option select
+      for (var i = 0; i < data.length; i++) {
+        body += `<option data-id="${data[i].id_usuario}" data-nombre="${data[i].nombre_usuario}" data-apellido="${data[i].apellido_usuario}" value=${data[i].credenciales.usuario} data-rol="${data[i].rol_usuario.nombre_rol}"> ${data[i].nombre_usuario} ${data[i].apellido_usuario} </option>`;
+      }
+      document.getElementById("data-usuarios").innerHTML = body;
+    }
   };
 }
 
@@ -89,3 +97,19 @@ function crearUsername() {
   document.getElementById("username").innerHTML =
     nombre.toLowerCase() + apellido.slice(0, 3).toLowerCase();
 }
+
+// 
+if(location.pathname.endsWith("Actualizar_Usuario.html")== true){
+  document.getElementById("data-usuarios").addEventListener("change", function () {
+  document.getElementsByName("nombre")[0].value = this.options[this.selectedIndex].getAttribute("data-nombre");
+  document.getElementsByName("apellido")[0].value = this.options[this.selectedIndex].getAttribute("data-apellido");
+  document.getElementById("username").innerHTML = this.value;
+  document.getElementsByName("rol")[0].value = this.options[this.selectedIndex].getAttribute("data-rol");
+
+  //Limpiar campos de contraseña  
+  document.getElementsByName("pass")[0].value = "";
+  document.getElementsByName("confirnpass")[0].value = "";
+}
+)
+};
+
