@@ -24,6 +24,10 @@ public class GastosServiceImpl implements GastosService {
 		return gastosRepository.findAll();
 	}
 	
+	public GastosEntity save(GastosEntity venta) {
+		return gastosRepository.save(venta);
+	}
+	
 	public GastosEntity findById(Integer id) {
 		return gastosRepository.findById(id).orElse(null);
 	}
@@ -44,9 +48,7 @@ public class GastosServiceImpl implements GastosService {
 //		return gastosRepository.findByNombreProductoAndIdProducto(nombreProducto, idProducto);
 //	}
 	
-	public GastosEntity save(GastosEntity venta) {
-		return gastosRepository.save(venta);
-	}
+
 
 //	public void delete(Integer id) {
 //		 productosrepository.deleteById(id);

@@ -1,8 +1,10 @@
 package com.proyecto.sena.mgm.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.proyecto.sena.mgm.entity.ProductosEntity;
 import com.proyecto.sena.mgm.entity.VentasEntity;
+import com.proyecto.sena.mgm.repository.VentasRepository;
 import com.proyecto.sena.mgm.service.ProductoService;
 import com.proyecto.sena.mgm.service.VentasService;
 
@@ -23,10 +26,12 @@ import com.proyecto.sena.mgm.service.VentasService;
 @RestController
 @RequestMapping(path = "api/ventas")
 @CrossOrigin(origins = "*")
+
 public class VentasController {
 	
 	@Autowired
 	private VentasService ventasService;
+	private VentasRepository ventasRepository;
 	
 	@GetMapping("/listado")
     public ResponseEntity<List<VentasEntity>> consultarTodos(){
@@ -41,6 +46,27 @@ public class VentasController {
 	@PostMapping("/guardar")
     public ResponseEntity<VentasEntity> guardar(@RequestBody VentasEntity venta){
         return new ResponseEntity<>(ventasService.save(venta), HttpStatus.OK);
+    }
+	
+	@GetMapping("/total/dia")
+    public ResponseEntity<Integer> getTotalVentasDia(
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fecha) {
+        int totalVentasDia = ventasService.getTotalVentaDia(fecha);
+        return ResponseEntity.ok(totalVentasDia);
+    }
+	
+	@GetMapping("/total/semana")
+    public ResponseEntity<Integer> getTotalVentasSemana(
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fecha) {
+        int totalVentasSemana = ventasService.getTotalVentaSemana(fecha);
+        return ResponseEntity.ok(totalVentasSemana);
+    }
+
+    @GetMapping("/total/mes")
+    public ResponseEntity<Integer> getTotalVentasMes(
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate fecha) {
+        int totalVentasMes = ventasService.getTotalVentaMes(fecha);
+        return ResponseEntity.ok(totalVentasMes);
     }
 	
 //	@PostMapping("/reporte")

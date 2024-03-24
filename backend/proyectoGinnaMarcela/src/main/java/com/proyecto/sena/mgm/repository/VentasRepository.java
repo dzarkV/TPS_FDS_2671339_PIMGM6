@@ -1,5 +1,6 @@
 package com.proyecto.sena.mgm.repository;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,7 +16,10 @@ public interface VentasRepository extends JpaRepository<VentasEntity, Integer>{
 	
 	@Query(value = "select * from ventas where fecha_venta like %:fecha%", 
 			nativeQuery = true)
+	
 	List<VentasEntity> findByFechaVenta(@Param("fecha") String fechaVenta);
+	
+	List<VentasEntity> findByFechaVentaBetween(LocalDate startDate, LocalDate endDate);
 	
 //	@Query(value = "select * from ventas where nombre_producto like %:nombre% and id_producto = :id", 
 //			nativeQuery = true)

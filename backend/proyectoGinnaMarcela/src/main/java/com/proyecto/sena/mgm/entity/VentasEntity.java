@@ -29,7 +29,7 @@ public class VentasEntity {
 	@Column(name = "cantidad_items_venta_x_producto")
 	private Integer cantidadItemsVentaXProducto;
 	
-	@Column(name = "valot_total_venta")
+	@Column(name = "valor_total_venta")
 	private Integer valorTotalVenta;
 
 	
