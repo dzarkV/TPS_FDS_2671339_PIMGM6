@@ -27,7 +27,7 @@
 
 </head>
 
-<body onload="listarProveedoresEnSelect(); listarProductosEnSelect()">
+<body onload="listarProveedoresEnSelect(); listarProductosEnSelect(); listarInventario()">
 	<ul class="nav nav-tabs" role="tablist" style="background-color: #5F818C;">
 		<li class="active"><a href="index.html">Home</a></li>
 		<li><a style="color: black;" href="Productos.html">Productos</a></li>
@@ -123,6 +123,14 @@
 									</div>
 								</div>
 								<div class="row">
+									<div class="col-md-6">
+									    <div class="form-group">
+										   <label for="costoUnitario">Costo Unitario</label>
+										   <input type="number" class="form-control" id="costoUnitario" name="costoUnitario" required>
+									    </div>
+									</div>
+								 </div>
+								<div class="row">
 									<div class="col-md-12">
 										<button type="submit" class="btn btn-primary">Agregar</button>
 									</div>
@@ -141,10 +149,10 @@
 									<table class="table table-striped">
 										<thead>
 											<tr>
+												<th scope="col">Proveedor</th>
 												<th scope="col">Producto</th>
 												<th scope="col">Cantidad</th>
 												<th scope="col">Precio</th>
-												<th scope="col">Fecha de ingreso</th>
 											</tr>
 										</thead>
 										<tbody id="tablaInventario">
@@ -162,7 +170,8 @@
 
 	
      <script src="js/script.js"></script>
-	<script src="js/service-listing.js"></script>
+	<!-- <script src="js/service-listing.js"></script> -->
+	<script src="js/service-inventary.js"></script>
 
 </body>
 
