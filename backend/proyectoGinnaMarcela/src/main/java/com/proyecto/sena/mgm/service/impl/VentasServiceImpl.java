@@ -1,5 +1,6 @@
 package com.proyecto.sena.mgm.service.impl;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,27 @@ public class VentasServiceImpl implements VentasService {
 	
 	public VentasEntity findById(Integer id) {
 		return ventasRepository.findById(id).orElse(null);
+	}
+	
+	public int getTotalVentaDia(LocalDate fecha) {
+        LocalDate startDate = fecha;
+        LocalDate endDate = startDate.plusDays(1);
+        List<VentasEntity> ventasDelDia = ventasRepository.findByFechaVentaBetween(startDate, endDate);
+        return ventasDelDia.stream().mapToInt(VentasEntity::getValorTotalVenta).sum();
+    }
+	
+	public int getTotalVentaSemana(LocalDate fecha) {
+	    LocalDate startDate = fecha.with(java.time.temporal.TemporalAdjusters.previousOrSame(java.time.DayOfWeek.MONDAY));
+	    LocalDate endDate = startDate.plusWeeks(1);
+	    List<VentasEntity> ventasDeLaSemana = ventasRepository.findByFechaVentaBetween(startDate, endDate);
+	    return ventasDeLaSemana.stream().mapToInt(VentasEntity::getValorTotalVenta).sum();
+	}
+
+	public int getTotalVentaMes(LocalDate fecha) {
+	    LocalDate startDate = fecha.withDayOfMonth(1);
+	    LocalDate endDate = startDate.plusMonths(1);
+	    List<VentasEntity> ventasDelMes = ventasRepository.findByFechaVentaBetween(startDate, endDate);
+	    return ventasDelMes.stream().mapToInt(VentasEntity::getValorTotalVenta).sum();
 	}
 	
 //	public VentasEntity findByFechaVenta(String fechaVenta) {
