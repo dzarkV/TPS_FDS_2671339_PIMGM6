@@ -50,7 +50,7 @@ function agregarEntrada(event) {
         costoUnitario: parseFloat(costoUnitario) };
         console.log(data);
         
-     fetch('http://localhost:8080/api/entradas/guardar', {
+     fetch('https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/entradas/guardar', {
          method: 'POST',
          headers: {
              'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ function agregarEntrada(event) {
 function listarInventario() {
     const table = document.getElementById('tablaInventario');
 
-    fetch('http://localhost:8080/api/stock')
+    fetch('https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/stock')
     .then(response => response.json())
     .then(data => {
         data.forEach(entrada => {
