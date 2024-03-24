@@ -109,7 +109,7 @@ function agregarVenta() {
 
 function getTotalVentasDia() {
   var fecha = document.getElementById("fechaDia").value;
-  var url = "http://localhost:8080/api/ventas/total/dia?fecha=" + fecha;
+  var url = "https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/ventas/total/dia?fecha=" + fecha;
   fetch(url)
     .then(response => response.json())
     .then(data => {
@@ -119,7 +119,7 @@ function getTotalVentasDia() {
 
 function getTotalVentasSemana() {
   var fecha = document.getElementById("fechaSemana").value;
-  var url = "http://localhost:8080/api/ventas/total/semana?fecha=" + fecha;
+  var url = "https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/ventas/total/semana?fecha=" + fecha;
   fetch(url)
     .then(response => response.json())
     .then(data => {
@@ -130,7 +130,7 @@ function getTotalVentasSemana() {
 function getTotalVentasMes() {
   console.log("hola desde total ventas del mes")
   var fecha = document.getElementById("fechaMes").value;
-  var url = "http://localhost:8080/api/ventas/total/mes?fecha=" + fecha;
+  var url = "https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/ventas/total/mes?fecha=" + fecha;
   fetch(url)
     .then(response => response.json())
     .then(data => {
