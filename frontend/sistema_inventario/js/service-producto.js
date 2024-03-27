@@ -63,6 +63,11 @@ function crearProducto() {
   var valorCategoria = document.forms["crearProductoForm"]["categoria"].value;
   var valorDescripcion = document.forms["crearProductoForm"]["descripciónDelProducto"].value;
 
+  if (valorCategoria === 'Seleccione una categoria' || valorNombre === '' || valorDescripcion === '') {
+    alert('Por favor, llene todos los campos');
+    return;
+  };
+
   var url = "https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/productos/guardar";
 
   const dataProducto = {
@@ -94,3 +99,19 @@ function crearProducto() {
 
 }
 
+function listarCategorias() {
+  var url = "https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/categoria/listado";
+  // Consumir el endpoint o la url de java
+  fetch(url)
+    .then(response => response.json())
+    .then(datos => mostrarCategorias(datos))
+    .catch(error => console.log(error))
+  // Metodo que muestra las categorias en el select
+  const mostrarCategorias = (data) => {
+    let options = "<option selected>Seleccione una categoria</option>"
+    for (var i = 0; i < data.length; i++) {
+      options += `<option value="${data[i].idCategoria}">${data[i].nombreCategoria}</option>`
+    }
+    document.getElementById('categorias').innerHTML = options
+  }
+}
