@@ -25,8 +25,6 @@ public class ProductosEntity {
 	@Column(name = "nombre_producto")
 	private String nombreProducto;
 	
-	@Column(name = "precio_producto")
-	private Double precioProducto;
 	
 	@Column(name = "descripcion_producto")
 	private String descripcionProducto;
@@ -37,12 +35,11 @@ public class ProductosEntity {
 	@Column(name = "referencia")
 	private String referencia;
 	
-	public ProductosEntity(Integer idProducto, CategoriaEntity idCategoria, String nombreProducto, Double precioProducto,
+	public ProductosEntity(Integer idProducto, CategoriaEntity idCategoria, String nombreProducto,
 			String descripcionProducto, String marca, String referencia) {
 		this.idProducto = idProducto;
 		this.idCategoria = idCategoria;
 		this.nombreProducto = nombreProducto;
-		this.precioProducto = precioProducto;
 		this.descripcionProducto = descripcionProducto;
 		this.marca = marca;
 		this.referencia = referencia;
@@ -72,14 +69,6 @@ public class ProductosEntity {
 
 	public void setNombreProducto(String nombreProducto) {
 		this.nombreProducto = nombreProducto;
-	}
-
-	public Double getPrecioProducto() {
-		return precioProducto;
-	}
-
-	public void setPrecioProducto(Double precioProducto) {
-		this.precioProducto = precioProducto;
 	}
 
 	public String getDescripcionProducto() {

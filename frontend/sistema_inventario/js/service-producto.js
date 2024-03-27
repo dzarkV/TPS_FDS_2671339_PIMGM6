@@ -15,7 +15,7 @@ function listarProductos() {
     console.log(data)
     let body = ""
     for (var i = 0; i < data.length; i++) {
-      body += `<tr><td>${data[i].idProducto}</td><td>${data[i].nombreProducto}</td><td>${data[i].precioProducto}</td><td>${data[i].descripcionProducto}</td></tr>`
+      body += `<tr><td>${data[i].idProducto}</td><td>${data[i].nombreProducto}</td><td>${data[i].descripcionProducto}</td></tr>`
     }
     document.getElementById('data').innerHTML = body
     //console.log(body)
@@ -50,7 +50,7 @@ function buscarProducto() {
     console.log(data)
     let body = ""
     for (var i = 0; i < data.length; i++) {
-      body += `<tr><td>${data[i].idProducto}</td><td>${data[i].nombreProducto}</td><td>${data[i].precioProducto}</td><td>${data[i].marca}</td></tr>`
+      body += `<tr><td>${data[i].idProducto}</td><td>${data[i].nombreProducto}</td><td>${data[i].descripcionProducto}</td></tr>`
     }
     document.getElementById('data').innerHTML = body
     //console.log(body)
@@ -61,7 +61,6 @@ function crearProducto() {
   // Capturar informacion
   var valorNombre = document.forms["crearProductoForm"]["producto"].value;
   var valorCategoria = document.forms["crearProductoForm"]["categoria"].value;
-  var valorPrecio = document.forms["crearProductoForm"]["precio"].value;
   var valorDescripcion = document.forms["crearProductoForm"]["descripciónDelProducto"].value;
 
   var url = "https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/productos/guardar";
@@ -71,7 +70,6 @@ function crearProducto() {
       idCategoria: valorCategoria
     },
     nombreProducto: valorNombre,
-    precioProducto: valorPrecio,
     descripcionProducto: valorDescripcion,
   };
 
