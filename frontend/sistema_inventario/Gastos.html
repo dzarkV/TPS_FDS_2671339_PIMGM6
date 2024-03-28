@@ -22,11 +22,11 @@
 
 <body onload="listarGastos()">
 	<ul class="nav nav-tabs" role="tablist" style="background-color: #5F818C;">
-		<li class="active"><a href="index.html">Home</a></li>
+		<li><a style="color: black;" href="index.html">Home</a></li>
 		<li><a style="color: black;" href="Productos.html">Productos</a></li>
-			<li><a style="color: black;" href="proveedores.html">Proveedores</a></li>
-			<li><a style="color: black;" href="ventas.html">Ventas</a></li>
-			<li><a style="color: black;" href="reportes.html">Reportes</a></li>
+		<li><a style="color: black;" href="proveedores.html">Proveedores</a></li>
+		<li><a style="color: black;" href="ventas.html">Ventas</a></li>
+		<li class="active"><a style="color: black;" href="reportes.html">Reportes</a></li>
 	</ul>
 	<!-- Cabezote de la pagina Estados de usuario -->
 	<header id="estilo-header">
@@ -74,7 +74,7 @@
 	</section>
 
 	<!-- Para realizar los filtros -->
-	<div class="row"  style="margin-top: 5%; margin-left: 5%;">
+	<div class="row" style="margin-top: 5%; margin-left: 5%;">
 		<div class="col-sm-8">
 			<form id="gastos-form" method="get">
 				<p>
@@ -84,7 +84,7 @@
 				</p>
 			</form>
 		</div>
-	
+
 		<div class="col-sm-4">
 			<a href="Ingreso_de_gastos.html">
 				<button class="btn btn-info">
@@ -103,6 +103,8 @@
 						<th>Id</th>
 						<th>Tipo de Gasto</th>
 						<th>Valor del gasto</th>
+						<th>Actualizar</th>
+						<th>Eliminar</th>
 						</th>
 					</tr>
 				</thead>
