@@ -137,3 +137,100 @@ function getTotalVentasMes() {
       document.getElementById("resultadoMes").innerHTML = "Total de ventas para el mes: " + data;
     });
 }
+
+function chartVentas(){
+
+  var url = "https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/ventas/listado";
+
+  // Consumir el endpoint o la url de java
+  fetch(url)
+    .then(response => response.json())
+    .then(datos => mostrarData(datos))
+    .catch(error => console.log(error))
+
+
+  // Metodo que pinta los datos
+  const mostrarData = (data) => {
+
+  // Crear chart de ventas si la pagina actual es reporte_ventas.html
+  if (window.location.pathname.endsWith("reporte_ventas.html") == true) {
+    // Crear chart de ventas por mes
+    const ventasXmes = document.getElementById("ventasXmesChart");
+    
+    const ventasPorMes = data.reduce((acc, venta) => {
+      const fecha = new Date(venta.fechaVenta);
+      const mes = fecha.toLocaleString('default', { month: 'long' });
+      if (acc[mes]) {
+        acc[mes] += venta.valorTotalVenta;
+      } else {
+        acc[mes] = venta.valorTotalVenta;
+      }
+      return acc;
+    }, {});
+
+    console.log(ventasPorMes);
+    new Chart(ventasXmes, {
+      type: "line",
+      data: {
+        labels: Object.keys(ventasPorMes),
+        datasets: [
+          {
+            label: "Ventas",
+            data: Object.values(ventasPorMes),
+            borderColor: "rgba(255, 99, 132, 1)",
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+    // Crear chart de ventas por año
+    const ventasXanio = document.getElementById("ventasXanioChart");
+
+    const ventasPorAnio = data.reduce((acc, venta) => {
+      const fecha = new Date(venta.fechaVenta);
+      const anio = fecha.getFullYear();
+      if (acc[anio]) {
+        acc[anio] += venta.valorTotalVenta;
+      } else {
+        acc[anio] = venta.valorTotalVenta;
+      }
+      return acc;
+    }, {});
+
+    console.log(ventasPorAnio);
+
+    new Chart(ventasXanio, {
+      type: "bar",
+      data: {
+        labels: Object.keys(ventasPorAnio),
+        datasets: [
+          {
+            label: "Ventas",
+            data: Object.values(ventasPorAnio),
+            borderColor: "rgba(255, 99, 132, 1)",
+            borderWidth: 1,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+
+
+  }
+
+  }
+}
