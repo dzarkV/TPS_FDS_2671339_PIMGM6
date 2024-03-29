@@ -20,7 +20,7 @@
 
 <link rel="stylesheet" id="theme-switch" href="css/style.css">
 
-	
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 </head>
 <body onload="listarUsuarios()">
@@ -84,9 +84,26 @@
 	
 </form>
 
+<!-- Sección para mostrar chart de usuarios por rol -->
+<section id="estilo-contact" >
+<div class="container">
+	<div class="row">
+		<div class="col-md-6">
+			<h3>Usuarios por rol</h3>
+			<canvas id="usuarioXrolChart" class="users-chart"></canvas>
+		</div>
+		<div class="col-md-6">
+			<h3>Usuarios activos</h3>
+			<canvas id="usuariosActivosChart" class="users-chart"></canvas>
+		</div>
+	</div>
+</div>
+</section>
+<br>
 <!-- HTML que pinta las tablas (comienzo) -->
 <section id="estilo-contact" >
 	<div class="container mt-4 shadow-lg p-3 mb-5 bg-body rounded">
+		<h3>Usuarios</h3>
 		<table class="table table-bordered table-striped">
 		  <thead>
 			<tr>
