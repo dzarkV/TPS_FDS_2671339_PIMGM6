@@ -84,6 +84,11 @@ function listarInventario() {
             <td>${entrada.nombreProducto}</td>
             <td>${entrada.cantidad}</td>
             <td>${entrada.costoTotal}</td>`;
+
+            // si la cantidad es menor o igual a 3, la fila se pone en color rojo 
+            if (entrada.cantidad <= 3) {
+            row.style.color = 'red';
+            }
         });
     })
     .catch(error => console.error('Error:', error));
