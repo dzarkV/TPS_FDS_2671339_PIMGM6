@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityManager;
 import javax.persistence.StoredProcedureQuery;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 public class StockServiceImpl implements StockService {
@@ -41,12 +43,20 @@ public class StockServiceImpl implements StockService {
             ProductoEnStockParaVentaDto dto = new ProductoEnStockParaVentaDto();
             dto.setIdEntrada(rs.getLong("id_entrada"));
             dto.setNombreProducto(rs.getString("nombre_producto"));
-            dto.setCantidadItemsEntrada(rs.getInt("cantidad_items_entrada"));
-            dto.setCostoUnitario(rs.getDouble("costo_unitario"));
-            return dto;
+            int cantidadItemsEntrada = rs.getInt("cantidad_items_entrada");
+            if (cantidadItemsEntrada > 0) {
+                dto.setCantidadItemsEntrada(cantidadItemsEntrada);
+                dto.setCostoUnitario(rs.getDouble("costo_unitario"));
+                return dto;
+            } else {
+                return null; // Filter out products with quantity <= 0
+            }
         };
 
-        return jdbcTemplate.query(sql, rowMapper);
+        return jdbcTemplate.query(sql, rowMapper)
+                .stream()
+                .filter(Objects::nonNull) // Filter out null values
+                .collect(Collectors.toList());
     }
 
         public Integer getIdStock(Integer idEntrada) {
