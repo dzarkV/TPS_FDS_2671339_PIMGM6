@@ -12,16 +12,12 @@ function listarProductos() {
     console.log(data)
     let body = ""
     for (var i = 0; i < data.length; i++) {
-<<<<<<< HEAD
       body += `<tr>
       <td>${data[i].idProducto}</td>
       <td>${data[i].nombreProducto}</td>
       <td>${data[i].precioProducto}</td>
       <td>${data[i].descripcionProducto}</td>
       </tr>`
-=======
-      body += `<tr><td>${data[i].idProducto}</td><td>${data[i].nombreProducto}</td><td>${data[i].descripcionProducto}</td></tr>`
->>>>>>> 85c5be4850627127af0537cc7f8791563d894015
     }
     document.getElementById('data').innerHTML = body
     //console.log(body)
@@ -108,7 +104,7 @@ function buscarProducto() {
     console.log(data)
     let body = ""
     for (var i = 0; i < data.length; i++) {
-      body += `<tr><td>${data[i].idProducto}</td><td>${data[i].nombreProducto}</td><td>${data[i].descripcionProducto}</td></tr>`
+      body += `<tr><td>${data[i].idProducto}</td><td>${data[i].nombreProducto}</td><td>${data[i].precioProducto}</td><td>${data[i].marca}</td></tr>`
     }
     document.getElementById('data').innerHTML = body
     //console.log(body)
@@ -119,12 +115,8 @@ function crearProducto() {
   // Capturar informacion
   var valorNombre = document.forms["crearProductoForm"]["producto"].value;
   var valorCategoria = document.forms["crearProductoForm"]["categoria"].value;
+  var valorPrecio = document.forms["crearProductoForm"]["precio"].value;
   var valorDescripcion = document.forms["crearProductoForm"]["descripciónDelProducto"].value;
-
-  if (valorCategoria === 'Seleccione una categoria' || valorNombre === '' || valorDescripcion === '') {
-    alert('Por favor, llene todos los campos');
-    return;
-  };
 
   var url = "https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/productos/guardar";
 
@@ -133,6 +125,7 @@ function crearProducto() {
       idCategoria: valorCategoria
     },
     nombreProducto: valorNombre,
+    precioProducto: valorPrecio,
     descripcionProducto: valorDescripcion,
   };
 
@@ -158,7 +151,6 @@ function crearProducto() {
 
 }
 
-<<<<<<< HEAD
 function eliminarProducto(idProducto) {
   var url = "https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/productos/listado/";
 
@@ -223,21 +215,4 @@ function actualizarProducto() {
 
 function abrirFormulario(idProducto) {
   window.open('actualizar_producto_formulario.html?id=' + idProducto, '_blank');
-=======
-function listarCategorias() {
-  var url = "https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/categoria/listado";
-  // Consumir el endpoint o la url de java
-  fetch(url)
-    .then(response => response.json())
-    .then(datos => mostrarCategorias(datos))
-    .catch(error => console.log(error))
-  // Metodo que muestra las categorias en el select
-  const mostrarCategorias = (data) => {
-    let options = "<option selected>Seleccione una categoria</option>"
-    for (var i = 0; i < data.length; i++) {
-      options += `<option value="${data[i].idCategoria}">${data[i].nombreCategoria}</option>`
-    }
-    document.getElementById('categorias').innerHTML = options
-  }
->>>>>>> 85c5be4850627127af0537cc7f8791563d894015
 }

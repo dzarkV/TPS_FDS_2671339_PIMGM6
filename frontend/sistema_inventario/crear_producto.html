@@ -20,22 +20,13 @@
 
 </head>
 
-<body onload="listarCategorias()">
+<body>
 	<ul class="nav nav-tabs" role="tablist" style="background-color: #5F818C;">
-<<<<<<< HEAD
 		<li><a style="color: black;" href="index.html">Home</a></li>
 		<li class="active"><a style="color: black;" href="Productos.html">Productos</a></li>
 		<li><a style="color: black;" href="proveedores.html">Proveedores</a></li>
 		<li><a style="color: black;" href="ventas.html">Ventas</a></li>
 		<li><a style="color: black;" href="reportes.html">Reportes</a></li>
-=======
-		<li class="active"><a href="index.html">Home</a></li>
-		<li><a style="color: black;" href="Productos.html">Productos</a></li>
-			<li><a style="color: black;" href="proveedores.html">Proveedores</a></li>
-			<li><a style="color: black;" href="ventas.html">Ventas</a></li>
-			<li><a style="color: black;" href="reportes.html">Reportes</a></li>
-			<li><a style="color: black;" href="inventario.html">Inventario</a></li>
->>>>>>> 85c5be4850627127af0537cc7f8791563d894015
 	</ul>
 	<!-- Cabezote de la pagina Estados de usuario -->
 	<header id="estilo-header">
@@ -95,8 +86,11 @@
 						</div>
 						<div class="form-group ">
 							<label class="sr-only">categoria</label>
-							<select class="form-control form-select-lg" id="categorias" name="categoria">
-							</select>
+							<input class="form-control" placeholder="categoria" type="number" name="categoria">
+						</div>
+						<div class="form-group ">
+							<label class="sr-only">precio</label>
+							<input class="form-control" placeholder="precio" type="number" name="precio">
 						</div>
 						<div class="form-group ">
 							<label class="sr-only">descripciónDelProducto</label>

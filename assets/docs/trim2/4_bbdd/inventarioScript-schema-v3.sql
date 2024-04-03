@@ -24,6 +24,7 @@ create table PRODUCTOS (
 	id_producto int unsigned auto_increment not null comment 'identificacion de producto',
 	id_categoria tinyint unsigned not null comment 'identificacion de categroías de productos',
 	nombre_producto varchar(50) not null comment 'ingresar nombre de producto',
+	precio_producto double not null comment 'precio del producto en la empresa',
 	descripcion_producto varchar(100) NOT NULL comment 'detalles del producto',
 	marca varchar(50) comment 'marca del producto',
 	referencia varchar(50) comment 'referencia del producto',
