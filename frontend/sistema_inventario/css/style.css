@@ -481,3 +481,13 @@ h1, h2, h3, h4, h5, h6 {
   cursor: pointer;
   color: #41b2b1;
 }
+
+
+.users-chart {
+  /* Propiedades adicionales */
+  margin: 0 auto;
+  
+  /* Limita el zoom máximo para evitar distorsión */
+  max-width: 980px;
+  max-height: 980px;
+}

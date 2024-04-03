@@ -99,21 +99,36 @@ window.addEventListener("DOMContentLoaded", function () {
     const rolUsuario = document.getElementById("rolUsuario");
     const usuarioSesion = localStorage.getItem("userSession");
 
-    nombreUsuario.innerHTML = JSON.parse(usuarioSesion).nombre_usuario;
-    rolUsuario.innerHTML = JSON.parse(usuarioSesion).rol_usuario.nombre_rol;
+    // verificar si el usuario está autenticado
+    if (usuarioSesion == null) {
+      // si no está autenticado, redirigir al usuario a la página de inicio de sesión
+      window.location.href = "login.html";
+    } else {
+      // si el usuario está autenticado, mostrar su nombre y rol en la barra de navegación
+      nombreUsuario.innerHTML = JSON.parse(usuarioSesion).nombre_usuario;
+      rolUsuario.innerHTML = JSON.parse(usuarioSesion).rol_usuario.nombre_rol;
 
-    // deshabilitar opciones de menu para vendedores
-    if (JSON.parse(usuarioSesion).rol_usuario.nombre_rol == "Vendedor") {
-      const selectFuncionUsuario = document.getElementById("funcionUsuario");
-      selectFuncionUsuario.remove();
+      // deshabilitar opciones de menu para vendedores
+      if (JSON.parse(usuarioSesion).rol_usuario.nombre_rol == "Vendedor") {
+        const selectFuncionUsuario = document.getElementById("funcionUsuario");
+        selectFuncionUsuario.remove();
+      }
     }
-  }
 
-  if (location.pathname.endsWith("Actualizar_Usuario.html")) {
-        // carga datos del usuario sesion en el formulario
-        document.getElementsByName('nombre')[0].value = JSON.parse(localStorage.getItem("userSession")).nombre_usuario;
-        document.getElementsByName('apellido')[0].value = JSON.parse(localStorage.getItem("userSession")).apellido_usuario;
-        document.getElementById("username").innerHTML = JSON.parse(localStorage.getItem("userSession")).credenciales.usuario;
-        document.getElementsByName('rol')[0].value = JSON.parse(localStorage.getItem("userSession")).rol_usuario.nombre_rol;
+    if (location.pathname.endsWith("Actualizar_Usuario.html")) {
+      // carga datos del usuario sesion en el formulario
+      document.getElementsByName("nombre")[0].value = JSON.parse(
+        localStorage.getItem("userSession")
+      ).nombre_usuario;
+      document.getElementsByName("apellido")[0].value = JSON.parse(
+        localStorage.getItem("userSession")
+      ).apellido_usuario;
+      document.getElementById("username").innerHTML = JSON.parse(
+        localStorage.getItem("userSession")
+      ).credenciales.usuario;
+      document.getElementsByName("rol")[0].value = JSON.parse(
+        localStorage.getItem("userSession")
+      ).rol_usuario.nombre_rol;
+    }
   }
 });

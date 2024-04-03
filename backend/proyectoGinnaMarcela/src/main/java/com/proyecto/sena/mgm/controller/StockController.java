@@ -1,6 +1,7 @@
 package com.proyecto.sena.mgm.controller;
 
-import com.proyecto.sena.mgm.entity.StockEntity;
+import com.proyecto.sena.mgm.dto.ProductoEnStockParaVentaDto;
+import com.proyecto.sena.mgm.entity.StockStoreProcedureEntity;
 import com.proyecto.sena.mgm.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,7 +20,12 @@ public class StockController {
     private StockService stockService;
 
     @GetMapping
-    public List<StockEntity> consultarStock() {
+    public List<StockStoreProcedureEntity> consultarStock() {
         return stockService.getStock();
+    }
+
+    @GetMapping("/productosEnStockParaVenta")
+    public List<ProductoEnStockParaVentaDto> consultarProductosEnStockParaVenta() {
+        return stockService.getProductosEnStockParaVenta();
     }
 }
