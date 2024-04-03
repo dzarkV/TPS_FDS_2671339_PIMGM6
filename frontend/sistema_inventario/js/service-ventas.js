@@ -207,21 +207,25 @@ function chartVentas() {
         return acc;
       }, {});
 
-      console.log(ventasPorMes);
+      
       new Chart(ventasXmes, {
         type: "line",
         data: {
           labels: Object.keys(ventasPorMes),
           datasets: [
             {
-              label: "Ventas",
+              label: "Acumulado de ventas por mes",
               data: Object.values(ventasPorMes),
               borderColor: "rgba(255, 99, 132, 1)",
               borderWidth: 1,
+              pointStyle: 'rect',
+              pointRadius: 5,
+              pointHoverRadius: 10
             },
           ],
         },
         options: {
+          responsive: true,
           scales: {
             y: {
               beginAtZero: true,
@@ -244,7 +248,7 @@ function chartVentas() {
         return acc;
       }, {});
 
-      console.log(ventasPorAnio);
+      
 
       new Chart(ventasXanio, {
         type: "bar",
@@ -252,10 +256,53 @@ function chartVentas() {
           labels: Object.keys(ventasPorAnio),
           datasets: [
             {
-              label: "Ventas",
+              label: "Acumulado de ventas por año",
               data: Object.values(ventasPorAnio),
               borderColor: "rgba(255, 99, 132, 1)",
               borderWidth: 1,
+              borderRadius: 10,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+
+      // Crear chart de ventas por dia (histograma)
+      const ventasXdia = document.getElementById("ventasHistoricoChart");
+
+      const ventasPorDia = data.sort((a, b) => new Date(a.fechaVenta) - new Date(b.fechaVenta)).reduce((acc, venta) => {
+        const fecha = new Date(venta.fechaVenta);
+        const dia = fecha.getDate();
+        const mes = fecha.toLocaleString("default", { month: "long" });
+        const anio = fecha.getFullYear();
+        const label = `${dia} ${mes} ${anio}`;
+        if (acc[label]) {
+          acc[label] += venta.valorTotalVenta;
+        } else {
+          acc[label] = venta.valorTotalVenta;
+        }
+        return acc;
+      }, {});
+
+      new Chart(ventasXdia, {
+        type: "line",
+        data: {
+          labels: Object.keys(ventasPorDia),
+          datasets: [
+            {
+              label: "Ventas por día",
+              data: Object.values(ventasPorDia),
+              borderColor: "rgba(255, 99, 132, 1)",
+              borderWidth: 2,
+              pointStyle: 'circle',
+              pointRadius: 5,
+              pointHoverRadius: 10
             },
           ],
         },
