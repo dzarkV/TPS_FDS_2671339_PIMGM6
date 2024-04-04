@@ -6,7 +6,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.proyecto.sena.mgm.entity.ProductosEntity;
 import com.proyecto.sena.mgm.repository.Productosrepository;
@@ -51,7 +50,6 @@ public class ProductoServiceImpl implements ProductoService {
         if (productoExistente.isPresent()) {
             ProductosEntity productoActualizado = productoExistente.get();
             productoActualizado.setNombreProducto(producto.getNombreProducto());
-            productoActualizado.setPrecioProducto(producto.getPrecioProducto());
             productoActualizado.setDescripcionProducto(producto.getDescripcionProducto());
             productoActualizado.setMarca(producto.getMarca());
             productoActualizado.setReferencia(producto.getReferencia());
