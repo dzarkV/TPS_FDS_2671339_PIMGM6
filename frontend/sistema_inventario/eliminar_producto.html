@@ -12,22 +12,26 @@
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,400italic,700' rel='stylesheet'
 		type='text/css'>
 
+	<!-- Simple Line Icons -->
+	<link rel="stylesheet" href="css/simple-line-icons.css">
 	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="css/bootstrap.css">
 
-	<!--Estilos personalizados -->
 	<link rel="stylesheet" href="css/style.css">
+
+	<link rel="stylesheet" id="theme-switch" href="css/style.css">
+
+
 
 </head>
 
-<body>
+<body onload="listarProductosEliminar()">
 	<ul class="nav nav-tabs" role="tablist" style="background-color: #5F818C;">
 		<li><a style="color: black;" href="index.html">Home</a></li>
 		<li class="active"><a style="color: black;" href="Productos.html">Productos</a></li>
 		<li><a style="color: black;" href="proveedores.html">Proveedores</a></li>
 		<li><a style="color: black;" href="ventas.html">Ventas</a></li>
 		<li><a style="color: black;" href="reportes.html">Reportes</a></li>
-			<li><a style="color: black;" href="inventario.html">Inventario</a></li>
 	</ul>
 	<!-- Cabezote de la pagina Estados de usuario -->
 	<header id="estilo-header">
@@ -74,36 +78,50 @@
 		<div class="slant"></div>
 	</section>
 
-	<!-- Seccion con los formularios con la informacion para crear un nuevo usuario -->
-<div class="container" style="margin-top: 2em;">
-	<div class="row">
-	    <div class="col-md-6 col-md-offset-3">
-		   <h2 class="text-center">Actualizar Producto</h2>
-		   <form id="formulario-producto">
-			   <div class="form-group">
-				  <label for="nombre">Nombre del Producto:</label>
-				  <input type="text" class="form-control" id="nombre" placeholder="Nombre del Producto">
-			   </div>
-			  <div class="form-group">
-				 <label for="nombre">Categoria del Producto:</label>
-				 <input type="number" class="form-control" id="categoria" placeholder="Codigo del Producto">
-			  </div>
-			  <div class="form-group">
-				 <label for="precio">Precio del Producto:</label>
-				 <input type="number" class="form-control" id="precio" placeholder="Precio del Producto">
-			  </div>
-			  <div class="form-group">
-				 <label for="descripcion">Descripción del Producto:</label>
-				 <textarea class="form-control" id="descripcion" rows="3" placeholder="Descripción del Producto"></textarea>
-			  </div>
-			  <button type="button" class="btn btn-primary" onclick="actualizarProducto()">Actualizar</button>
-			  <a href="productos.html" class="btn btn-default">Cancelar</a>
-		   </form>
-	    </div>
-	</div>
- </div>
+<section class="container">
+		<!-- Para realizar los filtros -->
+		<form id="producto-form" method="get">
+			<div class="row" style="margin-top: 2em; margin-bottom: 2rem;">
+				<p class="col-lg-6">
+					Buscar nombre de producto:
+					<input type="text" name="busquedaProducto" placeholder="Buscar">
+					<button type="button" onclick="buscarProducto()">Buscar</button>
+					<!-- al dar click va al metodo indicado -->
+				</p>
+				<p  class="col-lg-6">
+					Buscar producto ID:
+					<input type="text" name="busquedaID" placeholder="0000">
+					<button type="button" onclick="buscarProducto()">Buscar</button>
+				</p>
+			</div>
+		</form>
+	
+		<section id="estilo-contact">
+			<div class="container">
+				<div class="row row-bottom-padded-md">
+					<div class="col-md-12">
+						<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">Codigo</th>
+									<th scope="col">Producto</th>
+									<th scope="col">Precio</th>
+									<th scope="col">Descripcion</th>
+									<th scope="col">Acción</th>
+								</tr>
+							</thead>
+							<tbody id="data">
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			</div>
+		</section>
+	
+</section>
 
-	<script src="js/service-producto.js"></script>
+	<script src="js/service-producto.js"></script> <!-- Script con la consulta a BD -->
 	<script src="js/script.js"></script>
 
 </body>
