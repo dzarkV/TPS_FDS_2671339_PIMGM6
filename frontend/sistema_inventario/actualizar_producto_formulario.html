@@ -20,13 +20,13 @@
 
 </head>
 
-<body onload="listarGastos()">
+<body>
 	<ul class="nav nav-tabs" role="tablist" style="background-color: #5F818C;">
 		<li><a style="color: black;" href="index.html">Home</a></li>
-		<li><a style="color: black;" href="Productos.html">Productos</a></li>
+		<li class="active"><a style="color: black;" href="productos.html">Productos</a></li>
 		<li><a style="color: black;" href="proveedores.html">Proveedores</a></li>
 		<li><a style="color: black;" href="ventas.html">Ventas</a></li>
-		<li class="active"><a style="color: black;" href="reportes.html">Reportes</a></li>
+		<li><a style="color: black;" href="reportes.html">Reportes</a></li>
 			<li><a style="color: black;" href="inventario.html">Inventario</a></li>
 	</ul>
 	<!-- Cabezote de la pagina Estados de usuario -->
@@ -74,49 +74,36 @@
 		<div class="slant"></div>
 	</section>
 
-	<!-- Para realizar los filtros -->
-	<div class="row" style="margin-top: 5%; margin-left: 5%;">
-		<div class="col-sm-8">
-			<form id="gastos-form" method="get">
-				<p>
-					Buscar Gasto:
-					<input type="text" name="busquedaID" placeholder="buscar gasto">
-					<button type="button" onclick="buscarGasto()">Buscar</button>
-				</p>
-			</form>
-		</div>
-
-		<div class="col-sm-4">
-			<a href="Ingreso_de_gastos.html">
-				<button class="btn btn-info">
-					Agregar Gasto
-				</button>
-			</a>
-		</div>
+	<!-- Seccion con los formularios con la informacion para crear un nuevo usuario -->
+<div class="container" style="margin-top: 2em;">
+	<div class="row">
+	    <div class="col-md-6 col-md-offset-3">
+		   <h2 class="text-center">Actualizar Producto</h2>
+		   <form id="formulario-producto">
+			   <div class="form-group">
+				  <label for="nombre">Nombre del Producto:</label>
+				  <input type="text" class="form-control" id="nombre" placeholder="Nombre del Producto">
+			   </div>
+			  <div class="form-group">
+				 <label for="nombre">Categoria del Producto:</label>
+				 <input type="number" class="form-control" id="categoria" placeholder="Codigo del Producto">
+			  </div>
+			  <div class="form-group">
+				 <label for="precio">Precio del Producto:</label>
+				 <input type="number" class="form-control" id="precio" placeholder="Precio del Producto">
+			  </div>
+			  <div class="form-group">
+				 <label for="descripcion">Descripción del Producto:</label>
+				 <textarea class="form-control" id="descripcion" rows="3" placeholder="Descripción del Producto"></textarea>
+			  </div>
+			  <button type="button" class="btn btn-primary" onclick="actualizarProducto()">Actualizar</button>
+			  <a href="productos.html" class="btn btn-default">Cancelar</a>
+		   </form>
+	    </div>
 	</div>
+ </div>
 
-	<!-- HTML que pinta las tablas (comienzo) -->
-	<section id="estilo-contact">
-		<div class="container mt-4 shadow-lg p-3 mb-5 bg-body rounded">
-			<table class="table table-bordered table-striped">
-				<thead>
-					<tr>
-						<th>Id</th>
-						<th>Tipo de Gasto</th>
-						<th>Valor del gasto</th>
-						<th>Actualizar</th>
-						<th>Eliminar</th>
-						</th>
-					</tr>
-				</thead>
-				<tbody id="data">
-				</tbody>
-			</table>
-		</div>
-	</section>
-	<!-- (fin) -->
-
-	<script src="js/service-gastos.js"></script> <!-- Script con la consulta a BD -->
+	<script src="js/service-producto.js"></script>
 	<script src="js/script.js"></script>
 
 </body>

@@ -161,5 +161,5 @@ function actualizarGasto() {
 }
 
 function formularioActualizarGasto(idProducto) {
-  window.open('actualizar_gasto_formulario.html?id=' + idProducto, '_blank');
+  window.location.href ='actualizar_gasto_formulario.html?id=' + idProducto;
 }

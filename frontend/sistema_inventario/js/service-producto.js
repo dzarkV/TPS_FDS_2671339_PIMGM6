@@ -208,7 +208,7 @@ function actualizarProducto() {
 }
 
 function abrirFormulario(idProducto) {
-  window.open('actualizar_producto_formulario.html?id=' + idProducto, '_blank');
+  window.window.location.href  = 'actualizar_producto_formulario.html?id=' + idProducto;
 }
 function listarCategorias() {
   var url = "https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/categoria/listado";

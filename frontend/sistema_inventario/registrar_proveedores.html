@@ -12,24 +12,19 @@
 	<link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,600,400italic,700' rel='stylesheet'
 		type='text/css'>
 
-	<!-- Simple Line Icons -->
-	<link rel="stylesheet" href="css/simple-line-icons.css">
 	<!-- Bootstrap  -->
 	<link rel="stylesheet" href="css/bootstrap.css">
 
+	<!--Estilos personalizados -->
 	<link rel="stylesheet" href="css/style.css">
-
-	<link rel="stylesheet" id="theme-switch" href="css/style.css">
-
-
 
 </head>
 
-<body onload="listarProductosActualizar()">
+<body>
 	<ul class="nav nav-tabs" role="tablist" style="background-color: #5F818C;">
 		<li><a style="color: black;" href="index.html">Home</a></li>
-		<li class="active"><a style="color: black;" href="Productos.html">Productos</a></li>
-		<li><a style="color: black;" href="proveedores.html">Proveedores</a></li>
+		<li><a style="color: black;" href="productos.html">Productos</a></li>
+		<li  class="active"><a style="color: black;" href="proveedores.html">Proveedores</a></li>
 		<li><a style="color: black;" href="ventas.html">Ventas</a></li>
 		<li><a style="color: black;" href="reportes.html">Reportes</a></li>
 			<li><a style="color: black;" href="inventario.html">Inventario</a></li>
@@ -79,52 +74,54 @@
 		<div class="slant"></div>
 	</section>
 
-<section class="container">
-		<!-- Para realizar los filtros -->
-		<form id="producto-form" method="get">
-			<div class="row" style="margin-top: 2em; margin-bottom: 2rem;">
-				<p class="col-lg-6">
-					Buscar nombre de producto:
-					<input type="text" name="busquedaProducto" placeholder="Buscar">
-					<button type="button" onclick="buscarProducto()">Buscar</button>
-					<!-- al dar click va al metodo indicado -->
-				</p>
-				<p  class="col-lg-6">
-					Buscar producto ID:
-					<input type="text" name="busquedaID" placeholder="0000">
-					<button type="button" onclick="buscarProducto()">Buscar</button>
-				</p>
-			</div>
-		</form>
-	
+	<!-- Seccion con los formularios con la informacion para crear un nuevo usuario -->
+	<form id="crearProveedoresForm" method="post">
 		<section id="estilo-contact">
 			<div class="container">
 				<div class="row row-bottom-padded-md">
 					<div class="col-md-12">
-						<table class="table">
-							<thead>
-								<tr>
-									<th scope="col">Codigo</th>
-									<th scope="col">Producto</th>
-									<th scope="col">Precio</th>
-									<th scope="col">Descripcion</th>
-									<th scope="col">Acción</th>
-								</tr>
-							</thead>
-							<tbody id="data">
-							</tbody>
-						</table>
+						<h3>Registrar proveedores</h3>
+						<div class="form-group ">
+							<label class="sr-only">nombre de la empresa</label>
+							<input class="form-control" placeholder="nombre vendedor" type="text"
+								name="nombreVendedor">
+
+						</div>
+						<div class="form-group ">
+							<label class="sr-only">dirección</label>
+							<input class="form-control" placeholder="dirección" type="text" name="dirección">
+						</div>
+						<div class="form-group ">
+							<label class="sr-only">telefono</label>
+							<input class="form-control" placeholder="telefono" type="text" name="telefono">
+						</div>
+						<div class="form-group ">
+							<label class="sr-only">descripción </label>
+							<input class="form-control" placeholder="descripción del productos que provee"
+								type="text" name="descripción">
+						</div>
+						<div class="form-group ">
+							<label class="sr-only">empresa</label>
+							<input class="form-control" placeholder="empresa" type="text" name="empresa">
+						</div>
+						<div class="form-group ">
+							<label class="sr-only">email</label>
+							<input class="form-control" placeholder="email" type="text" name="email">
+						</div>
+						<div class="form-group ">
+							<button class="btn btn-primary btn-lg" type="button"
+								onclick="registrarProveedor()">registrar proveedor</button>
+						</div>
 					</div>
 				</div>
+
 			</div>
 			</div>
 		</section>
-	
-</section>
+	</form>
 
-	<script src="js/service-producto.js"></script> <!-- Script con la consulta a BD -->
+	<script src="js/service-proveedores.js"></script> <!-- Script con la consulta a BD -->
 	<script src="js/script.js"></script>
-
 </body>
 
 </html>

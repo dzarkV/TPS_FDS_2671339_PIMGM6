@@ -429,5 +429,5 @@ function actualizarVenta() {
 }
 
 function formularioActualizarVenta(idVenta) {
-  window.open('actualizar_venta_formulario.html?id=' + idVenta, '_blank');
+  window.window.location.href = 'actualizar_venta_formulario.html?id=' + idVenta;
 }
