@@ -1,78 +1,33 @@
 package com.proyecto.sena.mgm.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@SqlResultSetMapping(
-        name = "StockMapping",
-        classes = @ConstructorResult(
-                targetClass = StockEntity.class,
-                columns = {
-                        @ColumnResult(name = "idProducto", type = Long.class),
-                        @ColumnResult(name = "nombreProducto", type = String.class),
-                        @ColumnResult(name = "nombreProveedor", type = String.class),
-                        @ColumnResult(name = "cantidad", type = Integer.class),
-                        @ColumnResult(name = "costoTotal", type = Double.class)
-                }
-        )
-)
+@Table(name = "stock")
 public class StockEntity {
+
     @Id
-    private Long idProducto;
-    private String nombreProducto;
-    private String nombreProveedor;
-    private int cantidad;
-    private double costoTotal;
+    private Integer idStock;
 
-    public StockEntity(Long idProducto, String nombreProducto, String nombreProveedor, int cantidad, double costoTotal) {
-        this.idProducto = idProducto;
-        this.nombreProducto = nombreProducto;
-        this.nombreProveedor = nombreProveedor;
-        this.cantidad = cantidad;
-        this.costoTotal = costoTotal;
+    @Column(name = "id_entrada")
+    private Integer idEntrada;
+
+    public Integer getIdStock() {
+        return idStock;
     }
 
-    public StockEntity() {
-
+    public void setIdStock(Integer idStock) {
+        this.idStock = idStock;
     }
 
-    public Long getIdProducto() {
-        return idProducto;
+    public Integer getIdEntrada() {
+        return idEntrada;
     }
 
-    public void setIdProducto(Long idProducto) {
-        this.idProducto = idProducto;
-    }
-
-    public String getNombreProducto() {
-        return nombreProducto;
-    }
-
-    public void setNombreProducto(String nombreProducto) {
-        this.nombreProducto = nombreProducto;
-    }
-
-    public String getNombreProveedor() {
-        return nombreProveedor;
-    }
-
-    public void setNombreProveedor(String nombreProveedor) {
-        this.nombreProveedor = nombreProveedor;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public double getCostoTotal() {
-        return costoTotal;
-    }
-
-    public void setCostoTotal(double costoTotal) {
-        this.costoTotal = costoTotal;
+    public void setIdEntrada(Integer idEntrada) {
+        this.idEntrada = idEntrada;
     }
 }

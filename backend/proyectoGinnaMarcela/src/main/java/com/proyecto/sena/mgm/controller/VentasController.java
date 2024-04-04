@@ -3,6 +3,7 @@ package com.proyecto.sena.mgm.controller;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.proyecto.sena.mgm.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
@@ -25,6 +26,7 @@ import com.proyecto.sena.mgm.entity.VentasEntity;
 import com.proyecto.sena.mgm.repository.VentasRepository;
 import com.proyecto.sena.mgm.service.ProductoService;
 import com.proyecto.sena.mgm.service.VentasService;
+import org.webjars.NotFoundException;
 
 
 @RestController
@@ -35,7 +37,9 @@ public class VentasController {
 	
 	@Autowired
 	private VentasService ventasService;
-	private VentasRepository ventasRepository;
+//	private VentasRepository ventasRepository;
+    @Autowired
+    private StockService stockService;
 	
 	@GetMapping("/listado")
     public ResponseEntity<List<VentasEntity>> consultarTodos(){
@@ -48,7 +52,14 @@ public class VentasController {
     }
 	
 	@PostMapping("/guardar")
-    public ResponseEntity<VentasEntity> guardar(@RequestBody VentasEntity venta){
+    public ResponseEntity<VentasEntity> guardar(@RequestParam Integer idEntrada, @RequestBody VentasEntity venta){
+        System.out.println(idEntrada);
+        Integer idStock = stockService.getIdStock(idEntrada);
+        if (idStock == null) {
+            throw new NotFoundException("No se encontró ningún idStock para el idEntrada proporcionado: " + idEntrada);
+        }
+        venta.setIdStock(idStock);
+
         return new ResponseEntity<>(ventasService.save(venta), HttpStatus.OK);
     }
 	

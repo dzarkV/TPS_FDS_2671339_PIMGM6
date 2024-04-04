@@ -491,3 +491,13 @@ li:hover {
   background-color: #ffffff; /* Color al pasar el cursor */
   color: #000000; /* Color del texto al pasar el cursor */
 }
+
+
+.users-chart {
+  /* Propiedades adicionales */
+  margin: 0 auto;
+  
+  /* Limita el zoom máximo para evitar distorsión */
+  max-width: 980px;
+  max-height: 980px;
+}

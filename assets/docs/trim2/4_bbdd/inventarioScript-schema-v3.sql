@@ -72,24 +72,10 @@ create table ENTRADAS (
 ) engine = InnoDB;
 
 -- -----------------------------------------------------
--- TABLA INTERMEDIA ENTRADAS PRODUCTOS PROVEEDORES
--- -----------------------------------------------------
-CREATE TABLE ENTRADAS_PRODUCTOS_PROVEEDORES (
-    id_entrada INT UNSIGNED NOT NULL,
-    id_producto INT UNSIGNED NOT NULL,
-    id_proveedor smallint UNSIGNED NOT NULL,
-    PRIMARY KEY (id_entrada, id_producto, id_proveedor),
-    FOREIGN KEY (id_entrada) REFERENCES ENTRADAS(id_entrada),
-    FOREIGN KEY (id_producto) REFERENCES PRODUCTOS(id_producto),
-    FOREIGN KEY (id_proveedor) REFERENCES PROVEEDORES(id_proveedor)
-) ENGINE = InnoDB;
-
--- -----------------------------------------------------
 -- TABLA STOCK
 -- -----------------------------------------------------
 CREATE TABLE STOCK (
 	id_stock INT unsigned auto_increment NOT NULL PRIMARY KEY COMMENT 'id para registro stock',
-	cantidad INT unsigned NOT NULL COMMENT 'cantidad de artículos en stock (calculado)',
 	id_entrada int unsigned NOT NULL COMMENT 'id de entrada en stock',
 	CONSTRAINT fk_stock_entradas 
 	FOREIGN KEY (id_entrada) 
