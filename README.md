@@ -63,3 +63,7 @@ También se configuró un workflow para realizar las pruebas a la API del servic
 Se definió un plan de despliegue [aquí](./assets/docs/trim4/plan_despligue.md) con la herramienta de infraestructura como código [terraform](https://www.terraform.io/) para el aprovisionamiento de los recursos necesarios para el sistema en la nube de Azure.
 
 [Aquí](https://guardarcosasdelsena.blob.core.windows.net/cosas-del-sena/plan_despliegue.mp4) el video de instalación con las configuraciones definidas en el plan.
+
+El diagrama de CI/CD es el siguiente:
+
+![diagrama-CICD](./assets/docs/trim4/diagrama-CICD.jpg)
