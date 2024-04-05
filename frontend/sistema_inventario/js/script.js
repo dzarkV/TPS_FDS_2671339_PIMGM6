@@ -47,59 +47,94 @@ async function verificarUsuarioSesion(jwt) {
   }
 }
 
-function loginUsuario() {
-  const entry_endpoint = "https://sistema-mgm-service-users.azurewebsites.net";
-  const span_message = document.getElementById("login_message");
+// Loguearse por boton ingresar o tecla enter
+document.addEventListener("DOMContentLoaded", function() {
 
-  // obtener referencia al formulario
-  const form = document.querySelector("#login-form");
+  if (location.pathname.endsWith("login.html") == true) {
+  const formulario = document.getElementById("login-form");
+  const cargando = document.getElementById("cargando");
 
-
-
-  // agregar un gestor de eventos para enviar el formulario
-  form.addEventListener("submit", async (event) => {
-    // detener el comportamiento predeterminado del formulario (que es recargar la página)
+  formulario.addEventListener("submit", async function(event) {
+    cargando.style.display = "block";
+    // Limpiar mensaje span de mensajes de error
+    var mensajeError = document.getElementById('login_message');
+    mensajeError.style.display = "none";
+  
     event.preventDefault();
+    await loginUsuario(event); 
 
-    // obtener los datos del formulario como un objeto FormData
-    const formData = new FormData(form);
+    cargando.style.display = "none";
+  });
 
-    // enviar los datos al servidor usando fetch()
-    const responseAuth = await fetch(entry_endpoint + "/api/login", {
-      method: "POST",
-      body: formData,
-    });
+  formulario.addEventListener("keydown", async function(event) {
+    if (event.key === "Enter") {
+      cargando.style.display = "block";
 
-    // procesar la respuesta del servidor
-    const dataAuth = await responseAuth.json();
+      event.preventDefault();
+      await loginUsuario(event); 
 
-    
-    // si el usuario está autenticado con token, guardar en localStorage y redirigir al usuario a la página de inicio
-    if (dataAuth.access_token) {
-      
-      // // mostrando overlay y cargando loader
-      // document.getElementById("overlay").style.display = "block";
-      // document.getElementById("loader").style.display = "block";
-
-      // guardar el token en el almacenamiento local
-      window.localStorage.setItem("jwt", dataAuth.access_token);
-
-      // verificar si el usuario está autenticado y obtener datos
-      verificarUsuarioSesion(dataAuth.access_token).then(
-        () => {
-          // redirigir al usuario a la página de inicio
-          window.location.href = "index.html";
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
-    } else {
-      // si el inicio de sesión falló, mostrar un mensaje de error
-      span_message.innerText = dataAuth.detail;
+      cargando.style.display = "none";
     }
   });
 }
+});
+
+async function loginUsuario(event) { // Recibir event como argumento
+
+  event.preventDefault();
+
+  var inputUser = document.getElementById('user').value.trim();
+  var inputPass = document.getElementById('pass').value.trim();
+  // var error = document.getElementById('login_message');
+  const span_message = document.getElementById("login_message");
+
+  if (inputUser === '' || inputPass === '') {
+    span_message.style.display = "block";
+    span_message.innerText = "El usuario y contraseña son obligatorios";
+    return;
+  }
+
+  const entry_endpoint = "https://sistema-mgm-service-users.azurewebsites.net";
+  const form = document.querySelector("#login-form");
+
+  // detener el comportamiento predeterminado del formulario (que es recargar la página)
+  event.preventDefault();
+
+  // obtener los datos del formulario como un objeto FormData
+  const formData = new FormData(form);
+
+  // enviar los datos al servidor usando fetch()
+  const responseAuth = await fetch(entry_endpoint + "/api/login", {
+    method: "POST",
+    body: formData,
+  });
+
+  // procesar la respuesta del servidor
+  const dataAuth = await responseAuth.json();
+
+  
+  // si el usuario está autenticado con token, guardar en localStorage y redirigir al usuario a la página de inicio
+  if (dataAuth.access_token) {
+    // guardar el token en el almacenamiento local
+    window.localStorage.setItem("jwt", dataAuth.access_token);
+
+    // verificar si el usuario está autenticado y obtener datos
+    verificarUsuarioSesion(dataAuth.access_token).then(
+      () => {
+        // redirigir al usuario a la página de inicio
+        window.location.href = "index.html";
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
+  } else {
+    // si el inicio de sesión falló, mostrar un mensaje de error
+    span_message.style.display = "block";
+    span_message.innerText = dataAuth.detail;
+  }
+}
+
 
 window.addEventListener("DOMContentLoaded", function () {
   // obtener datos de usuario en sesion

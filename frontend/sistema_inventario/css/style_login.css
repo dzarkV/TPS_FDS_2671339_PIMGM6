@@ -75,9 +75,28 @@ input {
 }
 
 /* caracteristicas para el bloque de los botones */
+.block-center {
+  text-align: center;
+}
+
 .button-block {
   color: #ffffff;
   text-align: center;
+  text-decoration: none; /* quita el subrayado del texto */
+  border-radius: 5px;
+  outline: none;
+}
+
+.button-block a {
+  display: inline-block;
+  text-decoration: none; /* quita el subrayado */
+  color: #ffffff;
+}
+
+.button-block:hover,
+.button-block:focus,
+.button-block:active {
+  background-color: #384c53;
 }
 
 /* solo para el botón de recuperar contraseña */
@@ -118,11 +137,12 @@ h2 {
 
 /* HTML: <div class="loader"></div> */
 .loader {
-  width: 50px;
+  width: 40px; /* Ajusta este valor para cambiar el tamaño del loader */
   padding: 8px;
   aspect-ratio: 1;
   border-radius: 50%;
   background: #25b09b;
+  margin-left: 50px;
   --_m: 
     conic-gradient(#0000 10%,#000),
     linear-gradient(#000 0 0) content-box;
@@ -133,3 +153,22 @@ h2 {
   animation: l3 1s infinite linear;
 }
 @keyframes l3 {to{transform: rotate(1turn)}}
+
+.cargando {
+  display: none;
+  position: fixed;
+  top: 51%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  font-size: 30px; /* Ajusta este valor para cambiar el tamaño del texto */
+  border-radius: 10px;
+}
+
+.error-vacio{
+  display: none;
+  margin: 10px;
+  text-align: left;
+}
