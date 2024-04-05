@@ -25,26 +25,27 @@
 			<div class="tab-content">
 			  <div id="signup"> 
 				  <h2>Iniciar Sesion</h2>
-				  <div id="loader" class="loader" style="margin-left: 45%; display: none;"></div>
-				<form id="login-form" class="box" method="post">
-					<input name="username" type="text" placeholder="Usuario" required>
-					<input name="password" type="password" placeholder="Contraseña" required>
+				  <form id="login-form" class="box" method="post">
+					  <input id="user" name="username" type="text" placeholder="Usuario">
+					<input id="pass" name="password" type="password" placeholder="Contraseña">
 					<div id="message_response">
-						<span id="login_message"></span>
+						<span id="login_message" class="error-vacio"></span>
 					</div>
+					<!-- <div id="error" style="color: #fff;"></div> -->
 					<div class="block-center">
 						
 						<button type="submit" class="button button-block"><a style="color:#fff; text-decoration:none" onclick="loginUsuario(event)">Ingresar</a></button>
 						
 						<span class="pass-recovery button button-block"><a href="Recuperar_contraseña.html">Recuperar contraseña</a></span>
 					</div>
-
-					<div id="cargando">Cargando...</div>
-
+					
+					<div id="cargando" class="cargando">Cargando...
+						<div id="loader" class="loader" style="display: block;"></div>
+					</div>
 				</form> 
 			  </div>
-			  
-			</div>
+			</div>	
+	  	</div>
 
 			
 	  </div>

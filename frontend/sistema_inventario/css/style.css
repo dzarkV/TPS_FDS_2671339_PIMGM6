@@ -492,6 +492,10 @@ li:hover {
   color: #000000; /* Color del texto al pasar el cursor */
 }
 
+.fondo-tras:hover {
+  background-color: #ffffff00; /* Color al pasar el cursor */
+}
+
 
 .users-chart {
   /* Propiedades adicionales */

@@ -49,11 +49,16 @@ async function verificarUsuarioSesion(jwt) {
 
 // Loguearse por boton ingresar o tecla enter
 document.addEventListener("DOMContentLoaded", function() {
+
+  if (location.pathname.endsWith("login.html") == true) {
   const formulario = document.getElementById("login-form");
   const cargando = document.getElementById("cargando");
 
   formulario.addEventListener("submit", async function(event) {
     cargando.style.display = "block";
+    // Limpiar mensaje span de mensajes de error
+    var mensajeError = document.getElementById('login_message');
+    mensajeError.style.display = "none";
   
     event.preventDefault();
     await loginUsuario(event); 
@@ -71,11 +76,25 @@ document.addEventListener("DOMContentLoaded", function() {
       cargando.style.display = "none";
     }
   });
+}
 });
 
 async function loginUsuario(event) { // Recibir event como argumento
-  const entry_endpoint = "https://sistema-mgm-service-users.azurewebsites.net";
+
+  event.preventDefault();
+
+  var inputUser = document.getElementById('user').value.trim();
+  var inputPass = document.getElementById('pass').value.trim();
+  // var error = document.getElementById('login_message');
   const span_message = document.getElementById("login_message");
+
+  if (inputUser === '' || inputPass === '') {
+    span_message.style.display = "block";
+    span_message.innerText = "El usuario y contraseña son obligatorios";
+    return;
+  }
+
+  const entry_endpoint = "https://sistema-mgm-service-users.azurewebsites.net";
   const form = document.querySelector("#login-form");
 
   // detener el comportamiento predeterminado del formulario (que es recargar la página)
@@ -111,6 +130,7 @@ async function loginUsuario(event) { // Recibir event como argumento
     );
   } else {
     // si el inicio de sesión falló, mostrar un mensaje de error
+    span_message.style.display = "block";
     span_message.innerText = dataAuth.detail;
   }
 }
