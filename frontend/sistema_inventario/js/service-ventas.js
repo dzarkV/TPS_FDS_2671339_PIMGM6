@@ -1,5 +1,5 @@
 function listarVentas() {
-  // var url =
+  var url =
   "https://sistema-mgm-service-app-for-inventary.azurewebsites.net/api/ventas/listado";
   // var url = "http://localhost:8080/api/ventas/listado";
 
